@@ -7,7 +7,7 @@ namespace GoldenTicket.Data
     /// <summary>
     /// The context for the GoldenTicket Api
     /// </summary>
-    public class GoldenTicketContext : IdentityDbContext<Technician>
+    public class GoldenTicketContext : IdentityDbContext<Moderator>
     {
         /// <summary>
         /// The collection of clients

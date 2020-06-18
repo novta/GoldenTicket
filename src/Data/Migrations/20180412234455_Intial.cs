@@ -42,6 +42,8 @@ namespace GoldenTicket.Data.Migrations
                     FirstName = table.Column<string>(nullable: true),
                     IsAdmin = table.Column<bool>(nullable: false),
                     LastName = table.Column<string>(nullable: true),
+                    Title = table.Column<string>(nullable: true),
+                    Chair = table.Column<string>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     NormalizedEmail = table.Column<string>(maxLength: 256, nullable: true),

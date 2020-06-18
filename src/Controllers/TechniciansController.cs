@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using GoldenTicket.Data;
 using GoldenTicket.Models;
-using GoldenTicket.Models.TechniciansViewModels;
+using GoldenTicket.Models.ModeratorsViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -18,14 +18,14 @@ namespace GoldenTicket.Controllers
     {
         private GoldenTicketContext _context;
 
-        private UserManager<Technician> _userManager;
+        private UserManager<Moderator> _userManager;
 
         /// <summary>
         /// intializes _context
         /// </summary>
         /// <param name="context">context of the technician</param>
         /// <param name="userManager">the usermanager</param>
-        public TechniciansController(GoldenTicketContext context, UserManager<Technician> userManager)
+        public TechniciansController(GoldenTicketContext context, UserManager<Moderator> userManager)
         {
             _context = context;
             _userManager = userManager;
@@ -57,9 +57,9 @@ namespace GoldenTicket.Controllers
         /// </summary>
         /// <returns>The technician list</returns>
         [HttpPost]
-        public async Task<IActionResult> Add([FromForm] NewTechnician newTechnician)
+        public async Task<IActionResult> Add([FromForm] NewModerator newTechnician)
         {
-            var technician = new Technician
+            var technician = new Moderator
             {
                 DateAdded = DateTime.Now,
                 UserName = $"{newTechnician.FirstName}.{newTechnician.LastName}",

@@ -11,80 +11,110 @@ namespace GoldenTicket.Data
     /// </summary>
     public static class SeedData
     {
-        private static Technician[] _technicians = {
-            new Technician {
+        private static Moderator[] _moderators = {
+            new Moderator {
                 FirstName = "Madeline",
                 LastName = "Booth",
+                Title = "Profesor",
+                Chair = "Chamistry",
                 IsAdmin = true
             },
-            new Technician {
+            new Moderator {
                 FirstName = "Charles",
                 LastName = "Woods",
+                Title = "Profesor",
+                Chair = "Biology",
                 IsAdmin = true
             },
-            new Technician {
+            new Moderator {
                 FirstName = "Nico",
                 LastName = "Perkins",
+                Title = "Profesor",
+                Chair = "Mathematics",
                 IsAdmin = true
             },
-            new Technician {
+            new Moderator {
                 FirstName = "Marie",
                 LastName = "Wilson",
+                Title = "Profesor",
+                Chair = "Philosophy",
                 IsAdmin = false
             },
-            new Technician {
+            new Moderator {
                 FirstName = "Nancy",
                 LastName = "Mays",
+                Title = "Profesor",
+                Chair = "Fluids",
                 IsAdmin = false
             },
-            new Technician {
+            new Moderator {
                 FirstName = "Taryn",
                 LastName = "Norman",
+                Title = "Profesor",
+                Chair = "Technic",
                 IsAdmin = false
             },
-            new Technician {
+            new Moderator {
                 FirstName = "Kieran",
                 LastName = "Lam",
+                Title = "Profesor",
+                Chair = "Something",
                 IsAdmin = false
             },
-            new Technician {
+            new Moderator {
                 FirstName = "Natalya",
                 LastName = "Lynch",
+                Title = "Profesor",
+                Chair = "Chamistry1",
                 IsAdmin = false
             },
-            new Technician {
+            new Moderator {
                 FirstName = "Gavin",
                 LastName = "Preston",
+                Title = "Profesor",
+                Chair = "Chamistry2",
                 IsAdmin = false
             },
-            new Technician {
+            new Moderator {
                 FirstName = "Kira",
                 LastName = "Paul",
+                Title = "Profesor",
+                Chair = "Chamistry3",
                 IsAdmin = false
             },
-            new Technician {
+            new Moderator {
                 FirstName = "Shyla",
                 LastName = "Turner",
+                Title = "Profesor",
+                Chair = "Chamistry4",
                 IsAdmin = false
             },
-            new Technician {
+            new Moderator {
                 FirstName = "Ana",
                 LastName = "Wise",
+                Title = "Profesor",
+                Chair = "Chamistry5",
                 IsAdmin = false
             },
-            new Technician {
+            new Moderator {
                 FirstName = "Rylan",
                 LastName = "Bryan",
+                Title = "Profesor",
+                Chair = "Chamistry6",
                 IsAdmin = false
             },
-            new Technician {
+            new Moderator {
                 FirstName = "Cailyn",
                 LastName = "Melton",
+                Title = "Profesor",
+                Chair = "Chamistry7",
                 IsAdmin = false
             },
-            new Technician {
+            new Moderator {
                 FirstName = "Rory",
                 LastName = "Clark",
+                Title = "Profesor",
+                Chair = "Chamistry8",
                 IsAdmin = false
             }
         };
@@ -218,7 +248,7 @@ namespace GoldenTicket.Data
         /// <param name="context">context</param>
         /// <param name="userManager">admin</param>
         /// <param name="roleManager"></param>
-        public static void Initialize(GoldenTicketContext context, UserManager<Technician> userManager, RoleManager<IdentityRole> roleManager)
+        public static void Initialize(GoldenTicketContext context, UserManager<Moderator> userManager, RoleManager<IdentityRole> roleManager)
         {
             context.Database.EnsureDeleted();
             context.Database.Migrate();
@@ -236,14 +266,14 @@ namespace GoldenTicket.Data
                 roleManager.CreateAsync(new IdentityRole(DataConstants.AdministratorRole));
             }
 
-            foreach (var technician in _technicians)
+            foreach (var moderator in _moderators)
             {
-                technician.DateAdded = DateTime.Now.AddMonths(randGenerator.Next(-36, -25));
-                technician.UserName = $"{technician.FirstName}.{technician.LastName}";
-                userManager.CreateAsync(technician, "password").Wait();
-                if (technician.IsAdmin)
+                moderator.DateAdded = DateTime.Now.AddMonths(randGenerator.Next(-36, -25));
+                moderator.UserName = $"{moderator.FirstName}.{moderator.LastName}";
+                userManager.CreateAsync(moderator, "password").Wait();
+                if (moderator.IsAdmin)
                 {
-                    userManager.AddToRoleAsync(technician, DataConstants.AdministratorRole);
+                    userManager.AddToRoleAsync(moderator, DataConstants.AdministratorRole);
                 }
             }
 

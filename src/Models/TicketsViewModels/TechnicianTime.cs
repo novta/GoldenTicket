@@ -9,7 +9,7 @@ namespace GoldenTicket.Models.TicketsViewModels
         /// Get's technician
         /// </summary>
         /// <returns>technician</returns>
-        public Technician Technician { get; set; }
+        public Moderator Moderator { get; set; }
 
         /// <summary>
         /// get's time

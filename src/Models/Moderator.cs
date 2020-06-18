@@ -6,32 +6,42 @@ using Microsoft.AspNetCore.Identity;
 namespace GoldenTicket.Models
 {
     /// <summary>
-    /// A Technician and information
+    /// A Moderator and information
     /// </summary>
-    public class Technician : IdentityUser
+    public class Moderator : IdentityUser
     {
         /// <summary>
-        /// Is the Technician an Admin?
+        /// Is the Moderator an Admin?
         /// </summary>
         public bool IsAdmin { get; set; }
 
         /// <summary>
-        /// The first name of the Technician
+        /// The first name of the Moderator
         /// </summary>
         public string FirstName { get; set; }
 
         /// <summary>
-        /// The last name of the Technician
+        /// The last name of the Moderator
         /// </summary>
         public string LastName { get; set; }
 
         /// <summary>
-        /// The Date the technician was hired
+        /// The last name of the Moderator
+        /// </summary>
+        public string Title { get; set; }
+
+        /// <summary>
+        /// The last name of the Moderator
+        /// </summary>
+        public string Chair { get; set; }
+
+        /// <summary>
+        /// The Date the Moderator was hired
         /// </summary>
         public DateTime DateAdded { get; set; }
 
         /// <summary>
-        /// Gets pay rate for this technician
+        /// Gets pay rate for this Moderator
         /// </summary>
         /// <returns>Pay rate</returns>
         public int GetPayRate()

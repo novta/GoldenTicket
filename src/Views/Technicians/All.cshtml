@@ -3,9 +3,9 @@
 }
 @using GoldenTicket.Models
 @using System.Collections.Generic
-@model List<Technician>
+@model List<Moderator>
 
-<a asp-action="Add" >Add Technician</a>
+<a asp-action="Add" >Add Moderator</a>
 
 <table class="responsive-table highlight">
     <tr>
@@ -14,12 +14,12 @@
         <th>Rate</th>
         <th>Admin</th>
     </tr>
-    @foreach (var technician in Model) {
+    @foreach (var moderator in Model) {
     <tr>
-        <th>@technician.FirstName @technician.LastName</th>
-        <th>@((int)((DateTime.Now - technician.DateAdded).TotalDays / 365))</th>
-        <th>$@technician.GetPayRate()</th>
-        @if (technician.IsAdmin) {
+        <th>@moderator.FirstName @moderator.LastName</th>
+        <th>@((int)((DateTime.Now - moderator.DateAdded).TotalDays / 365))</th>
+        <th>$@moderator.GetPayRate()</th>
+        @if (moderator.IsAdmin) {
         <th>&#10004;</th>
         }
         else {

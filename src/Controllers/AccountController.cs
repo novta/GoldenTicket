@@ -13,7 +13,7 @@ namespace GoldenTicket.Controllers
     /// </summary>
     public class AccountController : Controller
     {
-        private readonly SignInManager<Technician> _signInManager;
+        private readonly SignInManager<Moderator> _signInManager;
 
         private readonly ILogger _logger;
 
@@ -22,7 +22,7 @@ namespace GoldenTicket.Controllers
         /// </summary>
         /// <param name="signInManager">manages sign in and out</param>
         /// <param name="logger">logs</param>
-        public AccountController(SignInManager<Technician> signInManager, ILogger<AccountController> logger)
+        public AccountController(SignInManager<Moderator> signInManager, ILogger<AccountController> logger)
         {
             _signInManager = signInManager;
             _logger = logger;

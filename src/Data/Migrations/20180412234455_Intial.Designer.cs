@@ -48,7 +48,7 @@ namespace GoldenTicket.Data.Migrations
                     b.ToTable("Clients");
                 });
 
-            modelBuilder.Entity("GoldenTicket.Models.Technician", b =>
+            modelBuilder.Entity("GoldenTicket.Models.Moderator", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -70,6 +70,10 @@ namespace GoldenTicket.Data.Migrations
                     b.Property<bool>("IsAdmin");
 
                     b.Property<string>("LastName");
+
+                    b.Property<string>("Title");
+
+                    b.Property<string>("Chair");
 
                     b.Property<bool>("LockoutEnabled");
 
@@ -106,7 +110,7 @@ namespace GoldenTicket.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("GoldenTicket.Models.TechnicianTicketTime", b =>
+            modelBuilder.Entity("GoldenTicket.Models.ModeratorTicketTime", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
@@ -267,7 +271,7 @@ namespace GoldenTicket.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("GoldenTicket.Models.Technician")
+                    b.HasOne("GoldenTicket.Models.Moderator")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -275,7 +279,7 @@ namespace GoldenTicket.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("GoldenTicket.Models.Technician")
+                    b.HasOne("GoldenTicket.Models.Moderator")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -288,7 +292,7 @@ namespace GoldenTicket.Data.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("GoldenTicket.Models.Technician")
+                    b.HasOne("GoldenTicket.Models.Moderator")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -296,7 +300,7 @@ namespace GoldenTicket.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("GoldenTicket.Models.Technician")
+                    b.HasOne("GoldenTicket.Models.Moderator")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);

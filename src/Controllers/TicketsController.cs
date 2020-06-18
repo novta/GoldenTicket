@@ -20,14 +20,14 @@ namespace GoldenTicket.Controllers
     {
         private GoldenTicketContext _context;
 
-        private UserManager<Technician> _userManager;
+        private UserManager<Moderator> _userManager;
 
         /// <summary>
         /// Initializes private variable _context
         /// </summary>
         /// <param name="context">context of current ticket</param>
         /// <param name="userManager">The user manager</param>
-        public TicketsController(GoldenTicketContext context, UserManager<Technician> userManager)
+        public TicketsController(GoldenTicketContext context, UserManager<Moderator> userManager)
         {
             _context = context;
             _userManager = userManager;
@@ -66,7 +66,7 @@ namespace GoldenTicket.Controllers
         {
             var ticket = await _context.Tickets.FindAsync(id);
             var client = await _context.Clients.FindAsync(ticket.ClientId);
-            var times = await _context.TechnicianTicketTimes.Where(time => time.TicketId == ticket.Id).Join(_context.Users, time => time.TechnicianId, tech => tech.UserName, (time, tech) => new TechnicianTime { Technician = tech, Time = time }).ToListAsync();
+            var times = await _context.TechnicianTicketTimes.Where(time => time.TicketId == ticket.Id).Join(_context.Users, time => time.TechnicianId, tech => tech.UserName, (time, tech) => new TechnicianTime { Moderator = tech, Time = time }).ToListAsync();
             return View(new TicketDetails { Ticket = ticket, Client = client, Times = times });
         }
 
@@ -171,7 +171,7 @@ namespace GoldenTicket.Controllers
         {
             var ticket = await _context.Tickets.FindAsync(id);
             var client = await _context.Clients.FindAsync(ticket.ClientId);
-            var times = await _context.TechnicianTicketTimes.Where(time => time.TicketId == ticket.Id).Join(_context.Users, time => time.TechnicianId, tech => tech.UserName, (time, tech) => new TechnicianTime { Technician = tech, Time = time }).ToListAsync();
+            var times = await _context.TechnicianTicketTimes.Where(time => time.TicketId == ticket.Id).Join(_context.Users, time => time.TechnicianId, tech => tech.UserName, (time, tech) => new TechnicianTime { Moderator = tech, Time = time }).ToListAsync();
             return View(new TicketDetails { Ticket = ticket, Client = client, Times = times });
         }
 

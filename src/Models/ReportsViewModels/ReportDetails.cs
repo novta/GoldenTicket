@@ -32,6 +32,6 @@ namespace GoldenTicket.Models.ReportsViewModels
         /// <summary>
         /// Hours each technician was idle
         /// </summary>
-        public List<(Technician Technician, int HoursIdle)> TechnicianIdleHours { get; set; }
+        public List<(Moderator Technician, int HoursIdle)> TechnicianIdleHours { get; set; }
     }
 }

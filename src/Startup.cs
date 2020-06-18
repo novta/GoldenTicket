@@ -43,7 +43,7 @@ namespace GoldenTicket
 
             services.AddDbContext<GoldenTicketContext>(options => options.UseSqlite(_configuration["connectionString"]));
 
-            services.AddIdentity<Technician, IdentityRole>().AddEntityFrameworkStores<GoldenTicketContext>().AddDefaultTokenProviders();
+            services.AddIdentity<Moderator, IdentityRole>().AddEntityFrameworkStores<GoldenTicketContext>().AddDefaultTokenProviders();
 
             services.Configure<IdentityOptions>(options =>
             {
@@ -64,7 +64,7 @@ namespace GoldenTicket
         /// <param name="logger"></param>
         /// <param name="applicationLifetime"></param>
         /// <param name="userManager"></param>
-        public void Configure(IApplicationBuilder app, GoldenTicketContext context, ILogger<Startup> logger, IApplicationLifetime applicationLifetime, UserManager<Technician> userManager)
+        public void Configure(IApplicationBuilder app, GoldenTicketContext context, ILogger<Startup> logger, IApplicationLifetime applicationLifetime, UserManager<Moderator> userManager)
         {
             if (_hostingEnvironment.IsDevelopment())
             {
