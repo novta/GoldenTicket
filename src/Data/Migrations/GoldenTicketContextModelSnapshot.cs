@@ -114,7 +114,7 @@ namespace GoldenTicket.Data.Migrations
 
                     b.Property<DateTime>("Start");
 
-                    b.Property<string>("TechnicianId");
+                    b.Property<string>("ModeratorId");
 
                     b.Property<Guid>("TicketId");
 

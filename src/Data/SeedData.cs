@@ -309,11 +309,11 @@ namespace GoldenTicket.Data
                 {
                     var start = ticket.DateAdded.AddHours(randGenerator.Next(1, 60));
                     var end = start.AddMinutes(randGenerator.Next(15, 60));
-                    context.TechnicianTicketTimes.Add(new TechnicianTicketTime
+                    context.TechnicianTicketTimes.Add(new ModeratorTicketReview
                     {
                         Start = start,
                         End = end,
-                        TechnicianId = context.Users.OrderBy(t => Guid.NewGuid()).Take(1).First().UserName,
+                        ModeratorId = context.Users.OrderBy(t => Guid.NewGuid()).Take(1).First().UserName,
                         TicketId = ticket.Id
                     });
                 }

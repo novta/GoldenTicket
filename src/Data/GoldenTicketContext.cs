@@ -22,7 +22,7 @@ namespace GoldenTicket.Data
         /// <summary>
         /// The collection of TechnicianTicket pivot models
         /// </summary>
-        public DbSet<TechnicianTicketTime> TechnicianTicketTimes { get; set; }
+        public DbSet<ModeratorTicketReview> TechnicianTicketTimes { get; set; }
 
         /// <summary>
         /// The constructor for this context

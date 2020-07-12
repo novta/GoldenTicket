@@ -51,7 +51,7 @@ namespace GoldenTicket.Controllers
                 AverageWait = new TimeSpan(0, 0, 0),
                 EmptyQueuePercentage = 0,
                 TicketsNotAddressedSameDay = 15,
-                TechnicianIdleHours = await _context.Users.GroupJoin(_context.TechnicianTicketTimes, technician => technician.UserName, time => time.TechnicianId, (technician, times) => new { Technician = technician, Time = 8 }).ToAsyncEnumerable().Select(techTime => (techTime.Technician, techTime.Time)).ToList()
+                TechnicianIdleHours = await _context.Users.GroupJoin(_context.TechnicianTicketTimes, technician => technician.UserName, time => time.ModeratorId, (technician, times) => new { Technician = technician, Time = 8 }).ToAsyncEnumerable().Select(techTime => (techTime.Technician, techTime.Time)).ToList()
             };
             return View(details);
         }

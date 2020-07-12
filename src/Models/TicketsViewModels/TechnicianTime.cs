@@ -15,6 +15,6 @@ namespace GoldenTicket.Models.TicketsViewModels
         /// get's time
         /// </summary>
         /// <returns>technician's ticket time</returns>
-        public TechnicianTicketTime Time { get; set; }
+        public ModeratorTicketReview Time { get; set; }
     }
 }

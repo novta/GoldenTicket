@@ -85,7 +85,7 @@ namespace GoldenTicket.Data.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     End = table.Column<DateTime>(nullable: false),
                     Start = table.Column<DateTime>(nullable: false),
-                    TechnicianId = table.Column<string>(nullable: true),
+                    ModeratorId = table.Column<string>(nullable: true),
                     TicketId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
