@@ -7,7 +7,7 @@ namespace GoldenTicket.Data
     /// <summary>
     /// The context for the GoldenTicket Api
     /// </summary>
-    public class GoldenTicketContext : IdentityDbContext<Moderator>
+    public class GoldenTicketContext : IdentityDbContext<Client>
     {
         /// <summary>
         /// The collection of clients
@@ -22,7 +22,7 @@ namespace GoldenTicket.Data
         /// <summary>
         /// The collection of TechnicianTicket pivot models
         /// </summary>
-        public DbSet<ModeratorTicketReview> TechnicianTicketTimes { get; set; }
+        public DbSet<TicketReview> TicketReviews { get; set; }
 
         /// <summary>
         /// The constructor for this context

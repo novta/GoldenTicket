@@ -6,32 +6,32 @@ namespace GoldenTicket.Models
     /// <summary>
     /// The pivot table model for many tickets to many technicians and for holding time worked data
     /// </summary>
-    public class ModeratorTicketReview
+    public class TicketReview
     {
         /// <summary>
         /// The id.
         /// </summary>
         [Key]
-        public Guid Id { get; set; }
-
-        /// <summary>
-        /// The technician id
-        /// </summary>
-        public string ModeratorId { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// The ticket id
         /// </summary>
-        public Guid TicketId { get; set; }
+        public string TicketId { get; set; }
+
+        /// <summary>
+        /// The reviewer id
+        /// </summary>
+        public string ReviewerId { get; set; }
 
         /// <summary>
         /// The start time
         /// </summary>
-        public DateTime Start { get; set; }
+        public DateTime Timestamp { get; set; }
 
         /// <summary>
-        /// The end time
+        /// The outcome
         /// </summary>
-        public DateTime End { get; set; }
+        public Review ReviewOutcome { get; set; }
     }
 }

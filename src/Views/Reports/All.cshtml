@@ -2,16 +2,16 @@
     ViewData["Title"] = "Daily Activity";
 }
 @using GoldenTicket.Models.ReportsViewModels
-@using System.Collections.Generic
+
 @model ReportDetails
 
 <p id="TimeSpanToggle" class="waves-effect waves-light btn-small">Monthly Activity</p>
 
 <p>
-    Average Wait Time: @Model.AverageWait <br>
+    @*Average Wait Time: @Model.AverageWait <br>
     Average Queue Length: @Model.AverageQueueLength <br>
     Empty Queue Percentage: @Model.EmptyQueuePercentage <br>
-    Tickets Not Addressed Same Day: @Model.TicketsNotAddressedSameDay
+    Tickets Not Addressed Same Day: @Model.TicketsNotAddressedSameDay*@
 </p>
 
 <h3>Technician Idle Hours</h3>
@@ -21,10 +21,10 @@
         <th>Name</th>
         <th>Idle Hours</th>
     </tr>
-    @foreach (var technician in Model.TechnicianIdleHours) {
+    @foreach (var technician in Model.Reviews) {
     <tr>
-        <th>@technician.Technician.FirstName @technician.Technician.LastName</th>
-        <th>@technician.HoursIdle</th>
+        <th>@technician.Client.FirstName @technician.Client.LastName</th>
+        <th>@technician.ReviewOutcome</th>
     </tr>
     }
 </table>

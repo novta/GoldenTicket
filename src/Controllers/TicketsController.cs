@@ -20,14 +20,14 @@ namespace GoldenTicket.Controllers
     {
         private GoldenTicketContext _context;
 
-        private UserManager<Moderator> _userManager;
+        private UserManager<Client> _userManager;
 
         /// <summary>
         /// Initializes private variable _context
         /// </summary>
         /// <param name="context">context of current ticket</param>
         /// <param name="userManager">The user manager</param>
-        public TicketsController(GoldenTicketContext context, UserManager<Moderator> userManager)
+        public TicketsController(GoldenTicketContext context, UserManager<Client> userManager)
         {
             _context = context;
             _userManager = userManager;
@@ -52,7 +52,7 @@ namespace GoldenTicket.Controllers
                 .ToListAsync();
 
             ViewData["includeClosed"] = includeClosed;
-
+            
             return View(orderedTickets);
         }
 
@@ -62,12 +62,13 @@ namespace GoldenTicket.Controllers
         /// <param name="id">unique id of ticket</param>
         /// <returns>view of the ticket</returns>
         [HttpGet]
-        public async Task<IActionResult> Open([FromRoute] Guid id)
+        public async Task<IActionResult> Open([FromRoute] string id)
         {
             var ticket = await _context.Tickets.FindAsync(id);
             var client = await _context.Clients.FindAsync(ticket.ClientId);
-            var times = await _context.TechnicianTicketTimes.Where(time => time.TicketId == ticket.Id).Join(_context.Users, time => time.ModeratorId, tech => tech.UserName, (time, tech) => new TechnicianTime { Moderator = tech, Time = time }).ToListAsync();
-            return View(new TicketDetails { Ticket = ticket, Client = client, Times = times });
+            var reviewes = await _context.TicketReviews.Where(time => time.TicketId == ticket.Id)
+                                                       .Join(_context.Users, time => time.ReviewerId, tech => tech.UserName, (time, tech) => new ModeratorReview { Moderator = tech, TicketReviewOutcome = time })?.ToListAsync();
+            return View(new TicketDetails { Ticket = ticket, Client = client, Reviewes = reviewes });
         }
 
         /// <summary>
@@ -76,7 +77,7 @@ namespace GoldenTicket.Controllers
         /// <param name="id">unique id of ticket</param>
         /// <returns>view of the ticket to edit</returns>
         [HttpGet]
-        public async Task<IActionResult> Edit([FromRoute] Guid id)
+        public async Task<IActionResult> Edit([FromRoute] string id)
         {
             var ticket = await _context.Tickets.FindAsync(id);
             return View(ticket);
@@ -94,7 +95,6 @@ namespace GoldenTicket.Controllers
 
             ticket.Title = ticketUpdate.Title;
             ticket.Description = ticketUpdate.Description;
-            ticket.Complexity = ticketUpdate.Complexity;
             ticket.Notes = ticketUpdate.Notes;
             ticket.Open = ticketUpdate.Open;
 
@@ -121,7 +121,7 @@ namespace GoldenTicket.Controllers
         /// <param name="id">The id of the ticket.</param>
         /// <returns>The add time view</returns>
         [HttpGet]
-        public async Task<IActionResult> AddTime([FromRoute] Guid id)
+        public async Task<IActionResult> Review([FromRoute] string id)
         {
             var ticket = await _context.Tickets.FindAsync(id);
             return View(new TicketTime { TicketTitle = ticket.Title, TicketId = ticket.Id });
@@ -133,14 +133,14 @@ namespace GoldenTicket.Controllers
         /// <param name="time">The time to add</param>
         /// <returns>Redirect to ticket view</returns>
         [HttpPost]
-        public async Task<IActionResult> AddTime([FromForm] TicketTime time)
+        public async Task<IActionResult> Review([FromForm] TicketTime time)
         {
-            _context.TechnicianTicketTimes.Add(new ModeratorTicketReview
+            _context.TicketReviews.Add(new TicketReview
             {
-                End = time.End,
-                Start = time.Start,
+                ReviewOutcome = time.ReviewOutcome,
+                Timestamp = DateTime.Now,
                 TicketId = time.TicketId,
-                ModeratorId = _userManager.GetUserName(User)
+                ReviewerId = _userManager.GetUserName(User)
             });
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Open), new { id = time.TicketId });
@@ -153,27 +153,27 @@ namespace GoldenTicket.Controllers
         /// <returns>The ticket view</returns>
         [Authorize(Roles = DataConstants.AdministratorRole)]
         [HttpPost]
-        public async Task<IActionResult> DeleteTime([FromRoute] Guid id)
+        public async Task<IActionResult> DeleteTime([FromRoute] string id)
         {
-            var time = await _context.TechnicianTicketTimes.FindAsync(id);
-            _context.TechnicianTicketTimes.Remove(time);
+            var time = await _context.TicketReviews.FindAsync(id);
+            _context.TicketReviews.Remove(time);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Open), new { id = time.TicketId });
         }
 
-        /// <summary>
-        /// Gets bill.
-        /// </summary>
-        /// <param name="id">The id for the ticket</param>
-        /// <returns>The bill</returns>
-        [HttpGet]
-        public async Task<IActionResult> Bill([FromRoute] Guid id)
-        {
-            var ticket = await _context.Tickets.FindAsync(id);
-            var client = await _context.Clients.FindAsync(ticket.ClientId);
-            var times = await _context.TechnicianTicketTimes.Where(time => time.TicketId == ticket.Id).Join(_context.Users, time => time.ModeratorId, tech => tech.UserName, (time, tech) => new TechnicianTime { Moderator = tech, Time = time }).ToListAsync();
-            return View(new TicketDetails { Ticket = ticket, Client = client, Times = times });
-        }
+        ///// <summary>
+        ///// Gets bill.
+        ///// </summary>
+        ///// <param name="id">The id for the ticket</param>
+        ///// <returns>The bill</returns>
+        //[HttpGet]
+        //public async Task<IActionResult> Bill([FromRoute] string id)
+        //{
+        //    var ticket = await _context.Tickets.FindAsync(id);
+        //    var client = await _context.Clients.FindAsync(ticket.ClientId);
+        //    var times = await _context.TicketReviews.Where(time => time.TicketId == ticket.Id).Join(_context.Users, time => time.ModeratorId, tech => tech.UserName, (time, tech) => new ModeratorReview { Moderator = tech, ReviewOutcome = time }).ToListAsync();
+        //    return View(new TicketDetails { Ticket = ticket, Client = client, Times = times });
+        //}
 
         /// <summary>
         /// Toggles urgency of a ticket
@@ -181,7 +181,7 @@ namespace GoldenTicket.Controllers
         /// <param name="id">The id of the ticket</param>
         /// <returns>The ticket</returns>
         [HttpPost]
-        public async Task<IActionResult> ToggleUrgent([FromRoute] Guid id)
+        public async Task<IActionResult> ToggleUrgent([FromRoute] string id)
         {
             var ticket = await _context.Tickets.FindAsync(id);
             ticket.IsUrgent = !ticket.IsUrgent;

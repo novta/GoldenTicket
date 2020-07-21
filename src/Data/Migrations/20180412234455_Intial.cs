@@ -36,14 +36,8 @@ namespace GoldenTicket.Data.Migrations
                     Id = table.Column<string>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
                     ConcurrencyStamp = table.Column<string>(nullable: true),
-                    DateAdded = table.Column<DateTime>(nullable: false),
                     Email = table.Column<string>(maxLength: 256, nullable: true),
                     EmailConfirmed = table.Column<bool>(nullable: false),
-                    FirstName = table.Column<string>(nullable: true),
-                    IsAdmin = table.Column<bool>(nullable: false),
-                    LastName = table.Column<string>(nullable: true),
-                    Title = table.Column<string>(nullable: true),
-                    Chair = table.Column<string>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     NormalizedEmail = table.Column<string>(maxLength: 256, nullable: true),
@@ -53,44 +47,18 @@ namespace GoldenTicket.Data.Migrations
                     PhoneNumberConfirmed = table.Column<bool>(nullable: false),
                     SecurityStamp = table.Column<string>(nullable: true),
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
-                    UserName = table.Column<string>(maxLength: 256, nullable: true)
+                    UserName = table.Column<string>(maxLength: 256, nullable: true),
+                    FirstName = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: true),
+                    DateAdded = table.Column<DateTime>(nullable: false),
+                    Title = table.Column<string>(nullable: true),
+                    Chair = table.Column<string>(nullable: true),
+                    IsAdmin = table.Column<bool>(nullable: false),
+                    IsModerator = table.Column<bool>(nullable: false),
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Clients",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    Address = table.Column<string>(nullable: true),
-                    Company = table.Column<string>(nullable: true),
-                    DateAdded = table.Column<DateTime>(nullable: false),
-                    EmailAddress = table.Column<string>(nullable: true),
-                    FirstName = table.Column<string>(nullable: true),
-                    LastName = table.Column<string>(nullable: true),
-                    PhoneNumber = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Clients", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "TechnicianTicketTimes",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    End = table.Column<DateTime>(nullable: false),
-                    Start = table.Column<DateTime>(nullable: false),
-                    ModeratorId = table.Column<string>(nullable: true),
-                    TicketId = table.Column<Guid>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TechnicianTicketTimes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -99,13 +67,27 @@ namespace GoldenTicket.Data.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     ClientId = table.Column<Guid>(nullable: false),
-                    Complexity = table.Column<int>(nullable: false),
-                    DateAdded = table.Column<DateTime>(nullable: false),
+                    Title = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     IsUrgent = table.Column<bool>(nullable: false),
                     Notes = table.Column<string>(nullable: true),
+                    DateAdded = table.Column<DateTime>(nullable: false),
                     Open = table.Column<bool>(nullable: false),
-                    Title = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tickets", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TicketReviews",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    TicketId = table.Column<Guid>(nullable: false),
+                    ReviewerId = table.Column<Guid>(nullable: true),
+                    Timestamp = table.Column<DateTime>(nullable: true),
+                    ReviewOutcome = table.Column<int>(nullable: false),
                 },
                 constraints: table =>
                 {

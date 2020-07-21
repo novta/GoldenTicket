@@ -13,12 +13,12 @@ namespace GoldenTicket.Models
         /// The Id for this ticket
         /// </summary>
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Id { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// The Id for the client who owns this ticket
         /// </summary>
-        public Guid ClientId { get; set; }
+        public string ClientId { get; set; }
 
         /// <summary>
         /// The title of this ticket
@@ -30,11 +30,6 @@ namespace GoldenTicket.Models
         /// </summary>
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
-
-        /// <summary>
-        /// The complexity (1-3) of this ticket
-        /// </summary>
-        public int Complexity { get; set; }
 
         /// <summary>
         /// Defines if this ticket is urgent

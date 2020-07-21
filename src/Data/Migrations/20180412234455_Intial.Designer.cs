@@ -43,71 +43,17 @@ namespace GoldenTicket.Data.Migrations
 
                     b.Property<string>("PhoneNumber");
 
-                    b.HasKey("Id");
-
-                    b.ToTable("Clients");
-                });
-
-            modelBuilder.Entity("GoldenTicket.Models.Moderator", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("AccessFailedCount");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken();
-
-                    b.Property<DateTime>("DateAdded");
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(256);
-
-                    b.Property<bool>("EmailConfirmed");
-
-                    b.Property<string>("FirstName");
-
-                    b.Property<bool>("IsAdmin");
-
-                    b.Property<string>("LastName");
-
                     b.Property<string>("Title");
 
                     b.Property<string>("Chair");
 
-                    b.Property<bool>("LockoutEnabled");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256);
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256);
-
-                    b.Property<string>("PasswordHash");
-
-                    b.Property<string>("PhoneNumber");
-
-                    b.Property<bool>("PhoneNumberConfirmed");
-
-                    b.Property<string>("SecurityStamp");
-
-                    b.Property<bool>("TwoFactorEnabled");
-
-                    b.Property<string>("UserName")
-                        .HasMaxLength(256);
-
+                    b.Property<bool>("IsModerator");
+                    
+                    b.Property<bool>("IsAdmin");
+                    
                     b.HasKey("Id");
 
-                    b.HasIndex("NormalizedEmail")
-                        .HasName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasName("UserNameIndex");
-
-                    b.ToTable("AspNetUsers");
+                    b.ToTable("Clients");
                 });
 
             modelBuilder.Entity("GoldenTicket.Models.ModeratorTicketTime", b =>
@@ -135,9 +81,9 @@ namespace GoldenTicket.Data.Migrations
 
                     b.Property<Guid>("ClientId");
 
-                    b.Property<int>("Complexity");
-
                     b.Property<DateTime>("DateAdded");
+
+                    b.Property<DateTime>("DateClosed");
 
                     b.Property<string>("Description");
 

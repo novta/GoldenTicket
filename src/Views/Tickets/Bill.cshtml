@@ -16,8 +16,7 @@
 <h3>Client</h3>
 <p>
     @Model.Client.FirstName @Model.Client.LastName <br>
-    @Model.Client.Company <br>
-    @Model.Client.Address
+    @Model.Client.Chair <br>
 </p>
 
 <h3>For</h3>
@@ -26,46 +25,18 @@
     @Model.Ticket.Description
 </p>
 
-<h3>Technician Time: @(TimeSpan.FromHours(Model.Times.Sum(time => (time.Time.End - time.Time.Start).TotalHours)).ToString("h\\:mm"))</h3>
+<h3>Moderator approvals</h3>
 <table>
     <tr>
-        <th>Technician</th>
-        <th>Start</th>
-        <th>End</th>
+        <th>Moderator</th>
         <th>Time</th>
-        <th>Rate</th>
-        <th>Amount</th>
+        <th>Outcome</th>
     </tr>
-    @{
-        double total = 0;
-    }
-    @foreach (var time in Model.Times) {
+    @foreach (var time in Model.Reviewes) {
     <tr>
-        @{
-            var rate = time.Moderator.GetPayRate();
-            var amount = (time.Time.End - time.Time.Start).TotalHours * rate;
-            total += amount;
-        }
         <th>@time.Moderator.FirstName @time.Moderator.LastName</th>
-        <th>@time.Time.Start</th>
-        <th>@time.Time.End</th>
-        <th>@((time.Time.End - time.Time.Start).ToString("h\\:mm"))</th>
-        <th>$@rate/hr</th>
-        <th>$@amount.ToString("F2")</th>
+        <th>@time.TicketReviewOutcome.Timestamp</th>
+        <th>@time.TicketReviewOutcome.ReviewOutcome</th>
     </tr>
     }
 </table>
-
-@{
-    total = total < 30 ? 30.0 : total;
-    var tax = 0.1;
-    var totalAfterTax = total + total * tax;
-}
-
-<h4>Sub-Total: $@total.ToString("F2")</h4>
-<h4>Tax: %@(tax * 100)</h4>
-<h3>Total: $@totalAfterTax.ToString("F2")</h3>
-
-<p>
-    Make all checks payable to "Model Services".
-</p>

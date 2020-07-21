@@ -44,7 +44,7 @@ namespace GoldenTicket.Controllers
         /// <param name="id">The id of the client</param>
         /// <returns>The client</returns>
         [HttpGet]
-        public async Task<IActionResult> Open([FromRoute] Guid id)
+        public async Task<IActionResult> Open([FromRoute] string id)
         {
             var client = await _context.Clients.FindAsync(id);
             var tickets = await _context.Tickets.Where(ticket => ticket.ClientId == id).ToListAsync();
@@ -87,7 +87,7 @@ namespace GoldenTicket.Controllers
         /// </summary>
         /// <returns>The view.</returns>
         [HttpGet]
-        public IActionResult AddTicket([FromRoute] Guid id)
+        public IActionResult AddTicket([FromRoute] string id)
         {
             return View(new Ticket { ClientId = id });
         }
@@ -101,7 +101,6 @@ namespace GoldenTicket.Controllers
         public async Task<IActionResult> AddTicket([FromForm] Ticket ticket)
         {
             ticket.DateAdded = DateTime.Now;
-            ticket.IsUrgent = false;
             ticket.Open = true;
 
             _context.Tickets.Add(ticket);

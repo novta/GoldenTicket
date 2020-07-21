@@ -1,20 +1,13 @@
+using Microsoft.AspNetCore.Identity;
 using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GoldenTicket.Models
 {
     /// <summary>
     /// A client and their related information
     /// </summary>
-    public class Client
+    public class Client : IdentityUser
     {
-        /// <summary>
-        /// The Id for this client
-        /// </summary>
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Id { get; set; }
-
         /// <summary>
         /// The first name of the client
         /// </summary>
@@ -26,30 +19,28 @@ namespace GoldenTicket.Models
         public string LastName { get; set; }
 
         /// <summary>
-        /// The phone number of the client
-        /// </summary>
-        [DataType(DataType.PhoneNumber)]
-        public string PhoneNumber { get; set; }
-
-        /// <summary>
-        /// The email address of the client
-        /// </summary>
-        [DataType(DataType.EmailAddress)]
-        public string EmailAddress { get; set; }
-
-        /// <summary>
-        /// The company of the client
-        /// </summary>
-        public string Company { get; set; }
-
-        /// <summary>
-        /// The address of the client
-        /// </summary>
-        public string Address { get; set; }
-
-        /// <summary>
         /// The date that the client was added to the system
         /// </summary>
         public DateTime DateAdded { get; set; }
+
+        /// <summary>
+        /// The last name of the Moderator
+        /// </summary>
+        public string Title { get; set; }
+
+        /// <summary>
+        /// The last name of the Moderator
+        /// </summary>
+        public string Chair { get; set; }
+
+        /// <summary>
+        /// Is the Moderator
+        /// </summary>
+        public bool IsModerator { get; set; }
+
+        /// <summary>
+        /// Is the Admin
+        /// </summary>
+        public bool IsAdmin { get; set; }
     }
 }

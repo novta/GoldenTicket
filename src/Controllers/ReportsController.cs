@@ -1,14 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Threading.Tasks;
 using GoldenTicket.Data;
-using GoldenTicket.Models;
 using GoldenTicket.Models.ReportsViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace GoldenTicket.Controllers
 {
@@ -47,11 +41,15 @@ namespace GoldenTicket.Controllers
 
             var details = new ReportDetails
             {
-                AverageQueueLength = await _context.Tickets.Where(ticket => ticket.Open).CountAsync(),
-                AverageWait = new TimeSpan(0, 0, 0),
-                EmptyQueuePercentage = 0,
-                TicketsNotAddressedSameDay = 15,
-                TechnicianIdleHours = await _context.Users.GroupJoin(_context.TechnicianTicketTimes, technician => technician.UserName, time => time.ModeratorId, (technician, times) => new { Technician = technician, Time = 8 }).ToAsyncEnumerable().Select(techTime => (techTime.Technician, techTime.Time)).ToList()
+                //AverageQueueLength = await _context.Tickets.Where(ticket => ticket.Open).CountAsync(),
+                //AverageWait = new TimeSpan(0, 0, 0),
+                //EmptyQueuePercentage = 0,
+                //TicketsNotAddressedSameDay = 15,
+                //ModeratorReviews = await _context.Users.GroupJoin(_context.TicketReviews,
+                //                                                clinet => clinet.Id,
+                //                                                review => review.ModeratorId,
+                //                                                (clinet, review) => new { Moderator = clinet, Outcome = review})
+                //                                        .ToAsyncEnumerable().Select(x => (x.Moderator, x.Outcome)).ToList()
             };
             return View(details);
         }

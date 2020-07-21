@@ -1,8 +1,8 @@
 ﻿@using Microsoft.AspNetCore.Identity 
 @using GoldenTicket.Models
 @using GoldenTicket.Data
-@inject SignInManager<Moderator> SignInManager 
-@inject UserManager<Moderator> UserManager
+@inject SignInManager<Client> SignInManager 
+@inject UserManager<Client> UserManager
 
 <!DOCTYPE html>
 <html lang="en">
@@ -44,11 +44,11 @@
                 </li>
                 @if (User.IsInRole(DataConstants.AdministratorRole)) {
                 <li>
-                    <a asp-controller="Technicians" asp-action="All">Technicians</a>
+                    <a asp-controller="Administrators" asp-action="All">Administrators</a>
                 </li>
-                <li>
+                @*<li>
                     <a asp-controller="Reports" asp-action="All">Reports</a>
-                </li>
+                </li>*@
                 }
             </ul>
         </div>

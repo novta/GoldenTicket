@@ -16,16 +16,16 @@ namespace GoldenTicket.Models.TicketsViewModels
         /// The id of the ticket.
         /// </summary>
         /// <returns></returns>
-        public Guid TicketId { get; set; }
+        public string TicketId { get; set; }
 
         /// <summary>
         /// The start time.
         /// </summary>
-        public DateTime Start { get; set; }
+        public DateTime Timestamp { get; set; }
 
         /// <summary>
         /// The end time.
         /// </summary>
-        public DateTime End { get; set; }
+        public Review ReviewOutcome  { get; set; }
     }
 }

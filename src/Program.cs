@@ -34,7 +34,7 @@ namespace GoldenTicket
 
                 var context = services.GetRequiredService<GoldenTicketContext>();
                 var configuration = services.GetRequiredService<IConfiguration>();
-                var userManager = services.GetRequiredService<UserManager<Moderator>>();
+                var userManager = services.GetRequiredService<UserManager<Client>>();
                 var roleManager = services.GetService<RoleManager<IdentityRole>>();
 
                 if (configuration.GetValue<bool>("useSeedData"))
@@ -53,7 +53,7 @@ namespace GoldenTicket
                 var admin = userManager.FindByNameAsync(DataConstants.RootUsername).Result;
                 if (admin == null)
                 {
-                    admin = new Moderator
+                    admin = new Client
                     {
                         UserName = DataConstants.RootUsername,
                         FirstName = DataConstants.RootUsername,
