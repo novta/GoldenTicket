@@ -132,17 +132,21 @@ namespace GoldenTicket.Controllers
         /// </summary>
         /// <param name="time">The time to add</param>
         /// <returns>Redirect to ticket view</returns>
+        [Authorize(Roles = DataConstants.AdministratorRole)]
         [HttpPost]
         public async Task<IActionResult> Review([FromForm] TicketTime time)
         {
-            _context.TicketReviews.Add(new TicketReview
+            if (time?.ReviewOutcome != null)
             {
-                ReviewOutcome = time.ReviewOutcome,
-                Timestamp = DateTime.Now,
-                TicketId = time.TicketId,
-                ReviewerId = _userManager.GetUserName(User)
-            });
-            await _context.SaveChangesAsync();
+                _context.TicketReviews.Add(new TicketReview
+                {
+                    ReviewOutcome = (time.ReviewOutcome == true) ? Models.Review.Approved : Models.Review.Declined,
+                    Timestamp = DateTime.Now,
+                    TicketId = time.TicketId,
+                    ReviewerId = _userManager.GetUserName(User)
+                });
+                await _context.SaveChangesAsync();
+            }
             return RedirectToAction(nameof(Open), new { id = time.TicketId });
         }
 

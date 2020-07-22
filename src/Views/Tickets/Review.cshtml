@@ -10,17 +10,28 @@
 		<label>Title</label>
 		<input asp-for="TicketTitle">
 
-		<label>Approve</label>
-		<input asp-for="ReviewOutcome">
+		<p>
+			<label>
+				<input asp-for="ReviewOutcome" type="radio" value="true" onclick="enableConfirm()"/>
+				<span>Approve</span>
+			</label>
+			<br />
+			<label>
+				<input asp-for="ReviewOutcome" type="radio" value="false" onclick="enableConfirm()"/>
+				<span>Decline</span>
+			</label>
+		</p>
 
-		<input type="radio" id="approved" name="ReviewOutcome" value="Approved">
-		<label for="approved">Approved</label><br>
-		<input type="radio" id="declined" name="ReviewOutcome" value="Declined">
-		<label for="declined">Declined</label><br>
-		<input type="radio" id="other" name="ReviewOutcome" value="Undefined">
-		<label for="other">Undefined</label>
+		<button class="btn" onclick="goBack()">Go Back</button>
 
-		<button class="btn" type="submit">
-			Confirm
-		</button>
+		<button class="btn" type="submit" id="btnConfirm" disabled>Confirm</button>
 	</form>
+
+	<script>
+		function goBack() {
+			window.history.back();
+		}
+		function enableConfirm() {
+			document.getElementById("btnConfirm").disabled = false;
+		}
+	</script>

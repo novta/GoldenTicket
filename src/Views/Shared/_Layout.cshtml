@@ -21,36 +21,38 @@
     <nav class="purple darken-4">
         <div class="nav-wrapper purple darken-4 container">
             <a class="brand-logo hide-on-med-and-down"><strong class="amber-text text-darken-2"> TehnoDesk</strong> </a>
-            <ul class="right amber-text text-darken-2">
-                @if (SignInManager.IsSignedIn(User)) {
-                <li class="nav-item amber-text text-darken-2" >
-                    Hello @UserManager.GetUserName(User)!
-                </li>
-                <li class="nav-item amber-text text-darken-2">
-                    <a asp-controller="Account" asp-action="Logout">Log out</a>
-                </li>
-                } 
-                else 
+			<ul class="right amber-text text-darken-2">
+				@if (SignInManager.IsSignedIn(User)) {
+					<li class="nav-item amber-text text-darken-2">
+						Hello @UserManager.GetUserName(User)!
+					</li>
+					<li class="nav-item amber-text text-darken-2">
+						<a asp-controller="Account" asp-action="Logout">Log out</a>
+					</li>
+                }
+                else
                 {
-                <li class="nav-item amber-text text-darken-2">
-                    <a asp-controller="Account" asp-action="Login">Log in</a>
-                </li>
+					<li class="nav-item amber-text text-darken-2">
+						<a asp-controller="Account" asp-action="Login">Log in</a>
+					</li>
                 }
-                <li>
-                    <a asp-controller="Tickets" asp-action="All">Tickets</a>
-                </li>
-                <li>
-                    <a asp-controller="Clients" asp-action="All">Clients</a>
-                </li>
-                @if (User.IsInRole(DataConstants.AdministratorRole)) {
-                <li>
-                    <a asp-controller="Administrators" asp-action="All">Administrators</a>
-                </li>
-                @*<li>
-                    <a asp-controller="Reports" asp-action="All">Reports</a>
-                </li>*@
+				@if (SignInManager.IsSignedIn(User)) {
+					<li>
+						<a asp-controller="Tickets" asp-action="All">Tickets</a>
+					</li>
+					<li>
+						<a asp-controller="Clients" asp-action="All">Clients</a>
+					</li>
+					@if (User.IsInRole(DataConstants.AdministratorRole)) {
+						<li>
+							<a asp-controller="Administrators" asp-action="All">Administrators</a>
+						</li>
+						@*<li>
+							<a asp-controller="Reports" asp-action="All">Reports</a>
+						</li>*@
+					}
                 }
-            </ul>
+			</ul>
         </div>
     </nav>
     <main class="container">

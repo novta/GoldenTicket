@@ -8,15 +8,15 @@ namespace GoldenTicket.Models.TicketsViewModels
     public class TicketTime
     {
         /// <summary>
-        /// The title of the ticket.
-        /// </summary>
-        public string TicketTitle { get; set; }
-
-        /// <summary>
         /// The id of the ticket.
         /// </summary>
         /// <returns></returns>
         public string TicketId { get; set; }
+
+        /// <summary>
+        /// The title of the ticket.
+        /// </summary>
+        public string TicketTitle { get; set; }
 
         /// <summary>
         /// The start time.
@@ -26,6 +26,6 @@ namespace GoldenTicket.Models.TicketsViewModels
         /// <summary>
         /// The end time.
         /// </summary>
-        public Review ReviewOutcome  { get; set; }
+        public bool? ReviewOutcome  { get; set; }
     }
 }
