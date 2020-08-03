@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using GoldenTicket.Data;
+using GoldenTicket.Extensions;
 using GoldenTicket.Models;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
@@ -79,6 +80,12 @@ namespace GoldenTicket
         /// <returns>errors</returns>
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .ConfigureLogging(logging =>
+                {
+                    logging.ClearProviders();
+                    logging.AddConsole();
+                    logging.AddFile("../../logs/LogFiles/TechnoDesk/TechnoDesk-" + DateTime.Now.ToUnixTimeStamp() + ".log");
+                })
                 .UseUrls("http://localhost:5000")
                 .UseStartup<Startup>()
                 .Build();

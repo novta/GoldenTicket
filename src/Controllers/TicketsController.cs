@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.Extensions.Logging;
 
 namespace GoldenTicket.Controllers
 {
@@ -22,15 +22,18 @@ namespace GoldenTicket.Controllers
 
         private UserManager<Client> _userManager;
 
+        private ILogger<TicketsController> _logger;
+
         /// <summary>
         /// Initializes private variable _context
         /// </summary>
         /// <param name="context">context of current ticket</param>
         /// <param name="userManager">The user manager</param>
-        public TicketsController(GoldenTicketContext context, UserManager<Client> userManager)
+        public TicketsController(GoldenTicketContext context, UserManager<Client> userManager, ILogger<TicketsController> logger)
         {
             _context = context;
             _userManager = userManager;
+            _logger = logger;
         }
 
         /// <summary>
@@ -41,19 +44,26 @@ namespace GoldenTicket.Controllers
         [HttpGet]
         public async Task<IActionResult> All([FromQuery] bool includeClosed = false)
         {
-            var orderedTickets = await _context.Tickets
-                .OrderByDescending(ticket => ticket.DateAdded)
-                .GroupBy(ticket => ticket.ClientId)
-                .OrderBy(ticketClientGroup => ticketClientGroup.Count())
-                .SelectMany(ticketClientGroup => ticketClientGroup)
-                .Where(ticket => ticket.Open || ticket.Open != includeClosed)
-                .OrderByDescending(ticket => ticket.IsUrgent)
-                .OrderByDescending(ticket => ticket.Open)
-                .ToListAsync();
+            try
+            {
+                var orderedTickets = await _context.Tickets
+                    .OrderByDescending(ticket => ticket.DateAdded)
+                    .GroupBy(ticket => ticket.ClientId)
+                    .OrderBy(ticketClientGroup => ticketClientGroup.Count())
+                    .SelectMany(ticketClientGroup => ticketClientGroup)
+                    .Where(ticket => ticket.Open || ticket.Open != includeClosed)
+                    .OrderByDescending(ticket => ticket.IsUrgent)
+                    .OrderByDescending(ticket => ticket.Open)
+                    .ToListAsync();
 
-            ViewData["includeClosed"] = includeClosed;
-            
-            return View(orderedTickets);
+                ViewData["includeClosed"] = includeClosed;
+                return View(orderedTickets);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"All has failed with error '{ex.Message}'");
+            }
+            return BadRequest();
         }
 
         /// <summary>
@@ -64,11 +74,19 @@ namespace GoldenTicket.Controllers
         [HttpGet]
         public async Task<IActionResult> Open([FromRoute] string id)
         {
-            var ticket = await _context.Tickets.FindAsync(id);
-            var client = await _context.Clients.FindAsync(ticket.ClientId);
-            var reviewes = await _context.TicketReviews.Where(time => time.TicketId == ticket.Id)
-                                                       .Join(_context.Users, time => time.ReviewerId, tech => tech.UserName, (time, tech) => new ModeratorReview { Moderator = tech, TicketReviewOutcome = time })?.ToListAsync();
-            return View(new TicketDetails { Ticket = ticket, Client = client, Reviewes = reviewes });
+            try
+            {
+                var ticket = await _context.Tickets.FindAsync(id);
+                var client = await _context.Clients.FindAsync(ticket.ClientId);
+                var reviewes = await _context.TicketReviews.Where(time => time.TicketId == ticket.Id)
+                                                           .Join(_context.Users, time => time.ReviewerId, tech => tech.UserName, (time, tech) => new ModeratorReview { Moderator = tech, TicketReviewOutcome = time })?.ToListAsync();
+                return View(new TicketDetails { Ticket = ticket, Client = client, Reviewes = reviewes });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Open has failed with error '{ex.Message}'");
+            }
+            return BadRequest();
         }
 
         /// <summary>
@@ -79,8 +97,16 @@ namespace GoldenTicket.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit([FromRoute] string id)
         {
-            var ticket = await _context.Tickets.FindAsync(id);
-            return View(ticket);
+            try
+            {
+                var ticket = await _context.Tickets.FindAsync(id);
+                return View(ticket);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Edit has failed with error '{ex.Message}'");
+            }
+            return BadRequest();
         }
 
         /// <summary>
@@ -91,28 +117,30 @@ namespace GoldenTicket.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit([FromForm] Ticket ticketUpdate)
         {
-            var ticket = await _context.Tickets.FindAsync(ticketUpdate.Id);
-
-            ticket.Title = ticketUpdate.Title;
-            ticket.Description = ticketUpdate.Description;
-            ticket.Notes = ticketUpdate.Notes;
-            ticket.Open = ticketUpdate.Open;
-
-            // Ticket is closing
-            if (!ticket.Open && ticket.DateClosed == DateTime.MinValue)
+            try
             {
-                ticket.DateClosed = DateTime.Now;
+                var ticket = await _context.Tickets.FindAsync(ticketUpdate.Id);
+                ticket.Title = ticketUpdate.Title;
+                ticket.Description = ticketUpdate.Description;
+                ticket.Notes = ticketUpdate.Notes;
+                ticket.Open = ticketUpdate.Open;
+                // Ticket is closing
+                if (!ticket.Open && ticket.DateClosed == DateTime.MinValue)
+                {
+                    ticket.DateClosed = DateTime.Now;
+                }
+                // Ticket is re-opening
+                if (ticket.Open && ticket.DateClosed != DateTime.MinValue)
+                {
+                    ticket.DateClosed = DateTime.MinValue;
+                }
+                await _context.SaveChangesAsync();
             }
-
-            // Ticket is re-opening
-            if (ticket.Open && ticket.DateClosed != DateTime.MinValue)
+            catch (Exception ex)
             {
-                ticket.DateClosed = DateTime.MinValue;
+                _logger.LogError(ex, $"Edit has failed with error '{ex.Message}'");
             }
-
-            await _context.SaveChangesAsync();
-
-            return RedirectToAction(nameof(Open), new { id = ticket.Id });
+            return RedirectToAction(nameof(Open), new { id = ticketUpdate.Id });
         }
 
         /// <summary>
@@ -145,7 +173,14 @@ namespace GoldenTicket.Controllers
                     TicketId = time.TicketId,
                     ReviewerId = _userManager.GetUserName(User)
                 });
-                await _context.SaveChangesAsync();
+                try
+                {
+                    await _context.SaveChangesAsync();
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, $"SaveChangesAsync has failed with error '{ex.Message}'");
+                }
             }
             return RedirectToAction(nameof(Open), new { id = time.TicketId });
         }
@@ -160,8 +195,15 @@ namespace GoldenTicket.Controllers
         public async Task<IActionResult> DeleteTime([FromRoute] string id)
         {
             var time = await _context.TicketReviews.FindAsync(id);
-            _context.TicketReviews.Remove(time);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.TicketReviews.Remove(time);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"DeleteTime has failed with error '{ex.Message}'");
+            }
             return RedirectToAction(nameof(Open), new { id = time.TicketId });
         }
 
@@ -187,9 +229,16 @@ namespace GoldenTicket.Controllers
         [HttpPost]
         public async Task<IActionResult> ToggleUrgent([FromRoute] string id)
         {
-            var ticket = await _context.Tickets.FindAsync(id);
-            ticket.IsUrgent = !ticket.IsUrgent;
-            await _context.SaveChangesAsync();
+            try
+            {
+                var ticket = await _context.Tickets.FindAsync(id);
+                ticket.IsUrgent = !ticket.IsUrgent;
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"ToggleUrgent has failed with error '{ex.Message}'");
+            }
             return RedirectToAction(nameof(Open), new { id = id });
         }
     }
