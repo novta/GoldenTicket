@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using GoldenTicket.Models;
 using GoldenTicket.Models.AccountViewModels;
@@ -35,8 +36,15 @@ namespace GoldenTicket.Controllers
         [HttpGet]
         public async Task<IActionResult> Login()
         {
-            await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
-            await _signInManager.SignOutAsync();
+            try
+            {
+                await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
+                await _signInManager.SignOutAsync();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Login has failed with error '{ex.Message}'");
+            }
             return View();
         }
 
@@ -47,7 +55,14 @@ namespace GoldenTicket.Controllers
         [HttpGet]
         public async Task<IActionResult> Logout()
         {
-            await _signInManager.SignOutAsync();
+            try
+            {
+                await _signInManager.SignOutAsync();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Logout has failed with error '{ex.Message}'");
+            }
             return RedirectToAction(nameof(Login));
         }
 
@@ -64,20 +79,26 @@ namespace GoldenTicket.Controllers
             {
                 return View(loginRequest);
             }
-
-            var result = await _signInManager.PasswordSignInAsync(loginRequest.Username, loginRequest.Password, loginRequest.RememberMe, false);
-
-            if (result.Succeeded)
+            try
             {
-                _logger.LogInformation($"{User.Identity.Name} logged in.");
-                if (Url.IsLocalUrl(returnUrl))
+                var result = await _signInManager.PasswordSignInAsync(loginRequest.Username, loginRequest.Password, loginRequest.RememberMe, false);
+
+                if (result.Succeeded)
                 {
-                    return Redirect(returnUrl);
+                    _logger.LogInformation($"{User.Identity.Name} logged in.");
+                    if (Url.IsLocalUrl(returnUrl))
+                    {
+                        return Redirect(returnUrl);
+                    }
+                    else
+                    {
+                        return RedirectToAction(nameof(TicketsController.All), "Tickets");
+                    }
                 }
-                else
-                {
-                    return RedirectToAction(nameof(TicketsController.All), "Tickets");
-                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Login has failed with error '{ex.Message}'");
             }
 
             return View(loginRequest);

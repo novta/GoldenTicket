@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace GoldenTicket.Controllers
 {
@@ -21,12 +22,14 @@ namespace GoldenTicket.Controllers
 
         private UserManager<Client> _userManager;
 
+        private ILogger _logger;
+
         /// <summary>
         /// intializes _context
         /// </summary>
         /// <param name="context">context of the technician</param>
         /// <param name="userManager">the usermanager</param>
-        public AdministratorsController(GoldenTicketContext context, UserManager<Client> userManager)
+        public AdministratorsController(GoldenTicketContext context, UserManager<Client> userManager, ILogger<AdministratorsController> logger)
         {
             _context = context;
             _userManager = userManager;
@@ -39,8 +42,16 @@ namespace GoldenTicket.Controllers
         [HttpGet]
         public async Task<IActionResult> All()
         {
-            var technicians = await _context.Users.ToListAsync();
-            return View(technicians);
+            try
+            {
+                var technicians = await _context.Users.ToListAsync();
+                return View(technicians);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"All has failed with error '{ex.Message}'");
+                throw;
+            }
         }
 
         /// <summary>
@@ -60,17 +71,25 @@ namespace GoldenTicket.Controllers
         [HttpPost]
         public async Task<IActionResult> Add([FromForm] NewClient newTechnician)
         {
-            var technician = new Client
+            try
             {
-                DateAdded = DateTime.Now,
-                UserName = $"{newTechnician.FirstName}.{newTechnician.LastName}",
-                FirstName = newTechnician.FirstName,
-                LastName = newTechnician.LastName,
-                IsAdmin = true
-            };
-            await _userManager.CreateAsync(technician, newTechnician.Password);
-            await _userManager.AddToRoleAsync(technician, DataConstants.AdministratorRole);
-            return RedirectToAction(nameof(All));
+                var technician = new Client
+                {
+                    DateAdded = DateTime.Now,
+                    UserName = $"{newTechnician.FirstName}.{newTechnician.LastName}",
+                    FirstName = newTechnician.FirstName,
+                    LastName = newTechnician.LastName,
+                    IsAdmin = true
+                };
+                await _userManager.CreateAsync(technician, newTechnician.Password);
+                await _userManager.AddToRoleAsync(technician, DataConstants.AdministratorRole);
+                return RedirectToAction(nameof(All));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Add has failed with error '{ex.Message}'");
+            }
+            return BadRequest();
         }
     }
 }

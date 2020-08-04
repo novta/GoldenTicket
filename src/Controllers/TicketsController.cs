@@ -22,7 +22,7 @@ namespace GoldenTicket.Controllers
 
         private UserManager<Client> _userManager;
 
-        private ILogger<TicketsController> _logger;
+        private ILogger _logger;
 
         /// <summary>
         /// Initializes private variable _context
