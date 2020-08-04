@@ -1,5 +1,5 @@
 @{
-	ViewData["Title"] = Model.Ticket.Title;
+	ViewData["Title"] = Model.Ticket.Destination;
 }
 @using GoldenTicket.Models.TicketsViewModels
 @using GoldenTicket.Data
@@ -29,6 +29,7 @@
 <p>
 	Date Added: @Model.Ticket.DateAdded <br>
 	Status: @(Model.Ticket.Open ? "Open" : "Closed") <br>
+	Destination: @Model.Ticket.Destination <br>
 	Description: @Model.Ticket.Description <br>
 	Notes: @Model.Ticket.Notes <br>
 	<a asp-action="Edit" asp-route-id="@Model.Ticket.Id">Edit</a>

@@ -81,10 +81,10 @@ namespace GoldenTicket
                 {
                     ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
                 });
+                app.UseHttpsRedirection();
             }
 
             app.UseStaticFiles();
-            app.UseHttpsRedirection();
             app.UseAuthentication();
 
             app.UseMvc(routes =>

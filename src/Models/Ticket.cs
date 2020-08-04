@@ -21,9 +21,9 @@ namespace GoldenTicket.Models
         public string ClientId { get; set; }
 
         /// <summary>
-        /// The title of this ticket
+        /// The Destination of this ticket
         /// </summary>
-        public string Title { get; set; }
+        public string Destination { get; set; }
 
         /// <summary>
         /// The description for this ticket

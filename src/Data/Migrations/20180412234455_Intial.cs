@@ -67,7 +67,7 @@ namespace GoldenTicket.Data.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     ClientId = table.Column<Guid>(nullable: false),
-                    Title = table.Column<string>(nullable: true),
+                    Destination = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     IsUrgent = table.Column<bool>(nullable: false),
                     Notes = table.Column<string>(nullable: true),

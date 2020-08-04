@@ -1,13 +1,13 @@
 @{
-    ViewData["Title"] = Model.Title;
+    ViewData["Title"] = Model.Destination;
 }
 @using GoldenTicket.Models
 @model Ticket
 
 <form method="post">
         <input asp-for="Id" type="hidden">
-        <label>Title</label>
-        <input asp-for="Title">
+		<label>Destination</label>
+        <input asp-for="Destination">
         <label>Description</label>
         <input asp-for="Description">
         <label>Notes</label>

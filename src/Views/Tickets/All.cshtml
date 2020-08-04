@@ -17,7 +17,7 @@
     <div class="col s12 m6 l3">
       <div class="card stickey-action grey darken-1 hoverable activato">
             <div class="card-content white-text">
-             <span class="card-title">@ticket.Title</span>
+             <span class="card-title">@ticket.Destination</span>
              <i class="medium material-icons right">@(ticket.IsUrgent ? "error":"")</i>
              <p>@ticket.Description</p><br>
              <p>This ticket is  @(ticket.Open ? "open." : "closed")</p><br>
@@ -25,7 +25,7 @@
             </div>
           
         <div class="card-reveal">
-        <span class="card-title grey-text text-darken-4">@ticket.Title<i class="material-icons right">close</i></span>
+        <span class="card-title grey-text text-darken-4">@ticket.Destination<i class="material-icons right">close</i></span>
         <p>@ticket.Notes</p>
         </div>
         <div class="card-action">

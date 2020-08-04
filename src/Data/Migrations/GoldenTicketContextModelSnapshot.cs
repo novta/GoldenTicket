@@ -85,7 +85,7 @@ namespace GoldenTicket.Data.Migrations
 
                     b.Property<bool>("Open");
 
-                    b.Property<string>("Title");
+                    b.Property<string>("Destination");
 
                     b.HasKey("Id");
 

@@ -120,7 +120,7 @@ namespace GoldenTicket.Controllers
             try
             {
                 var ticket = await _context.Tickets.FindAsync(ticketUpdate.Id);
-                ticket.Title = ticketUpdate.Title;
+                ticket.Destination = ticketUpdate.Destination;
                 ticket.Description = ticketUpdate.Description;
                 ticket.Notes = ticketUpdate.Notes;
                 ticket.Open = ticketUpdate.Open;
@@ -152,7 +152,7 @@ namespace GoldenTicket.Controllers
         public async Task<IActionResult> Review([FromRoute] string id)
         {
             var ticket = await _context.Tickets.FindAsync(id);
-            return View(new TicketTime { TicketTitle = ticket.Title, TicketId = ticket.Id });
+            return View(new TicketTime { TicketTitle = ticket.Destination, TicketId = ticket.Id });
         }
 
         /// <summary>
