@@ -1,4 +1,4 @@
-@{
+﻿@{
     ViewData["Title"] = "All Tickets";
 }
 @using GoldenTicket.Models
@@ -6,9 +6,9 @@
 @model IEnumerable<Ticket>
 
 @if ((bool)ViewData["includeClosed"]) {
-    <a asp-action="All">Exclude Closed Tickets</a>
+    <a asp-action="All">Искључи затворена службена путовања</a>
 } else {
-    <a asp-action="All" asp-route-includeClosed="true">Include Closed Tickets</a>
+    <a asp-action="All" asp-route-includeClosed="true">Укључи затворена службена путовања</a>
 }
  <div class="row">
   @foreach (var ticket in Model) {
@@ -19,8 +19,8 @@
             <div class="card-content white-text">
              <span class="card-title">@ticket.Destination</span>
              <i class="medium material-icons right">@(ticket.IsUrgent ? "error":"")</i>
-             <p>@ticket.Description</p><br>
-             <p>This ticket is  @(ticket.Open ? "open." : "closed")</p><br>
+             <p>@ticket.Institution</p><br>
+             <p>Службени пут је @(ticket.Open ? "отворен." : "затворен.")</p><br>
              <p>@ticket.DateAdded.ToString("d")</p><br>
             </div>
           

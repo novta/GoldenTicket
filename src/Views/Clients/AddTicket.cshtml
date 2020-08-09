@@ -1,4 +1,4 @@
-@{
+﻿@{
     ViewData["Title"] = "Add a Ticket";
 }
 @using GoldenTicket.Models
@@ -7,13 +7,34 @@
 	<form method="post">
 		<input asp-for="ClientId" type="hidden">
 
-		<label>Destination of ticket</label>
+		<label>Држава путовања</label>
+		<input asp-for="Country">
+
+		<label>Адреса путовања</label>
 		<input asp-for="Destination">
 
-		<label>Description of ticket</label>
-		<input asp-for="Description" multiline>
+		<label>Установа путовања</label>
+		<input asp-for="Institution">
 
-		<label>Notes</label>
+		<label>Лице за контакт у установи путовања (телефон, е-маил)</label>
+		<input asp-for="ContactPersonOnSite" multiline>
+
+		<label>Разлог путовања</label>
+		<input asp-for="Reason">
+
+		<label>Датум и време одласка</label>
+		<input asp-for="StartDate">
+
+		<label>Датум и време повратка</label>
+		<input asp-for="EndDate">
+
+		<label>Врста јавног превоза</label>
+		<input asp-for="Transportation">
+
+		<label>Извор и лице које располаже средствима</label>
+		<input asp-for="SourcesOfFunding" multiline>
+
+		<label>Напомена</label>
 		<input asp-for="Notes" multiline>
 
 		<p>

@@ -1,4 +1,4 @@
-@{
+﻿@{
 	ViewData["Title"] = Model.Ticket.Destination;
 }
 @using GoldenTicket.Models.TicketsViewModels
@@ -17,20 +17,21 @@
 	</form>
 }
 
-<h3>Client Details</h3>
+<h3>ПОДАЦИ ЗАПОСЛЕНОГ</h3>
 <p>
-	Name: @Model.Client.FirstName @Model.Client.LastName <br>
-	Title: @Model.Client.Title<br>
-	Chair: @Model.Client.Chair<br>
+	Име, презиме и звање запосленог: @Model.Client.FirstName, @Model.Client.LastName @Model.Client.Title<br>
+	Катедра: @Model.Client.Chair <br>
+	Број мобилног телефона: @Model.Client.PhoneNumber<br>
 	<a asp-action="Open" asp-controller="Clients" asp-route-id="@Model.Client.Id">More Information</a>
 </p>
 
-<h3>Ticket Details</h3>
+<h3>ЗАХТЕВ ЗА СЛУЖБЕНИ ПУТ</h3>
 <p>
-	Date Added: @Model.Ticket.DateAdded <br>
-	Status: @(Model.Ticket.Open ? "Open" : "Closed") <br>
-	Destination: @Model.Ticket.Destination <br>
-	Description: @Model.Ticket.Description <br>
+	Датум подношења: @Model.Ticket.DateAdded <br>
+	Статус: @(Model.Ticket.Open ? "Отворен" : "Затворен") <br>
+	Место путовања: @Model.Ticket.Destination <br>
+	Установа путовања: @Model.Ticket.Institution <br>
+	Лице за контакт у установи путовања (телефон, е-маил): @Model.Ticket.ContactPersonOnSite <br>
 	Notes: @Model.Ticket.Notes <br>
 	<a asp-action="Edit" asp-route-id="@Model.Ticket.Id">Edit</a>
 </p>

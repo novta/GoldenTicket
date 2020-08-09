@@ -121,7 +121,8 @@ namespace GoldenTicket.Controllers
             {
                 var ticket = await _context.Tickets.FindAsync(ticketUpdate.Id);
                 ticket.Destination = ticketUpdate.Destination;
-                ticket.Description = ticketUpdate.Description;
+                ticket.Institution = ticketUpdate.Institution;
+                ticket.ContactPersonOnSite = ticketUpdate.ContactPersonOnSite;
                 ticket.Notes = ticketUpdate.Notes;
                 ticket.Open = ticketUpdate.Open;
                 // Ticket is closing

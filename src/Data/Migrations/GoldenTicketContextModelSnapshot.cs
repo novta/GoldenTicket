@@ -71,21 +71,33 @@ namespace GoldenTicket.Data.Migrations
 
                     b.Property<Guid>("ClientId");
 
-                    b.Property<int>("Complexity");
-
                     b.Property<DateTime>("DateAdded");
 
                     b.Property<DateTime>("DateClosed");
 
-                    b.Property<string>("Description");
+                    b.Property<bool>("Open");
+
+                    b.Property<string>("Country");
+
+                    b.Property<string>("Destination");
+
+                    b.Property<string>("Institution");
+
+                    b.Property<string>("Reason");
+
+                    b.Property<string>("ContactPersonOnSite");
+
+                    b.Property<string>("Transportation");
+
+                    b.Property<string>("SourcesOfFunding");
+                    
+                    b.Property<string>("Notes");
 
                     b.Property<bool>("IsUrgent");
 
-                    b.Property<string>("Notes");
+                    b.Property<DateTime>("StartDate");
 
-                    b.Property<bool>("Open");
-
-                    b.Property<string>("Destination");
+                    b.Property<DateTime>("EndDate");
 
                     b.HasKey("Id");
 

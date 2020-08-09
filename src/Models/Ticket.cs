@@ -21,15 +21,51 @@ namespace GoldenTicket.Models
         public string ClientId { get; set; }
 
         /// <summary>
+        /// The destination country of this ticket
+        /// </summary>
+        public string Country { get; set; }
+        
+        /// <summary>
         /// The Destination of this ticket
         /// </summary>
         public string Destination { get; set; }
 
         /// <summary>
-        /// The description for this ticket
+        /// The Institution of this ticket
+        /// </summary>
+        public string Institution { get; set; }
+
+        /// <summary>
+        /// The reason of this ticket
+        /// </summary>
+        public string Reason { get; set; }
+
+        /// <summary>
+        /// The kontact person in istitutuion
         /// </summary>
         [DataType(DataType.MultilineText)]
-        public string Description { get; set; }
+        public string ContactPersonOnSite { get; set; }
+
+        /// <summary>
+        /// The start date
+        /// </summary>
+        public DateTime? StartDate { get; set; }
+
+        /// <summary>
+        /// The end date
+        /// </summary>
+        public DateTime? EndDate { get; set; }
+
+        /// <summary>
+        /// The Transportation of this ticket
+        /// </summary>
+        public string Transportation { get; set; }
+
+        /// <summary>
+        /// The sources of funding of this ticket
+        /// </summary>
+        [DataType(DataType.MultilineText)]
+        public string SourcesOfFunding { get; set; }
 
         /// <summary>
         /// Defines if this ticket is urgent
@@ -45,7 +81,7 @@ namespace GoldenTicket.Models
         /// <summary>
         /// The date added
         /// </summary>
-        public DateTime DateAdded { get; set; }
+        public DateTime DateAdded { get; set; } = DateTime.Now;
 
         /// <summary>
         /// The date closed

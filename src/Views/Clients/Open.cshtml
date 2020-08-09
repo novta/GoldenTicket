@@ -1,38 +1,41 @@
-@{
+﻿@{
     ViewData["Title"] = $"{Model.Client.FirstName} {Model.Client.LastName}";
 }
 @using GoldenTicket.Models.ClientsViewModels
-@using System.Collections.Generic
+
 @model ClientDetails
 
-<h3>Client Details</h3>
+<h3>Лични подаци запосленог</h3>
 <p>
-	Name: @Model.Client.FirstName @Model.Client.LastName <br>
-	Chair: @Model.Client.Chair<br>
-	Title: @Model.Client.Title<br>
-	Date Added: @Model.Client.DateAdded.ToString("d")
+	Име и презиме: @Model.Client.FirstName @Model.Client.LastName <br>
+	Катедра: @Model.Client.Chair<br>
+	Звање запосленог: @Model.Client.Title<br>
+	Датум запослења: @Model.Client.DateAdded.ToString("d")
 </p>
 
-<h3>Open Tickets: @Model.OpenTicketCount</h3>
+<h3>Број отворена службених путовања: @Model.OpenTicketCount</h3>
 <table>
-    <tr>
-        <th>Destination</th>
-        <th>Date Added</th>
-        <th>Urgent</th>
-    </tr>
+	<tr>
+		<th>Место путовања</th>
+		<th>Установа путовања</th>
+		<th>Датум подношења захтева</th>
+		<th>Хитно</th>
+	</tr>
     @foreach (var ticket in Model.Tickets) {
-    <tr>
-        <th>
-            <a asp-action="Open" asp-controller="Tickets" asp-route-id="@ticket.Id">@ticket.Destination</a>
-        </th>
-        <th>@ticket.DateAdded.ToString("d")</th>
-        @if (ticket.IsUrgent) {
-        <th>&#10004;</th>
-        }
-        else
-        {
-        <th></th>
-        }
-    </tr>
+	<tr>
+		<th>
+			<a asp-action="Open" asp-controller="Tickets" asp-route-id="@ticket.Id">@ticket.Destination</a>
+		</th>
+		<th>@ticket.Institution</th>
+		<th>@ticket.DateAdded.ToString("d")</th>
+		@if (ticket.IsUrgent)
+		{
+			<th>&#10004;</th>
+		}
+		else
+		{
+			<th></th>
+		}
+	</tr>
     }
 </table>

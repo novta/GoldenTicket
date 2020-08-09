@@ -12,22 +12,22 @@ namespace GoldenTicket.Data.Migrations
         /// <param name="migrationBuilder"></param>
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<DateTime>(
-                name: "DateClosed",
-                table: "Tickets",
-                nullable: false,
-                defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
+            //migrationBuilder.AddColumn<DateTime>(
+            //    name: "DateClosed",
+            //    table: "Tickets",
+            //    nullable: false,
+            //    defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
         }
 
-/// <summary>
-/// 
-/// </summary>
-/// <param name="migrationBuilder"></param>
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="migrationBuilder"></param>
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "DateClosed",
-                table: "Tickets");
+            //migrationBuilder.DropColumn(
+            //    name: "DateClosed",
+            //    table: "Tickets");
         }
     }
 }
