@@ -53,8 +53,7 @@ namespace GoldenTicket.Data.Migrations
                     DateAdded = table.Column<DateTime>(nullable: false),
                     Title = table.Column<string>(nullable: true),
                     Chair = table.Column<string>(nullable: true),
-                    IsAdmin = table.Column<bool>(nullable: false),
-                    IsModerator = table.Column<bool>(nullable: false),
+                    Role = table.Column<string>(nullable: false),
                 },
                 constraints: table =>
                 {

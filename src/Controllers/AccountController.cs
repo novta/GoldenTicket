@@ -82,7 +82,6 @@ namespace GoldenTicket.Controllers
             try
             {
                 var result = await _signInManager.PasswordSignInAsync(loginRequest.Username, loginRequest.Password, loginRequest.RememberMe, false);
-
                 if (result.Succeeded)
                 {
                     _logger.LogInformation($"{User.Identity.Name} logged in.");
@@ -100,7 +99,6 @@ namespace GoldenTicket.Controllers
             {
                 _logger.LogError(ex, $"Login has failed with error '{ex.Message}'");
             }
-
             return View(loginRequest);
         }
 

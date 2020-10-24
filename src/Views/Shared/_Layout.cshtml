@@ -43,7 +43,7 @@
 					<li>
 						<a asp-controller="Clients" asp-action="All">Clients</a>
 					</li>
-					@if (User.IsInRole(DataConstants.AdministratorRole)) {
+					@if (User.IsInRole(Role.Administrator)) {
 						<li>
 							<a asp-controller="Administrators" asp-action="All">Administrators</a>
 						</li>

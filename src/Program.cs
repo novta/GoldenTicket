@@ -27,49 +27,33 @@ namespace GoldenTicket
         /// <param name="args">command line arguments</param>
         public static void Main(string[] args)
         {
-            var host = BuildWebHost(args);
+            MainAsync(args).GetAwaiter().GetResult();
+        }
 
+        private static async Task MainAsync(string[] args)
+        {
+            var host = BuildWebHost(args);
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
-
                 var context = services.GetRequiredService<GoldenTicketContext>();
                 var configuration = services.GetRequiredService<IConfiguration>();
                 var userManager = services.GetRequiredService<UserManager<Client>>();
                 var roleManager = services.GetService<RoleManager<IdentityRole>>();
-
                 if (configuration.GetValue<bool>("useSeedData"))
                 {
-                    SeedData.Initialize(context, userManager, roleManager);
+                    await SeedData.Initialize(context, userManager, roleManager, configuration);
                 }
                 else
                 {
                     context.Database.Migrate();
-                    var role = roleManager.FindByNameAsync(DataConstants.AdministratorRole).Result;
+                    var role = await roleManager.FindByNameAsync(Role.Administrator);
                     if (role == null)
                     {
-                        roleManager.CreateAsync(new IdentityRole(DataConstants.AdministratorRole));
+                        await roleManager.CreateAsync(new IdentityRole(Role.Administrator));
                     }
                 }
-                var admin = userManager.FindByNameAsync(DataConstants.RootUsername).Result;
-                if (admin == null)
-                {
-                    admin = new Client
-                    {
-                        UserName = DataConstants.RootUsername,
-                        FirstName = DataConstants.RootUsername,
-                        LastName = DataConstants.RootUsername,
-                        DateAdded = DateTime.Now.AddYears(-2),
-                        IsAdmin = true
-                    };
-                    userManager.CreateAsync(admin, configuration["adminPassword"]).Wait();
-                }
-                if (!userManager.IsInRoleAsync(admin, DataConstants.AdministratorRole).Result)
-                {
-                    userManager.AddToRoleAsync(admin, DataConstants.AdministratorRole).Wait();
-                }
             }
-
             host.Run();
         }
 

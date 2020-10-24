@@ -1,8 +1,10 @@
 using GoldenTicket.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace GoldenTicket.Data
 {
@@ -13,215 +15,222 @@ namespace GoldenTicket.Data
     {
         private static Client[] _clients = {
             new Client {
+                FirstName = "Miroslav",
+                LastName = "Novta",
+                Title = "Administrator",
+                Chair = string.Empty,
+                Role = Role.Administrator
+            },
+            new Client {
                 FirstName = "Jaroslav",
                 LastName = "Katona",
                 Title = "Profesor",
                 Chair = "Katedra za Primenjene i Inženjerske Hemije",
-                IsModerator = true,
-                IsAdmin = true
+                Role = Role.ViceDeanForFinance
             },
-            //new Client {
-            //    FirstName = "Charles",
-            //    LastName = "Woods",
-            //    Title = "Profesor",
-            //    Chair = "Biology",
-            //    IsModerator = true,
-            //    IsAdmin = true
-            //},
-            //new Client {
-            //    FirstName = "Nico",
-            //    LastName = "Perkins",
-            //    Title = "Profesor",
-            //    Chair = "Mathematics",
-            //    IsModerator = true,
-            //    IsAdmin = true
-            //},
-            //new Client {
-            //    FirstName = "Marie",
-            //    LastName = "Wilson",
-            //    Title = "Profesor",
-            //    Chair = "Philosophy",
-            //    IsModerator = true,
-            //    IsAdmin = false
-            //},
-            //new Client {
-            //    FirstName = "Nancy",
-            //    LastName = "Mays",
-            //    Title = "Profesor",
-            //    Chair = "Fluids",
-            //    IsModerator = true,
-            //    IsAdmin = false
-            //},
-            //new Client {
-            //    FirstName = "Taryn",
-            //    LastName = "Norman",
-            //    Title = "Profesor",
-            //    Chair = "Technic",
-            //    IsModerator = true,
-            //    IsAdmin = false
-            //},
-            //new Client {
-            //    FirstName = "Kieran",
-            //    LastName = "Lam",
-            //    Title = "Profesor",
-            //    Chair = "Something",
-            //    IsModerator = true,
-            //    IsAdmin = false
-            //},
-            //new Client {
-            //    FirstName = "Natalya",
-            //    LastName = "Lynch",
-            //    Title = "Profesor",
-            //    Chair = "Chamistry1",
-            //    IsModerator = true,
-            //    IsAdmin = false
-            //},
-            //new Client {
-            //    FirstName = "Gavin",
-            //    LastName = "Preston",
-            //    Title = "Profesor",
-            //    Chair = "Chamistry2",
-            //    IsModerator = true,
-            //    IsAdmin = false
-            //},
-            //new Client {
-            //    FirstName = "Kira",
-            //    LastName = "Paul",
-            //    Title = "Profesor",
-            //    Chair = "Chamistry3",
-            //    IsModerator = true,
-            //    IsAdmin = false
-            //},
-            //new Client {
-            //    FirstName = "Shyla",
-            //    LastName = "Turner",
-            //    Title = "Profesor",
-            //    Chair = "Chamistry4",
-            //    IsModerator = true,
-            //    IsAdmin = false
-            //},
-            //new Client {
-            //    FirstName = "Ana",
-            //    LastName = "Wise",
-            //    Title = "Profesor",
-            //    Chair = "Chamistry5",
-            //    IsModerator = true,
-            //    IsAdmin = false
-            //},
-            //new Client {
-            //    FirstName = "Rylan",
-            //    LastName = "Bryan",
-            //    Title = "Profesor",
-            //    Chair = "Chamistry6",
-            //    IsModerator = true,
-            //    IsAdmin = false
-            //},
-            //new Client {
-            //    FirstName = "Cailyn",
-            //    LastName = "Melton",
-            //    Title = "Profesor",
-            //    Chair = "Chamistry7",
-            //    IsModerator = true,
-            //    IsAdmin = false
-            //},
-            //new Client {
-            //    FirstName = "Rory",
-            //    LastName = "Clark",
-            //    Title = "Profesor",
-            //    Chair = "Chamistry8",
-            //    IsModerator = true,
-            //    IsAdmin = false
-            //},
-            //new Client {
-            //    FirstName = "Elizebeth",
-            //    LastName = "Salgado",
-            //    Title = "Assistent",
-            //    Chair = "Chamistry8",
-            //},
-            //new Client {
-            //    FirstName = "Maddie",
-            //    LastName = "Streater",
-            //    Title = "Assistent",
-            //    Chair = "Chamistry8",
-            //},
-            //new Client {
-            //    FirstName = "Chrissy",
-            //    LastName = "Noffsinger",
-            //    Title = "Assistent",
-            //    Chair = "Chamistry8",
-            //},
-            //new Client {
-            //    FirstName = "Eufemia",
-            //    LastName = "Max",
-            //    Title = "Assistent",
-            //    Chair = "Chamistry8",
-            //},
-            //new Client {
-            //    FirstName = "Teresa",
-            //    LastName = "Honea",
-            //    Title = "Assistent",
-            //    Chair = "Chamistry8",
-            //},
-            //new Client {
-            //    FirstName = "Kendrick",
-            //    LastName = "Haydon",
-            //    Title = "Assistent",
-            //    Chair = "Chamistry8",
-            //},
-            //new Client {
-            //    FirstName = "Napoleon",
-            //    LastName = "Bernardo",
-            //    Title = "Assistent",
-            //    Chair = "Chamistry8",
-            //},
-            //new Client {
-            //    FirstName = "Jule",
-            //    LastName = "Rigdon",
-            //    Title = "Assistent",
-            //    Chair = "Chamistry8",
-            //},
-            //new Client {
-            //    FirstName = "Michaela",
-            //    LastName = "Spady",
-            //    Title = "Assistent",
-            //    Chair = "Chamistry8",
-            //},
-            //new Client {
-            //    FirstName = "Derek",
-            //    LastName = "Raley",
-            //    Title = "Assistent",
-            //    Chair = "Chamistry8",
-            //},
-            //new Client {
-            //    FirstName = "Lindsy",
-            //    LastName = "Messineo",
-            //    Title = "Assistent",
-            //    Chair = "Chamistry8",
-            //},
-            //new Client {
-            //    FirstName = "Reggie",
-            //    LastName = "Strohm",
-            //    Title = "Assistent",
-            //    Chair = "Chamistry8",
-            //},
-            //new Client {
-            //    FirstName = "Sheilah",
-            //    LastName = "Troia",
-            //    Title = "Assistent",
-            //    Chair = "Chamistry8",
-            //},
-            //new Client {
-            //    FirstName = "Vivien",
-            //    LastName = "Modesto",
-            //    Title = "Assistent",
-            //    Chair = "Chamistry8",
-            //},
-            //new Client {
-            //    FirstName = "Evia",
-            //    LastName = "Days",
-            //    Title = "Assistent",
-            //    Chair = "Chamistry8",
-            //}
+            new Client {
+                FirstName = "Charles",
+                LastName = "Woods",
+                Title = "Profesor",
+                Chair = "Biology",
+                Role = Role.HeadAccountant
+            },
+            new Client {
+                FirstName = "Nico",
+                LastName = "Perkins",
+                Title = "Profesor",
+                Chair = "Mathematics",
+                Role = Role.SecretaryOfScientificTeachingCouncil
+            },
+            new Client {
+                FirstName = "Marie",
+                LastName = "Wilson",
+                Title = "Profesor",
+                Chair = "Philosophy",
+                Role = Role.SecretaryOfChair
+            },
+            new Client {
+                FirstName = "Nancy",
+                LastName = "Mays",
+                Title = "Profesor",
+                Chair = "Fluids",
+                Role = Role.FinanceOfficer
+            },
+            new Client {
+                FirstName = "Taryn",
+                LastName = "Norman",
+                Title = "Profesor",
+                Chair = "Technic",
+                Role = Role.Employee
+            },
+            new Client {
+                FirstName = "Kieran",
+                LastName = "Lam",
+                Title = "Profesor",
+                Chair = "Something",
+                Role = Role.Employee
+            },
+            new Client {
+                FirstName = "Natalya",
+                LastName = "Lynch",
+                Title = "Profesor",
+                Chair = "Chamistry1",
+                Role = Role.Employee
+            },
+            new Client {
+                FirstName = "Gavin",
+                LastName = "Preston",
+                Title = "Profesor",
+                Chair = "Chamistry2",
+                Role = Role.Employee
+            },
+            new Client {
+                FirstName = "Kira",
+                LastName = "Paul",
+                Title = "Profesor",
+                Chair = "Chamistry3",
+                Role = Role.Employee
+            },
+            new Client {
+                FirstName = "Shyla",
+                LastName = "Turner",
+                Title = "Profesor",
+                Chair = "Chamistry4",
+                Role = Role.Employee
+            },
+            new Client {
+                FirstName = "Ana",
+                LastName = "Wise",
+                Title = "Profesor",
+                Chair = "Chamistry5",
+                Role = Role.Employee
+            },
+            new Client {
+                FirstName = "Rylan",
+                LastName = "Bryan",
+                Title = "Profesor",
+                Chair = "Chamistry6",
+                Role = Role.Employee
+            },
+            new Client {
+                FirstName = "Cailyn",
+                LastName = "Melton",
+                Title = "Profesor",
+                Chair = "Chamistry7",
+                Role = Role.Employee
+            },
+            new Client {
+                FirstName = "Rory",
+                LastName = "Clark",
+                Title = "Profesor",
+                Chair = "Chamistry8",
+                Role = Role.Employee
+            },
+            new Client {
+                FirstName = "Elizebeth",
+                LastName = "Salgado",
+                Title = "Assistent",
+                Chair = "Chamistry8",
+                Role = Role.Employee
+            },
+            new Client {
+                FirstName = "Maddie",
+                LastName = "Streater",
+                Title = "Assistent",
+                Chair = "Chamistry8",
+                Role = Role.Employee
+            },
+            new Client {
+                FirstName = "Chrissy",
+                LastName = "Noffsinger",
+                Title = "Assistent",
+                Chair = "Chamistry8",
+                Role = Role.Employee
+            },
+            new Client {
+                FirstName = "Eufemia",
+                LastName = "Max",
+                Title = "Assistent",
+                Chair = "Chamistry8",
+                Role = Role.Employee
+            },
+            new Client {
+                FirstName = "Teresa",
+                LastName = "Honea",
+                Title = "Assistent",
+                Chair = "Chamistry8",
+                Role = Role.Employee
+            },
+            new Client {
+                FirstName = "Kendrick",
+                LastName = "Haydon",
+                Title = "Assistent",
+                Chair = "Chamistry8",
+                Role = Role.Employee
+            },
+            new Client {
+                FirstName = "Napoleon",
+                LastName = "Bernardo",
+                Title = "Assistent",
+                Chair = "Chamistry8",
+                Role = Role.Employee
+            },
+            new Client {
+                FirstName = "Jule",
+                LastName = "Rigdon",
+                Title = "Assistent",
+                Chair = "Chamistry8",
+                Role = Role.Employee
+            },
+            new Client {
+                FirstName = "Michaela",
+                LastName = "Spady",
+                Title = "Assistent",
+                Chair = "Chamistry8",
+                Role = Role.Employee
+            },
+            new Client {
+                FirstName = "Derek",
+                LastName = "Raley",
+                Title = "Assistent",
+                Chair = "Chamistry8",
+                Role = Role.Employee
+            },
+            new Client {
+                FirstName = "Lindsy",
+                LastName = "Messineo",
+                Title = "Assistent",
+                Chair = "Chamistry8",
+                Role = Role.Employee
+            },
+            new Client {
+                FirstName = "Reggie",
+                LastName = "Strohm",
+                Title = "Assistent",
+                Chair = "Chamistry8",
+                Role = Role.Employee
+            },
+            new Client {
+                FirstName = "Sheilah",
+                LastName = "Troia",
+                Title = "Assistent",
+                Chair = "Chamistry8",
+                Role = Role.Employee
+            },
+            new Client {
+                FirstName = "Vivien",
+                LastName = "Modesto",
+                Title = "Assistent",
+                Chair = "Chamistry8",
+                Role = Role.Employee
+            },
+            new Client {
+                FirstName = "Evia",
+                LastName = "Days",
+                Title = "Assistent",
+                Chair = "Chamistry8",
+                Role = Role.Employee
+            }
         };
 
         /// <summary>
@@ -230,27 +239,28 @@ namespace GoldenTicket.Data
         /// <param name="context">context</param>
         /// <param name="userManager">admin</param>
         /// <param name="roleManager"></param>
-        public static void Initialize(GoldenTicketContext context, UserManager<Client> userManager, RoleManager<IdentityRole> roleManager)
+        /// <param name="configuration">IConfiguration reference</param>
+        public static async Task Initialize(GoldenTicketContext context, UserManager<Client> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration)
         {
             context.Database.EnsureDeleted();
             context.Database.Migrate();
 
             var randGenerator = new Random();
 
-            var administratorRole = roleManager.FindByNameAsync(DataConstants.AdministratorRole).Result;
-            if (administratorRole == null)
+            foreach (var role in Role.AllRoles)
             {
-                roleManager.CreateAsync(new IdentityRole(DataConstants.AdministratorRole));
+                var administratorRole = await roleManager.FindByNameAsync(role);
+                if (administratorRole == null)
+                {
+                    await roleManager.CreateAsync(new IdentityRole(role));
+                }
             }
             foreach (var client in _clients)
             {
                 client.DateAdded = DateTime.Now.AddMonths(randGenerator.Next(-36, -25));
                 client.UserName = $"{client.FirstName.ToLower()}.{client.LastName.ToLower()}";
-                userManager.CreateAsync(client, "password").Wait();
-                if (client.IsAdmin)
-                {
-                    userManager.AddToRoleAsync(client, DataConstants.AdministratorRole);
-                }
+                await userManager.CreateAsync(client, configuration["adminPassword"]);
+                await userManager.AddToRoleAsync(client, client.Role);
             }
             //context.Clients.AddRange(_clients);
             context.SaveChanges();

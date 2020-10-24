@@ -9,7 +9,7 @@ namespace GoldenTicket.Controllers
     /// <summary>
     /// For handling reports
     /// </summary>
-    [Authorize(Roles = DataConstants.AdministratorRole)]
+    [Authorize(Roles = Role.Administrator)]
     public class ReportsController : Controller
     {
         private GoldenTicketContext _context;

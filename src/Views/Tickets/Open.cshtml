@@ -10,7 +10,7 @@
 	<h3 class="center red">URGENT</h3>
 }
 
-@if (User.IsInRole(DataConstants.AdministratorRole) || User.Identity.Name == Model.Client.UserName)
+@if (User.IsInRole(Role.Administrator) || User.Identity.Name == Model.Client.UserName)
 {
 	<form asp-action="ToggleUrgent" asp-route-id="@Model.Ticket.Id" method="post">
 		<input class="waves-effect waves-light btn" type="submit" value="Toggle Urgent">
@@ -38,7 +38,7 @@
 
 @if (Model.Ticket.Open)
 {
-	@if (User.IsInRole(DataConstants.AdministratorRole))
+	@if (User.IsInRole(Role.Administrator))
 	{
 		<th>
 			<a asp-action="Review" asp-route-id="@Model.Ticket.Id">Review</a>

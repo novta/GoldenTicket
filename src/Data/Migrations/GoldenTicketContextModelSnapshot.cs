@@ -37,9 +37,7 @@ namespace GoldenTicket.Data.Migrations
 
                     b.Property<string>("Chair");
 
-                    b.Property<bool>("IsModerator");
-
-                    b.Property<bool>("IsAdmin");
+                    b.Property<string>("Role");
 
                     b.HasKey("Id");
 

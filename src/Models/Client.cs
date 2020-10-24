@@ -34,13 +34,11 @@ namespace GoldenTicket.Models
         public string Chair { get; set; }
 
         /// <summary>
-        /// Is the Moderator
+        /// Gets or sets the role.
         /// </summary>
-        public bool IsModerator { get; set; }
-
-        /// <summary>
-        /// Is the Admin
-        /// </summary>
-        public bool IsAdmin { get; set; }
+        /// <value>
+        /// The role.
+        /// </value>
+        public string Role { get; set; }
     }
 }

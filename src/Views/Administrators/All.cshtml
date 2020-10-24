@@ -15,7 +15,7 @@
     @foreach (var moderator in Model) {
     <tr>
         <th>@moderator.FirstName @moderator.LastName</th>
-        @if (moderator.IsAdmin) {
+        @if (moderator.Role == "Admin") {
         <th>&#10004;</th>
         }
         else {

@@ -15,7 +15,7 @@ namespace GoldenTicket.Controllers
     /// <summary>
     /// Controller for technicians
     /// </summary>
-    [Authorize(Roles = DataConstants.AdministratorRole)]
+    [Authorize(Roles = Role.Administrator)]
     public class AdministratorsController : Controller
     {
         private GoldenTicketContext _context;
@@ -79,10 +79,9 @@ namespace GoldenTicket.Controllers
                     UserName = $"{newTechnician.FirstName}.{newTechnician.LastName}",
                     FirstName = newTechnician.FirstName,
                     LastName = newTechnician.LastName,
-                    IsAdmin = true
                 };
                 await _userManager.CreateAsync(technician, newTechnician.Password);
-                await _userManager.AddToRoleAsync(technician, DataConstants.AdministratorRole);
+                await _userManager.AddToRoleAsync(technician, Role.Administrator);
                 return RedirectToAction(nameof(All));
             }
             catch (Exception ex)

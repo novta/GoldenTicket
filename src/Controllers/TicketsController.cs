@@ -161,7 +161,7 @@ namespace GoldenTicket.Controllers
         /// </summary>
         /// <param name="time">The time to add</param>
         /// <returns>Redirect to ticket view</returns>
-        [Authorize(Roles = DataConstants.AdministratorRole)]
+        [Authorize(Roles = Role.Administrator)]
         [HttpPost]
         public async Task<IActionResult> Review([FromForm] TicketTime time)
         {
@@ -191,7 +191,7 @@ namespace GoldenTicket.Controllers
         /// </summary>
         /// <param name="id">The id of the time</param>
         /// <returns>The ticket view</returns>
-        [Authorize(Roles = DataConstants.AdministratorRole)]
+        [Authorize(Roles = Role.Administrator)]
         [HttpPost]
         public async Task<IActionResult> DeleteTime([FromRoute] string id)
         {
