@@ -82,11 +82,11 @@ namespace GoldenTicket.Controllers
                     .Join(_context.Users, time => time.ReviewerId, tech => tech.UserName, (time, tech) => new ModeratorReviewViewModel 
                     { 
                         Moderator = tech, 
-                        TicketReviewOutcome = new ReviewViewModel 
+                        TicketReviewOutcome = new TicketReviewViewModel
                         {
                             TicketId = ticket.Id,
                             TicketTitle = ticket.Destination,
-                            Role = time.ReviewerRole,
+                            ReviewerRole = time.ReviewerRole,
                             Timestamp = time.Timestamp,
                             ReviewOutcome = time.ReviewOutcome
                         }
@@ -166,7 +166,7 @@ namespace GoldenTicket.Controllers
         public async Task<IActionResult> Review([FromRoute] string id, string role)
         {
             var ticket = await _context.Tickets.FindAsync(id);
-            return base.View(new ReviewViewModel { TicketTitle = ticket.Destination, TicketId = ticket.Id, Role = role });
+            return base.View(new TicketReviewViewModel { TicketTitle = ticket.Destination, TicketId = ticket.Id, ReviewerRole = role });
         }
 
         /// <summary>
@@ -175,7 +175,7 @@ namespace GoldenTicket.Controllers
         /// <param name="time">The time to add</param>
         /// <returns>Redirect to ticket view</returns>
         [HttpPost]
-        public async Task<IActionResult> Review([FromForm] ReviewViewModel time)
+        public async Task<IActionResult> Review([FromForm] TicketReviewViewModel time)
         {
             _context.TicketReviews.Add(new TicketReview
             {
@@ -183,7 +183,7 @@ namespace GoldenTicket.Controllers
                 Timestamp = DateTime.Now,
                 TicketId = time.TicketId,
                 ReviewerId = _userManager.GetUserName(User),
-                ReviewerRole = time.Role,
+                ReviewerRole = time.ReviewerRole,
             });
             try
             {

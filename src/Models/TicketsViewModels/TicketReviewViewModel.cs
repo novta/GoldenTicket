@@ -46,5 +46,13 @@ namespace GoldenTicket.Models.TicketsViewModels
         /// The reviewer role.
         /// </value>
         public string ReviewerRole { get; set; }
+
+        /// <summary>
+        /// Gets or sets the timestamp.
+        /// </summary>
+        /// <value>
+        /// The timestamp.
+        /// </value>
+        public DateTime Timestamp { get; set; }
     }
 }
