@@ -9,29 +9,52 @@ namespace GoldenTicket.Models
     public class TicketReview
     {
         /// <summary>
-        /// The id.
+        /// Gets or sets the identifier.
         /// </summary>
+        /// <value>
+        /// The identifier.
+        /// </value>
         [Key]
         public string Id { get; set; }
 
         /// <summary>
-        /// The ticket id
+        /// Gets or sets the ticket identifier.
         /// </summary>
+        /// <value>
+        /// The ticket identifier.
+        /// </value>
         public string TicketId { get; set; }
 
         /// <summary>
-        /// The reviewer id
+        /// Gets or sets the reviewer identifier.
         /// </summary>
+        /// <value>
+        /// The reviewer identifier.
+        /// </value>
         public string ReviewerId { get; set; }
 
         /// <summary>
-        /// The start time
+        /// Gets or sets the reviewer role.
         /// </summary>
+        /// <value>
+        /// The reviewer role.
+        /// </value>
+        public string ReviewerRole { get; set; }
+
+        /// <summary>
+        /// Gets or sets the timestamp.
+        /// </summary>
+        /// <value>
+        /// The timestamp.
+        /// </value>
         public DateTime Timestamp { get; set; }
 
         /// <summary>
-        /// The outcome
+        /// Gets or sets the review outcome.
         /// </summary>
+        /// <value>
+        /// The review outcome.
+        /// </value>
         public Review ReviewOutcome { get; set; }
     }
 }

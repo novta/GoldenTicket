@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 using System;
-using System.Collections.Generic;
 
 namespace GoldenTicket.Data.Migrations
 {
@@ -80,6 +79,7 @@ namespace GoldenTicket.Data.Migrations
                     DateAdded = table.Column<DateTime>(nullable: false),
                     DateClosed = table.Column<DateTime>(nullable: false),
                     Open = table.Column<bool>(nullable: false),
+                    State = table.Column<int>(nullable: false),
                 },
                 constraints: table =>
                 {
@@ -95,6 +95,7 @@ namespace GoldenTicket.Data.Migrations
                     ReviewerId = table.Column<Guid>(nullable: true),
                     Timestamp = table.Column<DateTime>(nullable: true),
                     ReviewOutcome = table.Column<int>(nullable: false),
+                    ReviewerRole = table.Column<string>(nullable: false),
                 },
                 constraints: table =>
                 {

@@ -14,8 +14,8 @@
         /// </summary>
         Approved,
         /// <summary>
-        /// The declined
+        /// The rejected
         /// </summary>
-        Declined
+        Rejected,
     }
 }

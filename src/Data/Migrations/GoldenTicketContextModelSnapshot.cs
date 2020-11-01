@@ -97,6 +97,8 @@ namespace GoldenTicket.Data.Migrations
 
                     b.Property<DateTime>("EndDate");
 
+                    b.Property<int>("State");
+
                     b.HasKey("Id");
 
                     b.ToTable("Tickets");

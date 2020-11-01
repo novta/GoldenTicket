@@ -23,6 +23,6 @@ namespace GoldenTicket.Models.TicketsViewModels
         /// List of tech time associated with ticket
         /// </summary>
         /// <returns>list of tech times</returns>
-        public List<ModeratorReview> Reviewes { get; set; }
+        public List<ModeratorReviewViewModel> Reviewes { get; set; }
     }
 }

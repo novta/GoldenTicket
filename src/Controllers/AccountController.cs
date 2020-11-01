@@ -1,4 +1,5 @@
 using System;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using GoldenTicket.Models;
 using GoldenTicket.Models.AccountViewModels;
@@ -93,6 +94,10 @@ namespace GoldenTicket.Controllers
                     {
                         return RedirectToAction(nameof(TicketsController.All), "Tickets");
                     }
+                }
+                else
+                {
+                    return View("AccessDenied");
                 }
             }
             catch (Exception ex)

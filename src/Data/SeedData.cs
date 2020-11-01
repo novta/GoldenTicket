@@ -29,29 +29,29 @@ namespace GoldenTicket.Data
                 Role = Role.ViceDeanForFinance
             },
             new Client {
-                FirstName = "Charles",
-                LastName = "Woods",
+                FirstName = "Konte",
+                LastName = "Kontic",
                 Title = "Profesor",
                 Chair = "Biology",
                 Role = Role.HeadAccountant
             },
             new Client {
-                FirstName = "Nico",
-                LastName = "Perkins",
+                FirstName = "Senka",
+                LastName = "Seveca",
                 Title = "Profesor",
                 Chair = "Mathematics",
                 Role = Role.SecretaryOfScientificTeachingCouncil
             },
             new Client {
-                FirstName = "Marie",
-                LastName = "Wilson",
+                FirstName = "Seka",
+                LastName = "Sekatedre",
                 Title = "Profesor",
                 Chair = "Philosophy",
                 Role = Role.SecretaryOfChair
             },
             new Client {
-                FirstName = "Nancy",
-                LastName = "Mays",
+                FirstName = "Mali",
+                LastName = "Kontic",
                 Title = "Profesor",
                 Chair = "Fluids",
                 Role = Role.FinanceOfficer

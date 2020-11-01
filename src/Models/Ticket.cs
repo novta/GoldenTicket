@@ -92,5 +92,13 @@ namespace GoldenTicket.Models
         /// True if the ticket is open
         /// </summary>
         public bool Open { get; set; }
+
+        /// <summary>
+        /// Gets or sets the state.
+        /// </summary>
+        /// <value>
+        /// The state.
+        /// </value>
+        public TicketState State { get; set; }
     }
 }

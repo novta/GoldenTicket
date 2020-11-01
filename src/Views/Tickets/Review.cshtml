@@ -2,23 +2,25 @@
     ViewData["Title"] = "Review for " + Model.TicketTitle;
 }
 @using GoldenTicket.Models.TicketsViewModels
-@model TicketTime
+@using GoldenTicket.Models
+@model TicketReviewViewModel
 
 	<form method="post">
 		<input asp-for="TicketId" type="hidden">
+		<input asp-for="ReviewerRole" type="hidden">
 
 		<label>Title</label>
 		<input asp-for="TicketTitle">
 
 		<p>
 			<label>
-				<input asp-for="ReviewOutcome" type="radio" value="true" onclick="enableConfirm()"/>
+				<input asp-for="ReviewOutcome" type="radio" value="Approved" onclick="enableConfirm()" />
 				<span>Approve</span>
 			</label>
 			<br />
 			<label>
-				<input asp-for="ReviewOutcome" type="radio" value="false" onclick="enableConfirm()"/>
-				<span>Decline</span>
+				<input asp-for="ReviewOutcome" type="radio" value="Rejected" onclick="enableConfirm()" />
+				<span>Reject</span>
 			</label>
 		</p>
 
@@ -27,11 +29,11 @@
 		<button class="btn" type="submit" id="btnConfirm" disabled>Confirm</button>
 	</form>
 
-	<script>
-		function goBack() {
-			window.history.back();
-		}
-		function enableConfirm() {
-			document.getElementById("btnConfirm").disabled = false;
-		}
-	</script>
+<script>
+	function goBack() {
+		window.history.back();
+	}
+	function enableConfirm() {
+		document.getElementById("btnConfirm").disabled = false;
+	}
+</script>

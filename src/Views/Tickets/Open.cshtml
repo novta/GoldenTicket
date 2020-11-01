@@ -2,6 +2,8 @@
 	ViewData["Title"] = Model.Ticket.Destination;
 }
 @using GoldenTicket.Models.TicketsViewModels
+@using GoldenTicket.Helpers
+@using GoldenTicket.Models
 @using GoldenTicket.Data
 @model TicketDetails
 
@@ -38,10 +40,10 @@
 
 @if (Model.Ticket.Open)
 {
-	@if (User.IsInRole(Role.Administrator))
+	@if (TicketStateHelper.UserCanReview(User, Model, out var role))
 	{
 		<th>
-			<a asp-action="Review" asp-route-id="@Model.Ticket.Id">Review</a>
+			<a asp-action="Review" asp-route-id="@Model.Ticket.Id" asp-route-role=@role>Review</a>
 		</th>
 	}
 }
@@ -49,14 +51,19 @@
 	<tr>
 		<th>Reviewer</th>
 		<th>Outcome</th>
+		<th>Role</th>
 		<th>Time</th>
 	</tr>
-	@foreach (var review in Model.Reviewes)
+	@if (Model.Reviewes?.Count > 0)
 	{
-		<tr>
-			<th>@review.Moderator.FirstName @review.Moderator.LastName</th>
-			<th>@review.TicketReviewOutcome.ReviewOutcome</th>
-			<th>@review.TicketReviewOutcome.Timestamp</th>
-		</tr>
+		@foreach (var review in Model.Reviewes)
+		{
+			<tr>
+				<th>@review.Moderator.FirstName @review.Moderator.LastName</th>
+				<th>@review.TicketReviewOutcome.ReviewOutcome</th>
+				<th>@review.TicketReviewOutcome.Role</th>
+				<th>@review.TicketReviewOutcome.Timestamp</th>
+			</tr>
+		}
 	}
 </table>

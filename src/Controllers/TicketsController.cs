@@ -79,7 +79,19 @@ namespace GoldenTicket.Controllers
                 var ticket = await _context.Tickets.FindAsync(id);
                 var client = await _context.Clients.FindAsync(ticket.ClientId);
                 var reviewes = await _context.TicketReviews.Where(time => time.TicketId == ticket.Id)
-                                                           .Join(_context.Users, time => time.ReviewerId, tech => tech.UserName, (time, tech) => new ModeratorReview { Moderator = tech, TicketReviewOutcome = time })?.ToListAsync();
+                    .Join(_context.Users, time => time.ReviewerId, tech => tech.UserName, (time, tech) => new ModeratorReviewViewModel 
+                    { 
+                        Moderator = tech, 
+                        TicketReviewOutcome = new ReviewViewModel 
+                        {
+                            TicketId = ticket.Id,
+                            TicketTitle = ticket.Destination,
+                            Role = time.ReviewerRole,
+                            Timestamp = time.Timestamp,
+                            ReviewOutcome = time.ReviewOutcome
+                        }
+                    })?.ToListAsync();
+
                 return View(new TicketDetails { Ticket = ticket, Client = client, Reviewes = reviewes });
             }
             catch (Exception ex)
@@ -148,12 +160,13 @@ namespace GoldenTicket.Controllers
         /// Open the page for adding time to a ticket.
         /// </summary>
         /// <param name="id">The id of the ticket.</param>
+        /// <param name="role">The role of reviewer.</param>
         /// <returns>The add time view</returns>
         [HttpGet]
-        public async Task<IActionResult> Review([FromRoute] string id)
+        public async Task<IActionResult> Review([FromRoute] string id, string role)
         {
             var ticket = await _context.Tickets.FindAsync(id);
-            return View(new TicketTime { TicketTitle = ticket.Destination, TicketId = ticket.Id });
+            return base.View(new ReviewViewModel { TicketTitle = ticket.Destination, TicketId = ticket.Id, Role = role });
         }
 
         /// <summary>
@@ -161,37 +174,32 @@ namespace GoldenTicket.Controllers
         /// </summary>
         /// <param name="time">The time to add</param>
         /// <returns>Redirect to ticket view</returns>
-        [Authorize(Roles = Role.Administrator)]
         [HttpPost]
-        public async Task<IActionResult> Review([FromForm] TicketTime time)
+        public async Task<IActionResult> Review([FromForm] ReviewViewModel time)
         {
-            if (time?.ReviewOutcome != null)
+            _context.TicketReviews.Add(new TicketReview
             {
-                _context.TicketReviews.Add(new TicketReview
-                {
-                    ReviewOutcome = (time.ReviewOutcome == true) ? Models.Review.Approved : Models.Review.Declined,
-                    Timestamp = DateTime.Now,
-                    TicketId = time.TicketId,
-                    ReviewerId = _userManager.GetUserName(User)
-                });
-                try
-                {
-                    await _context.SaveChangesAsync();
-                }
-                catch (Exception ex)
-                {
-                    _logger.LogError(ex, $"SaveChangesAsync has failed with error '{ex.Message}'");
-                }
+                ReviewOutcome = time.ReviewOutcome,
+                Timestamp = DateTime.Now,
+                TicketId = time.TicketId,
+                ReviewerId = _userManager.GetUserName(User),
+                ReviewerRole = time.Role,
+            });
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"SaveChangesAsync has failed with error '{ex.Message}'");
             }
             return RedirectToAction(nameof(Open), new { id = time.TicketId });
         }
-
         /// <summary>
         /// Deletes a time
         /// </summary>
         /// <param name="id">The id of the time</param>
         /// <returns>The ticket view</returns>
-        [Authorize(Roles = Role.Administrator)]
         [HttpPost]
         public async Task<IActionResult> DeleteTime([FromRoute] string id)
         {
