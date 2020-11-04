@@ -64,12 +64,12 @@
 		function enableCountry() {
 			var x = document.getElementById("myCountry");
 			if (document.getElementById("cbAbroad").checked) {
-				document.getElementById("myCountry").value = "";
+				x.value = "";
 				x.disabled = false;
 			}
 			else {
+				x.value = "Serbia";
 				x.disabled = true;
-				document.getElementById("myCountry").value = "Serbia";
 			}
 		}
 	</script>
