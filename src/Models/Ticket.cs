@@ -21,10 +21,18 @@ namespace GoldenTicket.Models
         public string ClientId { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether this instance is abroad.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is abroad; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsAbroad { get; set; }
+
+        /// <summary>
         /// The destination country of this ticket
         /// </summary>
         public string Country { get; set; }
-        
+
         /// <summary>
         /// The Destination of this ticket
         /// </summary>
@@ -68,8 +76,11 @@ namespace GoldenTicket.Models
         public string SourcesOfFunding { get; set; }
 
         /// <summary>
-        /// Defines if this ticket is urgent
+        /// Gets or sets a value indicating whether this instance is urgent.
         /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is urgent; otherwise, <c>false</c>.
+        /// </value>
         public bool IsUrgent { get; set; }
 
         /// <summary>

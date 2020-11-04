@@ -65,6 +65,7 @@ namespace GoldenTicket.Data.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     ClientId = table.Column<Guid>(nullable: false),
+                    IsAbroad = table.Column<bool>(nullable: false),
                     Country = table.Column<string>(nullable: true),
                     Destination = table.Column<string>(nullable: true),
                     Institution = table.Column<string>(nullable: true),
@@ -208,6 +209,18 @@ namespace GoldenTicket.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Countries",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    Name = table.Column<string>(maxLength: 50, nullable: false),
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Countries", x => x.Id);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -268,9 +281,6 @@ namespace GoldenTicket.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Clients");
-
-            migrationBuilder.DropTable(
                 name: "TechnicianTicketTimes");
 
             migrationBuilder.DropTable(
@@ -281,6 +291,9 @@ namespace GoldenTicket.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Countries");
         }
     }
 }

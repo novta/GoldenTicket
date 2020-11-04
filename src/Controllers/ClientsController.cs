@@ -143,5 +143,5 @@ namespace GoldenTicket.Controllers
             }
             return RedirectToAction(nameof(TicketsController.Open), "Tickets", new { id = ticket.Id });
         }
-    }
+     }
 }

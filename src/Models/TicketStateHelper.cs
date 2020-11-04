@@ -27,12 +27,13 @@ namespace GoldenTicket.Helpers
                 role = "";
                 return false;
             }
+            var chair = user.Claims.FirstOrDefault(x => x.Type == CustomClaims.Chair)?.Value;
             if (user.IsInRole(Role.FinanceOfficer) && state == TicketState.Commited)
             {
                 role = Role.FinanceOfficer;
                 return true;
             }
-            else if (user.IsInRole(Role.SecretaryOfChair) && state == TicketState.WaitForChairApproval)
+            else if (user.IsInRole(Role.SecretaryOfChair) && state == TicketState.WaitForChairApproval && chair == ticketDetails.Client.Chair)
             {
                 role = Role.SecretaryOfChair;
                 return true;

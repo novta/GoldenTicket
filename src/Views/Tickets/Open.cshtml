@@ -9,7 +9,12 @@
 
 @if (Model.Ticket.IsUrgent)
 {
-	<h3 class="center red">URGENT</h3>
+	<h3 class="center red">ХИТНО</h3>
+}
+
+@if (Model.Ticket.IsAbroad)
+{
+	<h3 class="center pink">Иностранство</h3>
 }
 
 @if (User.IsInRole(Role.Administrator) || User.Identity.Name == Model.Client.UserName)

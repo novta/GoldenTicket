@@ -75,6 +75,8 @@ namespace GoldenTicket.Data.Migrations
 
                     b.Property<bool>("Open");
 
+                    b.Property<bool>("IsAbroad");
+
                     b.Property<string>("Country");
 
                     b.Property<string>("Destination");
@@ -102,6 +104,18 @@ namespace GoldenTicket.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Tickets");
+                });
+
+            modelBuilder.Entity("GoldenTicket.Models.Country", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Countries");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

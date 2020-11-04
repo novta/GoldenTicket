@@ -25,6 +25,11 @@ namespace GoldenTicket.Data
         public DbSet<TicketReview> TicketReviews { get; set; }
 
         /// <summary>
+        /// The collection of Countries
+        /// </summary>
+        public DbSet<Country> Countries { get; set; }
+
+        /// <summary>
         /// The constructor for this context
         /// </summary>
         /// <param name="options">The options to create the context around</param>
