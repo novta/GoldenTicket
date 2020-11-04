@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GoldenTicket.Data;
@@ -46,7 +47,20 @@ namespace GoldenTicket.Controllers
         {
             try
             {
-                var orderedTickets = await _context.Tickets
+                IQueryable<Ticket> visibleTickets;
+                var client = await _userManager.GetUserAsync(User);
+                if (client.Role == Role.Employee)
+                {
+                    // can see only own tickets
+                    visibleTickets = _context.Tickets.Where(x => x.ClientId == client.Id);
+                }
+                else
+                {
+                    // can see all tickets
+                    visibleTickets = _context.Tickets;
+                }
+
+                var orderedTickets = await visibleTickets
                     .OrderByDescending(ticket => ticket.DateAdded)
                     .GroupBy(ticket => ticket.ClientId)
                     .OrderBy(ticketClientGroup => ticketClientGroup.Count())
