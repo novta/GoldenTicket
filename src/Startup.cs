@@ -83,15 +83,13 @@ namespace GoldenTicket
                 });
                 app.UseHttpsRedirection();
             }
-
             app.UseStaticFiles();
+            app.UseRouting();
             app.UseAuthentication();
-
-            app.UseMvc(routes =>
+            app.UseAuthorization();
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Tickets}/{action=All}/{id?}");
+                endpoints.MapControllerRoute("default", "{controller=Tickets}/{action=All}/{id?}");
             });
         }
     }
