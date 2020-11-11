@@ -1,4 +1,4 @@
-@{
+﻿@{
     ViewData["Title"] = "Review for " + Model.TicketTitle;
 }
 @using GoldenTicket.Models.TicketsViewModels
@@ -14,12 +14,12 @@
 
 		<p>
 			<label>
-				<input asp-for="ReviewOutcome" type="radio" value="Approved" onclick="enableConfirm()" />
+				<input asp-for="ReviewOutcome" type="radio" value="Одобрено" onclick="enableConfirm()" />
 				<span>Approve</span>
 			</label>
 			<br />
 			<label>
-				<input asp-for="ReviewOutcome" type="radio" value="Rejected" onclick="enableConfirm()" />
+				<input asp-for="ReviewOutcome" type="radio" value="Одбијено" onclick="enableConfirm()" />
 				<span>Reject</span>
 			</label>
 		</p>

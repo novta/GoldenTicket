@@ -1,4 +1,4 @@
-namespace GoldenTicket.Data
+﻿namespace GoldenTicket.Data
 {
     /// <summary>
     /// Constant variables for data use.
@@ -8,27 +8,27 @@ namespace GoldenTicket.Data
         /// <summary>
         /// The employee role
         /// </summary>
-        public const string Employee = "Employee";
+        public const string Employee = "Запослени";
         /// <summary>
         /// The finance officer role
         /// </summary>
-        public const string FinanceOfficer = "FinanceOfficer";
+        public const string FinanceOfficer = "Рачуновођа";
         /// <summary>
         /// The secretary of chair role
         /// </summary>
-        public const string SecretaryOfChair = "SecreteryOfChair";
+        public const string SecretaryOfChair = "Секретар катедре";
         /// <summary>
         /// The scientific teaching council role
         /// </summary>
-        public const string SecretaryOfScientificTeachingCouncil = "SecretaryOfScientificTeachingCouncil";
+        public const string SecretaryOfScientificTeachingCouncil = "Секретар научно наставног већа";
         /// <summary>
         /// The head accountant role
         /// </summary>
-        public const string HeadAccountant = "HeadAccountant";
+        public const string HeadAccountant = "Шеф рачуноводства";
         /// <summary>
         /// The vice dean for finance role
         /// </summary>
-        public const string ViceDeanForFinance = "ViceDeanForFinance";
+        public const string ViceDeanForFinance = "Продекан за финансије";
         /// <summary>
         /// The role of administrator.
         /// </summary>

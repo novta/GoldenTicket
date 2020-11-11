@@ -8,6 +8,6 @@
         /// <summary>
         /// The chair
         /// </summary>
-        public const string Chair = "Chair";
+        public const string Chair = "Катедра";
     }
 }

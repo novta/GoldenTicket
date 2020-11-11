@@ -8,14 +8,14 @@
         /// <summary>
         /// The unknown
         /// </summary>
-        Undefined,
+        Недефинисано,
         /// <summary>
         /// The approved
         /// </summary>
-        Approved,
+        Одобрено,
         /// <summary>
         /// The rejected
         /// </summary>
-        Rejected,
+        Одбијено,
     }
 }

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -196,16 +196,19 @@ namespace GoldenTicket.Controllers
         {
             try
             {
-                var newTicket = new TicketReview
+                if (time.ReviewOutcome != Models.Review.Недефинисано)
                 {
-                    ReviewOutcome = time.ReviewOutcome,
-                    Timestamp = DateTime.Now,
-                    TicketId = time.TicketId,
-                    ReviewerId = _userManager.GetUserName(User),
-                    ReviewerRole = time.ReviewerRole
-                };
-                _context.TicketReviews.Add(newTicket);
-                await _context.SaveChangesAsync();
+                    var newTicket = new TicketReview
+                    {
+                        ReviewOutcome = time.ReviewOutcome,
+                        Timestamp = DateTime.Now,
+                        TicketId = time.TicketId,
+                        ReviewerId = _userManager.GetUserName(User),
+                        ReviewerRole = time.ReviewerRole
+                    };
+                    _context.TicketReviews.Add(newTicket);
+                    await _context.SaveChangesAsync();
+                }
             }
             catch (Exception ex)
             {
