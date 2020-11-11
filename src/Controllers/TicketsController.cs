@@ -237,20 +237,6 @@ namespace GoldenTicket.Controllers
             return RedirectToAction(nameof(Open), new { id = time.TicketId });
         }
 
-        ///// <summary>
-        ///// Gets bill.
-        ///// </summary>
-        ///// <param name="id">The id for the ticket</param>
-        ///// <returns>The bill</returns>
-        //[HttpGet]
-        //public async Task<IActionResult> Bill([FromRoute] string id)
-        //{
-        //    var ticket = await _context.Tickets.FindAsync(id);
-        //    var client = await _context.Clients.FindAsync(ticket.ClientId);
-        //    var times = await _context.TicketReviews.Where(time => time.TicketId == ticket.Id).Join(_context.Users, time => time.ModeratorId, tech => tech.UserName, (time, tech) => new ModeratorReview { Moderator = tech, ReviewOutcome = time }).ToListAsync();
-        //    return View(new TicketDetails { Ticket = ticket, Client = client, Times = times });
-        //}
-
         /// <summary>
         /// Toggles urgency of a ticket
         /// </summary>

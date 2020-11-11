@@ -40,5 +40,36 @@ namespace GoldenTicket.Models
         /// The role.
         /// </value>
         public string Role { get; set; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Client"/> class.
+        /// </summary>
+        public Client()
+        { }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Client"/> class.
+        /// </summary>
+        /// <param name="client">The client.</param>
+        public Client(Client client) 
+            : base(client.UserName)
+        {
+            this.Id = client.Id;
+            this.FirstName = client.FirstName;
+            this.LastName = client.LastName;
+            this.DateAdded = client.DateAdded;
+            this.Title = client.Title;
+            this.Chair = client.Chair;
+            this.Role = client.Role;
+        }
+
+        /// <summary>
+        /// Shallows the copy.
+        /// </summary>
+        /// <returns>Returns a ShallowCopy of object.</returns>
+        public Client ShallowCopy()
+        {
+            return (Client)this.MemberwiseClone();
+        }
     }
 }

@@ -1,26 +1,102 @@
-@{
-    ViewData["Title"] = "All Administrators";
+﻿@{
+	ViewData["Title"] = "Улоге";
 }
+@using GoldenTicket.Data
 @using GoldenTicket.Models
 @using System.Collections.Generic
 @model List<Client>
 
-<a asp-action="Add" >Add Administrator</a>
+<a asp-action="Add">Креирај клијента</a>
 
 <table class="responsive-table highlight">
 	<tr>
-		<th>Name</th>
-		<th>Admin</th>
+		<th>Име и презиме</th>
+		<th>Запослен</th>
+		<th>Рачуновођа</th>
+		<th>Секретар катедре</th>
+		<th>Секретар ННВ</th>
+		<th>Шеф рачуноводства</th>
+		<th>Продекан за финансије</th>
+		<th>Администратор</th>
 	</tr>
-    @foreach (var moderator in Model) {
-    <tr>
-        <th>@moderator.FirstName @moderator.LastName</th>
-        @if (moderator.Role == "Admin") {
-        <th>&#10004;</th>
-        }
-        else {
-        <th></th>
-        }
-    </tr>
-    }
+	@foreach (var client in Model)
+	{
+		<tr>
+			<th>
+				<div class="card-action">
+					<a asp-action="Open" asp-route-id="@client.Id">@client.FirstName @client.LastName @client.Title</a>
+				</div>
+			</th>
+			@if (client.Role == Role.Employee)
+			{
+				<th class="center">&#10004;</th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+			}
+			else if (client.Role == Role.FinanceOfficer)
+			{
+				<th></th>
+				<th class="center">&#10004;</th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+			}
+			else if (client.Role == Role.SecretaryOfChair)
+			{
+				<th></th>
+				<th></th>
+				<th class="center">&#10004;</th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+			}
+			else if (client.Role == Role.SecretaryOfScientificTeachingCouncil)
+			{
+				<th></th>
+				<th></th>
+				<th></th>
+				<th class="center">&#10004;</th>
+				<th></th>
+				<th></th>
+				<th></th>
+			}
+			else if (client.Role == Role.HeadAccountant)
+			{
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th class="center">&#10004;</th>
+				<th></th>
+				<th></th>
+			}
+			else if (client.Role == Role.ViceDeanForFinance)
+			{
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th class="center">&#10004;</th>
+				<th></th>
+			}
+			else if (client.Role == Role.Administrator)
+			{
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th class="center">&#10004;</th>
+			}
+		</tr>
+	}
 </table>

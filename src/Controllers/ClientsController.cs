@@ -96,29 +96,6 @@ namespace GoldenTicket.Controllers
         }
 
         /// <summary>
-        /// Adds a client to the database
-        /// </summary>
-        /// <param name="client">The client to add</param>
-        /// <returns>The added client</returns>
-        [HttpPost]
-        public async Task<IActionResult> Add([FromForm] Client client)
-        {
-            try
-            {
-                client.DateAdded = DateTime.Now;
-                _context.Clients.Add(client);
-                await _context.SaveChangesAsync();
-
-                return RedirectToAction(nameof(Open), new { id = client.Id });
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Open has failed with error '{ex.Message}'");
-                throw;
-            }
-        }
-
-        /// <summary>
         /// Gets view for adding a ticket.
         /// </summary>
         /// <returns>The view.</returns>

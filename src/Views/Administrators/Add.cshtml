@@ -1,21 +1,21 @@
-@{
-    ViewData["Title"] = "Add a Administrator";
+﻿@{
+    ViewData["Title"] = "Креирај клијента";
 }
 @using GoldenTicket.Models.AdministratorsViewModels
 @model NewClient
 
 	<form method="post">
-		<label>First Name</label>
+		<label>Име</label>
 		<input asp-for="FirstName">
-		<label>Last Name</label>
+		<label>Презиме</label>
 		<input asp-for="LastName">
-		<label>Title</label>
+		<label>Титула</label>
 		<input asp-for="Title">
-		<label>Chair</label>
+		<label>Катедра</label>
 		<input asp-for="Chair">
-		<label>Password</label>
+		<label>Улога</label>
+		<input asp-for="Role">
+		<label>Шифра</label>
 		<input asp-for="Password">
-		<button class="btn" type="submit">
-			Add Administrator
-		</button>
+		<button class="btn" type="submit">Креирај</button>
 	</form>
