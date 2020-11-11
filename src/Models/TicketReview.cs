@@ -56,5 +56,10 @@ namespace GoldenTicket.Models
         /// The review outcome.
         /// </value>
         public Review ReviewOutcome { get; set; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TicketReview"/> class.
+        /// </summary>
+        public TicketReview() => Id = Guid.NewGuid().ToString();
     }
 }

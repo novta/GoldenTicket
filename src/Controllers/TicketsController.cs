@@ -63,13 +63,14 @@ namespace GoldenTicket.Controllers
                 if (visibleTickets.Any())
                 {
                     orderedTickets = await visibleTickets
-                        .OrderByDescending(ticket => ticket.DateAdded)
-                        .GroupBy(ticket => ticket.ClientId)
-                        .OrderBy(ticketClientGroup => ticketClientGroup.Count())
-                        .SelectMany(ticketClientGroup => ticketClientGroup)
                         .Where(ticket => ticket.Open || ticket.Open != includeClosed)
-                        .OrderByDescending(ticket => ticket.IsUrgent)
-                        .OrderByDescending(ticket => ticket.Open)
+                        .OrderByDescending(ticket => ticket.DateAdded)
+                        //.GroupBy(ticket => ticket.ClientId)
+                        //.OrderBy(ticketClientGroup => ticketClientGroup.Count())
+                        //.SelectMany(ticketClientGroup => ticketClientGroup)
+                        //.Where(ticket => ticket.Open || ticket.Open != includeClosed)
+                        //.OrderByDescending(ticket => ticket.IsUrgent)
+                        //.OrderByDescending(ticket => ticket.Open)
                         .ToListAsync();
                 }
                 ViewData["includeClosed"] = includeClosed;
@@ -193,21 +194,22 @@ namespace GoldenTicket.Controllers
         [HttpPost]
         public async Task<IActionResult> Review([FromForm] TicketReviewViewModel time)
         {
-            _context.TicketReviews.Add(new TicketReview
-            {
-                ReviewOutcome = time.ReviewOutcome,
-                Timestamp = DateTime.Now,
-                TicketId = time.TicketId,
-                ReviewerId = _userManager.GetUserName(User),
-                ReviewerRole = time.ReviewerRole,
-            });
             try
             {
+                var newTicket = new TicketReview
+                {
+                    ReviewOutcome = time.ReviewOutcome,
+                    Timestamp = DateTime.Now,
+                    TicketId = time.TicketId,
+                    ReviewerId = _userManager.GetUserName(User),
+                    ReviewerRole = time.ReviewerRole
+                };
+                _context.TicketReviews.Add(newTicket);
                 await _context.SaveChangesAsync();
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"SaveChangesAsync has failed with error '{ex.Message}'");
+                _logger.LogError(ex, $"Review ticket has failed with error '{ex.Message}'");
             }
             return RedirectToAction(nameof(Open), new { id = time.TicketId });
         }
