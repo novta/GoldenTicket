@@ -1,11 +1,11 @@
-@{
-    ViewData["Title"] = "All Clients";
+﻿@{
+    ViewData["Title"] = "Клијенти";
 }
 @using GoldenTicket.Models.ClientsViewModels
 @using System.Collections.Generic
 @model IEnumerable<ClientDetails>
 
-<a asp-action="Add">Add Client</a>
+<a asp-action="Add">Додај клијента</a>
 
 @foreach (var client in Model) {
 <div class="row">
@@ -18,8 +18,8 @@
 				<p>Open Tickets: @client.OpenTicketCount</p>
 			</div>
             <div class="card-action">
-                <a asp-action="AddTicket" asp-route-id="@client.Client.Id">Add Ticket</a>
-                <a asp-action="Open" asp-route-id="@client.Client.Id">Open</a>
+                <a asp-action="AddTicket" asp-route-id="@client.Client.Id">Додај тикет</a>
+                <a asp-action="Open" asp-route-id="@client.Client.Id">Отвори</a>
             </div>
         </div>
     </div>

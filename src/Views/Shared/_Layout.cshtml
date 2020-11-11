@@ -10,7 +10,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>@ViewData["Title"] - TehnoDesk</title>
+	<title>@ViewData["Title"] - ТехноДеск</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css" media="screen,projection"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
@@ -20,41 +20,41 @@
 <body>
     <nav class="purple darken-4">
         <div class="nav-wrapper purple darken-4 container">
-            <a class="brand-logo hide-on-med-and-down"><strong class="amber-text text-darken-2"> TehnoDesk</strong> </a>
+            <a class="brand-logo hide-on-med-and-down"><strong class="amber-text text-darken-2"> ТехноДеск</strong> </a>
 			<ul class="right amber-text text-darken-2">
 				@if (SignInManager.IsSignedIn(User))
 				{
 					<li class="nav-item amber-text text-darken-2">
-						Hello @UserManager.GetUserName(User)!
+						Здраво @UserManager.GetUserName(User)!
 					</li>
 					<li class="nav-item amber-text text-darken-2">
-						<a asp-controller="Account" asp-action="Logout">Log out</a>
+						<a asp-controller="Account" asp-action="Logout">Излаз</a>
 					</li>
 				}
 				else
 				{
 					<li class="nav-item amber-text text-darken-2">
-						<a asp-controller="Account" asp-action="Login">Log in</a>
+						<a asp-controller="Account" asp-action="Login">Улаз</a>
 					</li>
 				}
 				@if (SignInManager.IsSignedIn(User))
 				{
 					<li>
-						<a asp-controller="Tickets" asp-action="All">Tickets</a>
+						<a asp-controller="Tickets" asp-action="All">Тикети</a>
 					</li>
 					<li>
-						<a asp-controller="Clients" asp-action="All">Clients</a>
+						<a asp-controller="Clients" asp-action="All">Клијенти</a>
 					</li>
 					@if (!User.IsInRole(Role.Employee))
 					{
 						<li>
-							<a asp-controller="Reports" asp-action="All">Reports</a>
+							<a asp-controller="Reports" asp-action="All">Извештаји</a>
 						</li>
 					}
 					@if (User.IsInRole(Role.Administrator) || User.IsInRole(Role.ViceDeanForFinance))
 					{
 						<li>
-							<a asp-controller="Administrators" asp-action="All">Administrators</a>
+							<a asp-controller="Administrators" asp-action="All">Улоге</a>
 						</li>
 					}
 				}
