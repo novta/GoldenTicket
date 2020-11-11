@@ -3,7 +3,6 @@
 }
 @using GoldenTicket.Models.TicketsViewModels
 @using GoldenTicket.Helpers
-@using GoldenTicket.Models
 @using GoldenTicket.Data
 @model TicketDetails
 
@@ -14,13 +13,13 @@
 
 @if (Model.Ticket.IsAbroad)
 {
-	<h3 class="center pink">Иностранство</h3>
+	<h3 class="center blue">Иностранство</h3>
 }
 
 @if (User.IsInRole(Role.Administrator) || User.Identity.Name == Model.Client.UserName)
 {
 	<form asp-action="ToggleUrgent" asp-route-id="@Model.Ticket.Id" method="post">
-		<input class="waves-effect waves-light btn" type="submit" value="Toggle Urgent">
+		<input class="waves-effect waves-light btn" type="submit" value="Промени хитност">
 	</form>
 }
 
@@ -29,7 +28,7 @@
 	Име, презиме и звање запосленог: @Model.Client.FirstName, @Model.Client.LastName @Model.Client.Title<br>
 	Катедра: @Model.Client.Chair <br>
 	Број мобилног телефона: @Model.Client.PhoneNumber<br>
-	<a asp-action="Open" asp-controller="Clients" asp-route-id="@Model.Client.Id">More Information</a>
+	<a asp-action="Open" asp-controller="Clients" asp-route-id="@Model.Client.Id">Више информација</a>
 </p>
 
 <h3>ЗАХТЕВ ЗА СЛУЖБЕНИ ПУТ</h3>
@@ -39,8 +38,8 @@
 	Место путовања: @Model.Ticket.Destination <br>
 	Установа путовања: @Model.Ticket.Institution <br>
 	Лице за контакт у установи путовања (телефон, е-маил): @Model.Ticket.ContactPersonOnSite <br>
-	Notes: @Model.Ticket.Notes <br>
-	<a asp-action="Edit" asp-route-id="@Model.Ticket.Id">Edit</a>
+	Белешке: @Model.Ticket.Notes <br>
+	<a asp-action="Edit" asp-route-id="@Model.Ticket.Id">Измени</a>
 </p>
 
 @if (Model.Ticket.Open)
@@ -48,16 +47,16 @@
 	@if (TicketStateHelper.UserCanReview(User, Model, out var role))
 	{
 		<th>
-			<a asp-action="Review" asp-route-id="@Model.Ticket.Id" asp-route-role=@role>Review</a>
+			<a asp-action="Review" asp-route-id="@Model.Ticket.Id" asp-route-role=@role>Размотрио</a>
 		</th>
 	}
 }
 <table>
 	<tr>
-		<th>Reviewer</th>
-		<th>Outcome</th>
-		<th>Role</th>
-		<th>Time</th>
+		<th>Размотрио</th>
+		<th>Исход</th>
+		<th>Улога</th>
+		<th>Време</th>
 	</tr>
 	@if (Model.Reviewes?.Count > 0)
 	{
