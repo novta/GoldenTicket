@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using GoldenTicket.Models;
+using System.Linq;
 
 namespace GoldenTicket.Models.ClientsViewModels
 {
@@ -23,6 +24,12 @@ namespace GoldenTicket.Models.ClientsViewModels
         /// <summary>
         /// Count of open tickets.
         /// </summary>
-        public int OpenTicketCount { get; set; }
+        public int OpenTicketCount 
+        { 
+            get 
+            {
+                return Tickets.Where(x => x.Open).Count();
+            } 
+        }
     }
 }

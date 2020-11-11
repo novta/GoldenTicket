@@ -40,7 +40,16 @@ namespace GoldenTicket.Controllers
         {
             try
             {
-                var clients = await _context.Clients.GroupJoin(_context.Tickets.Where(ticket => ticket.Open), client => client.Id, ticket => ticket.ClientId, (client, tickets) => new ClientDetails { Client = client, Tickets = tickets, OpenTicketCount = tickets.Count() }).OrderByDescending(details => details.Tickets.Count()).ToListAsync();
+                var allClients = await _context.Clients.ToListAsync();
+                var allTickets = await _context.Tickets.ToListAsync();
+                var clients = allClients
+                    .GroupJoin(
+                        allTickets,
+                        client => client.Id,
+                        ticket => ticket.ClientId,
+                        (client, tickets) => new ClientDetails { Client = client, Tickets = tickets })
+                    .OrderBy(client => client.Client.FirstName)
+                    .ThenBy(client => client.Client.LastName);
                 return View(clients);
             }
             catch (Exception ex)
@@ -65,7 +74,6 @@ namespace GoldenTicket.Controllers
 
                 var details = new ClientDetails {
                     Client = client,
-                    OpenTicketCount = tickets.Count,
                     Tickets = tickets
                 };
                 return View(details);

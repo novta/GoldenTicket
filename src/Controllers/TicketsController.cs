@@ -59,17 +59,19 @@ namespace GoldenTicket.Controllers
                     // can see all tickets
                     visibleTickets = _context.Tickets;
                 }
-
-                var orderedTickets = await visibleTickets
-                    .OrderByDescending(ticket => ticket.DateAdded)
-                    .GroupBy(ticket => ticket.ClientId)
-                    .OrderBy(ticketClientGroup => ticketClientGroup.Count())
-                    .SelectMany(ticketClientGroup => ticketClientGroup)
-                    .Where(ticket => ticket.Open || ticket.Open != includeClosed)
-                    .OrderByDescending(ticket => ticket.IsUrgent)
-                    .OrderByDescending(ticket => ticket.Open)
-                    .ToListAsync();
-
+                List<Ticket> orderedTickets = new List<Ticket>();
+                if (visibleTickets.Any())
+                {
+                    orderedTickets = await visibleTickets
+                        .OrderByDescending(ticket => ticket.DateAdded)
+                        .GroupBy(ticket => ticket.ClientId)
+                        .OrderBy(ticketClientGroup => ticketClientGroup.Count())
+                        .SelectMany(ticketClientGroup => ticketClientGroup)
+                        .Where(ticket => ticket.Open || ticket.Open != includeClosed)
+                        .OrderByDescending(ticket => ticket.IsUrgent)
+                        .OrderByDescending(ticket => ticket.Open)
+                        .ToListAsync();
+                }
                 ViewData["includeClosed"] = includeClosed;
                 return View(orderedTickets);
             }
