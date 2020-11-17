@@ -1,5 +1,8 @@
+using GoldenTicket.Data;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
+using System.Collections.Generic;
 
 namespace GoldenTicket.Models
 {
@@ -64,12 +67,61 @@ namespace GoldenTicket.Models
         }
 
         /// <summary>
-        /// Shallows the copy.
+        /// Gets the roles.
         /// </summary>
-        /// <returns>Returns a ShallowCopy of object.</returns>
-        public Client ShallowCopy()
+        /// <returns></returns>
+        public IEnumerable<SelectListItem> GetRoles()
         {
-            return (Client)this.MemberwiseClone();
+            var result = new List<SelectListItem>()
+            {
+                new SelectListItem
+                {
+                    Text = Data.Role.Employee,
+                    Value = Data.Role.Employee,
+                },
+                new SelectListItem
+                {
+                    Text = Data.Role.FinanceOfficer,
+                    Value = Data.Role.FinanceOfficer,
+                },
+                new SelectListItem
+                {
+                    Text = Data.Role.SecretaryOfChair,
+                    Value = Data.Role.SecretaryOfChair,
+                },
+                new SelectListItem
+                {
+                    Text = Data.Role.SecretaryOfScientificTeachingCouncil,
+                    Value = Data.Role.SecretaryOfScientificTeachingCouncil,
+                },
+                new SelectListItem
+                {
+                    Text = Data.Role.HeadAccountant,
+                    Value = Data.Role.HeadAccountant,
+                },
+                new SelectListItem
+                {
+                    Text = Data.Role.ViceDeanForFinance,
+                    Value = Data.Role.ViceDeanForFinance,
+                },
+                new SelectListItem
+                {
+                    Text = Data.Role.Administrator,
+                    Value = Data.Role.Administrator,
+                }
+            };
+            if (!string.IsNullOrWhiteSpace(Role))
+            {
+                foreach (var item in result)
+                {
+                    if (item.Text == Role)
+                    {
+                        item.Selected = true;
+                        break;
+                    }
+                }
+            }
+            return result;
         }
     }
 }

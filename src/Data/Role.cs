@@ -1,4 +1,6 @@
-﻿namespace GoldenTicket.Data
+﻿using System.Collections.Generic;
+
+namespace GoldenTicket.Data
 {
     /// <summary>
     /// Constant variables for data use.
@@ -36,6 +38,6 @@
         /// <summary>
         /// All
         /// </summary>
-        public static string[] AllRoles = { Employee, FinanceOfficer, SecretaryOfChair, SecretaryOfScientificTeachingCouncil, HeadAccountant, ViceDeanForFinance, Administrator };
+        public static IEnumerable<string> AllRoles = new[] { Role.Employee, Role.FinanceOfficer, Role.SecretaryOfChair, Role.SecretaryOfScientificTeachingCouncil, Role.HeadAccountant, Role.ViceDeanForFinance, Role.Administrator };
     }
 }
