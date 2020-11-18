@@ -1,6 +1,10 @@
+﻿using GoldenTicket.Data;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 namespace GoldenTicket.Models
 {
@@ -31,7 +35,7 @@ namespace GoldenTicket.Models
         /// <summary>
         /// The destination country of this ticket
         /// </summary>
-        public string Country { get; set; }
+        public string Country { get; set; } = "Србија";
 
         /// <summary>
         /// The Destination of this ticket

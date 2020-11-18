@@ -23,16 +23,11 @@ namespace GoldenTicket.Controllers
         /// <summary>
         /// Getcountrieses the specified term.
         /// </summary>
-        /// <param name="term">The term.</param>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult Get(string term = null)
+        public ActionResult<string> All()
         {
-            if (term == null)
-            {
-                return Json(_context.Countries.Select(a => new { a.Id, a.Name }));
-            }
-            return Json(_context.Countries.Where(c => c.Name.StartsWith(term)).Select(a => new { a.Id, a.Name }));
+            return Json(_context.Countries.Select(a => new { a.Id, a.Name }));
         }
     }
 }
