@@ -1,4 +1,3 @@
-using GoldenTicket.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;

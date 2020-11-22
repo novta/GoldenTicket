@@ -1,20 +1,20 @@
-﻿using System;
-using System.Threading.Tasks;
-using GoldenTicket.Data;
+﻿using GoldenTicket.Data;
+using GoldenTicket.Extensions;
 using GoldenTicket.Models;
 using GoldenTicket.Models.AdministratorsViewModels;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Threading.Tasks;
 
 namespace GoldenTicket.Controllers
 {
     /// <summary>
     /// Controller for technicians
     /// </summary>
-    [Authorize(Roles = Role.Administrator)]
+    [AuthorizeRoles(Role.ViceDeanForFinance, Role.Administrator)]
     public class AdministratorsController : Controller
     {
         private GoldenTicketContext _context;

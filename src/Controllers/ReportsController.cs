@@ -1,16 +1,16 @@
 using GoldenTicket.Data;
+using GoldenTicket.Extensions;
 using GoldenTicket.Models.ReportsViewModels;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace GoldenTicket.Controllers
 {
     /// <summary>
     /// For handling reports
     /// </summary>
-    [Authorize(Roles = Role.Administrator)]
+    [AuthorizeRoles(Role.FinanceOfficer, Role.HeadAccountant, Role.SecretaryOfChair, Role.SecretaryOfScientificTeachingCouncil, Role.ViceDeanForFinance, Role.Administrator)]
     public class ReportsController : Controller
     {
         private GoldenTicketContext _context;

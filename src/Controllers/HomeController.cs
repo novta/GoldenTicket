@@ -1,6 +1,5 @@
 ﻿using GoldenTicket.Data;
 using GoldenTicket.Models;
-using GoldenTicket.Models.AdministratorsViewModels;
 using GoldenTicket.Models.HomeViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
