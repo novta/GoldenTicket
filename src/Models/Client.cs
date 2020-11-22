@@ -64,6 +64,8 @@ namespace GoldenTicket.Models
             this.Title = client.Title;
             this.Chair = client.Chair;
             this.Role = client.Role;
+            this.Email = client.Email;
+            this.PhoneNumber = client.PhoneNumber;
         }
 
         /// <summary>

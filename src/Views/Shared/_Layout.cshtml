@@ -25,38 +25,41 @@
 			<ul class="right amber-text text-darken-2">
 				@if (SignInManager.IsSignedIn(User))
 				{
-					<li class="nav-item amber-text text-darken-2">
-						Здраво @UserManager.GetUserName(User)!
-					</li>
-					<li class="nav-item amber-text text-darken-2">
-						<a asp-controller="Account" asp-action="Logout">Излаз</a>
-					</li>
+				<li class="nav-item amber-text text-darken-2">
+					Здраво @UserManager.GetUserName(User)!
+				</li>
+				<li class="nav-item amber-text text-darken-2">
+					<a asp-controller="Account" asp-action="Logout">Излаз</a>
+				</li>
 				}
 				else
 				{
-					<li class="nav-item amber-text text-darken-2">
-						<a asp-controller="Account" asp-action="Login">Улаз</a>
-					</li>
+				<li class="nav-item amber-text text-darken-2">
+					<a asp-controller="Account" asp-action="Login">Улаз</a>
+				</li>
 				}
 				@if (SignInManager.IsSignedIn(User))
 				{
-					<li>
-						<a asp-controller="Tickets" asp-action="All">Тикети</a>
-					</li>
-					<li>
-						<a asp-controller="Clients" asp-action="All">Клијенти</a>
-					</li>
-					@if (!User.IsInRole(Role.Employee))
+				<li>
+					<a asp-controller="Home" asp-action="Index">Подешавања</a>
+				</li>
+				<li>
+					<a asp-controller="Tickets" asp-action="All">Тикети</a>
+				</li>
+				<li>
+					<a asp-controller="Clients" asp-action="All">Клијенти</a>
+				</li>
+				@if (!User.IsInRole(Role.Employee))
 					{
-						<li>
-							<a asp-controller="Reports" asp-action="All">Извештаји</a>
-						</li>
+				<li>
+					<a asp-controller="Reports" asp-action="All">Извештаји</a>
+				</li>
 					}
-					@if (User.IsInRole(Role.Administrator) || User.IsInRole(Role.ViceDeanForFinance))
+				@if (User.IsInRole(Role.Administrator) || User.IsInRole(Role.ViceDeanForFinance))
 					{
-						<li>
-							<a asp-controller="Administrators" asp-action="All">Улоге</a>
-						</li>
+				<li>
+					<a asp-controller="Administrators" asp-action="All">Улоге</a>
+				</li>
 					}
 				}
 			</ul>

@@ -1,4 +1,5 @@
 ﻿using GoldenTicket.Data;
+using GoldenTicket.EmailHelper;
 using GoldenTicket.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -38,6 +39,10 @@ namespace GoldenTicket
         /// <param name="services">The service container for this application</param>
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHttpContextAccessor();
+            services.Configure<EmailSettings>(_configuration.GetSection("EmailSettings"));
+            services.AddSingleton<IEmailSender, EmailSender>();
+
             services.AddMvc();
 
             services.AddDbContext<GoldenTicketContext>(options => options.UseSqlite(_configuration["connectionString"]));
