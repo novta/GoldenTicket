@@ -2,7 +2,7 @@
 	For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-	ViewData["Title"] = "Index";
+	ViewData["Title"] = "Подешавања";
 }
 
 @using GoldenTicket.Models.HomeViewModel
@@ -27,6 +27,21 @@
 		<input asp-for="CurrentPassword" value="@Model.CurrentPassword" type="password" minlength="8">
 		<label>Нова Лозинка</label>
 		<input asp-for="NewPassword" value="@Model.NewPassword" type="password" minlength="8">
+		@if (Model.Status != null)
+		{
+			@if (Model.Status.Succeeded)
+			{
+				<h6 id="status" class="center blue">Password changed!</h6>
+			}
+			else
+			{
+				<h6 id="status" class="center red">Password change failed!</h6>
+				foreach (var error in Model.Status.Errors)
+				{
+					<h6 id="status" class="materialize-red-text">@error.Description</h6>
+				}
+			}
+		}
 		<br />
 		<button class="btn" type="submit">Сачувај</button>
 	</form>

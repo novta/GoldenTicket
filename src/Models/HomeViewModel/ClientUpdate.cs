@@ -1,4 +1,6 @@
-﻿namespace GoldenTicket.Models.HomeViewModel
+﻿using Microsoft.AspNetCore.Identity;
+
+namespace GoldenTicket.Models.HomeViewModel
 {
     /// <summary>
     /// ClientUpdate is a view model to allow client self info update and password change
@@ -15,6 +17,14 @@
         /// The new password
         /// </summary>
         public string NewPassword { get; set; }
+
+        /// <summary>
+        /// Gets or sets the status.
+        /// </summary>
+        /// <value>
+        /// The status.
+        /// </value>
+        public IdentityResult Status { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ClientUpdate"/> class.

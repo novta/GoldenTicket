@@ -73,11 +73,21 @@ namespace GoldenTicket.Controllers
                 await _userManager.UpdateAsync(client);
                 _context.Clients.Update(client);
                 await _context.SaveChangesAsync();
-                if (!string.IsNullOrWhiteSpace(updatedClient.CurrentPassword) && 
-                    !string.IsNullOrWhiteSpace(updatedClient.NewPassword) && 
+                if (!string.IsNullOrWhiteSpace(updatedClient.CurrentPassword) &&
+                    !string.IsNullOrWhiteSpace(updatedClient.NewPassword) &&
                     updatedClient.CurrentPassword != updatedClient.NewPassword)
                 {
-                    await _userManager.ChangePasswordAsync(client, updatedClient.CurrentPassword, updatedClient.NewPassword);
+                    updatedClient.Status = await _userManager.ChangePasswordAsync(client, updatedClient.CurrentPassword, updatedClient.NewPassword);
+                }
+                else if (!string.IsNullOrWhiteSpace(updatedClient.CurrentPassword) &&
+                    !string.IsNullOrWhiteSpace(updatedClient.NewPassword) &&
+                    updatedClient.CurrentPassword == updatedClient.NewPassword)
+                {
+                    updatedClient.Status = IdentityResult.Failed(new IdentityError()
+                    { 
+                        Code = "PasswordNotChanged",
+                        Description = "New password have to be changed!"
+                    });
                 }
                 return View(updatedClient);
             }
