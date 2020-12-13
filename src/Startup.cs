@@ -6,10 +6,14 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using System.Globalization;
 
 namespace GoldenTicket
 {
@@ -42,9 +46,10 @@ namespace GoldenTicket
             services.AddHttpContextAccessor();
             services.Configure<EmailSettings>(_configuration.GetSection("EmailSettings"));
             services.AddSingleton<IEmailSender, EmailSender>();
-
-            services.AddMvc();
-
+            services.AddLocalization(options => options.ResourcesPath = "Resources");
+            services.AddMvc()
+                .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
+                .AddDataAnnotationsLocalization();
             services.AddDbContext<GoldenTicketContext>(options => options.UseSqlite(_configuration["connectionString"]));
 
             services.AddIdentity<Client, IdentityRole>().AddEntityFrameworkStores<GoldenTicketContext>().AddDefaultTokenProviders();
@@ -57,6 +62,26 @@ namespace GoldenTicket
                 options.Password.RequireUppercase = false;
                 options.Password.RequireLowercase = false;
                 options.Password.RequiredUniqueChars = 1;
+            });
+
+            services.Configure<RequestLocalizationOptions>(options =>
+            {
+                var supportedCultures = new[]
+                {
+                    new CultureInfo("sr-Cyrl"),
+                    new CultureInfo("sr-Latn"),
+                    new CultureInfo("en")
+                };
+
+                options.DefaultRequestCulture = new RequestCulture(culture: "sr-Cyrl", uiCulture: "sr-Cyrl");
+                options.SupportedCultures = supportedCultures;
+                options.SupportedUICultures = supportedCultures;
+
+                //options.AddInitialRequestCultureProvider(new CustomRequestCultureProvider(async context =>
+                //{
+                //    // My custom request culture logic
+                //    return new ProviderCultureResult("sr");
+                //}));
             });
 
             services.AddHttpsRedirection(options =>
@@ -72,9 +97,8 @@ namespace GoldenTicket
         /// <param name="app">For configuring the application pipeline</param>
         /// <param name="context"></param>
         /// <param name="logger"></param>
-        /// <param name="applicationLifetime"></param>
         /// <param name="userManager"></param>
-        public void Configure(IApplicationBuilder app, GoldenTicketContext context, ILogger<Startup> logger, IApplicationLifetime applicationLifetime, UserManager<Client> userManager)
+        public void Configure(IApplicationBuilder app, GoldenTicketContext context, ILogger<Startup> logger, UserManager<Client> userManager)
         {
             if (_hostingEnvironment.IsDevelopment())
             {
@@ -88,6 +112,8 @@ namespace GoldenTicket
                 });
                 app.UseHttpsRedirection();
             }
+            var locOptions = app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>();
+            app.UseRequestLocalization(locOptions.Value);
             app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthentication();

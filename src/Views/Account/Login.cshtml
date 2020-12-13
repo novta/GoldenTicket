@@ -1,20 +1,23 @@
-@using GoldenTicket.Models.AccountViewModels 
+@using GoldenTicket.Models.AccountViewModels
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer Localizer
 @model LoginRequest
-@{ 
-	ViewData["Title"] = "Login";
+@{
+	ViewData["Title"] = Localizer["Login"];
 }
 
 <form method="post">
-		<input asp-for="Username" placeholder="Username">
-	
-		<input asp-for="Password" placeholder="Password">
-		<p>
-			<label>
-				<input  asp-for="RememberMe" type="checkbox" />
-				<span>Remember Me?</span>
-			</label>
-		</p>
-		<button class="btn" type="submit">
-			Login
-		</button>
+	<input asp-for="Username" placeholder="Username">
+
+	<input asp-for="Password" placeholder="Password">
+	<p>
+		<label>
+			<input asp-for="RememberMe" type="checkbox" />
+			<span>@Localizer["Remember Me?"]</span>
+		</label>
+	</p>
+	<button class="btn" type="submit">
+		@Localizer["Login"]
+	</button>
 </form>

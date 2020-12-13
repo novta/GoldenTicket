@@ -2,7 +2,9 @@
 using GoldenTicket.Models;
 using GoldenTicket.Models.HomeViewModel;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -96,6 +98,32 @@ namespace GoldenTicket.Controllers
                 _logger.LogError(ex, $"Open has failed with error '{ex.Message}'");
             }
             return BadRequest();
+        }
+        /// <summary>
+        /// Sets the language.
+        /// </summary>
+        /// <param name="culture">The culture.</param>
+        /// <param name="returnUrl">The return URL.</param>
+        /// <returns></returns>
+        [HttpPost]
+        [AllowAnonymous]
+        public IActionResult SetLanguage(string culture, string returnUrl)
+        {
+            Response.Cookies.Append(
+                CookieRequestCultureProvider.DefaultCookieName,
+                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+                new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
+            );
+
+            return LocalRedirect(returnUrl);
+        }
+        /// <summary>
+        /// Errors this instance.
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult Error()
+        {
+            return View();
         }
     }
 }

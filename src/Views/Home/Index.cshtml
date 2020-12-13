@@ -1,47 +1,61 @@
 ﻿@*
 	For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
+@using Microsoft.AspNetCore.Builder
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Options
+@using Microsoft.AspNetCore.Localization
+
+@inject IViewLocalizer Localizer
+@inject IOptions<RequestLocalizationOptions> LocOptions
+
 @{
-	ViewData["Title"] = "Подешавања";
+	var requestCulture = Context.Features.Get<IRequestCultureFeature>();
+	var cultureItems = LocOptions.Value.SupportedUICultures
+		.Select(c => new SelectListItem { Value = c.Name, Text = c.DisplayName })
+		.ToList();
+	var returnUrl = string.IsNullOrEmpty(Context.Request.Path) ? "~/" : $"~{Context.Request.Path.Value}";
+
+	ViewData["Title"] = Localizer["Profile"];
 }
 
 @using GoldenTicket.Models.HomeViewModel
 
 @model ClientUpdate
 
-	<form method="post">
-		<input asp-for="Id" type="hidden">
-		<label>Име</label>
-		<input asp-for="FirstName" value="@Model.FirstName">
-		<label>Презиме</label>
-		<input asp-for="LastName" value="@Model.LastName">
-		<label>Титула</label>
-		<input asp-for="Title" value="@Model.Title">
-		<label>Катедра</label>
-		<input asp-for="Chair" value="@Model.Chair">
-		<label>Емаил</label>
-		<input asp-for="Email" value="@Model.Email">
-		<label>Телефон</label>
-		<input asp-for="PhoneNumber" value="@Model.PhoneNumber">
-		<label>Актуелна Лозинка</label>
-		<input asp-for="CurrentPassword" value="@Model.CurrentPassword" type="password" minlength="8">
-		<label>Нова Лозинка</label>
-		<input asp-for="NewPassword" value="@Model.NewPassword" type="password" minlength="8">
-		@if (Model.Status != null)
+<form method="post">
+	<input asp-for="Id" type="hidden">
+	<label>Име</label>
+	<input asp-for="FirstName" value="@Model.FirstName">
+	<label>Презиме</label>
+	<input asp-for="LastName" value="@Model.LastName">
+	<label>Титула</label>
+	<input asp-for="Title" value="@Model.Title">
+	<label>Катедра</label>
+	<input asp-for="Chair" value="@Model.Chair">
+	<label>Емаил</label>
+	<input asp-for="Email" value="@Model.Email">
+	<label>Телефон</label>
+	<input asp-for="PhoneNumber" value="@Model.PhoneNumber">
+	<label>Актуелна Лозинка</label>
+	<input asp-for="CurrentPassword" value="@Model.CurrentPassword" type="password" minlength="8">
+	<label>Нова Лозинка</label>
+	<input asp-for="NewPassword" value="@Model.NewPassword" type="password" minlength="8">
+	@if (Model.Status != null)
+	{
+		@if (Model.Status.Succeeded)
 		{
-			@if (Model.Status.Succeeded)
+			<h6 id="status" class="center blue">Password changed!</h6>
+		}
+		else
+		{
+			<h6 id="status" class="center red">Password change failed!</h6>
+			foreach (var error in Model.Status.Errors)
 			{
-				<h6 id="status" class="center blue">Password changed!</h6>
-			}
-			else
-			{
-				<h6 id="status" class="center red">Password change failed!</h6>
-				foreach (var error in Model.Status.Errors)
-				{
-					<h6 id="status" class="materialize-red-text">@error.Description</h6>
-				}
+				<h6 id="status" class="materialize-red-text">@error.Description</h6>
 			}
 		}
-		<br />
-		<button class="btn" type="submit">Сачувај</button>
-	</form>
+	}
+	<br />
+	<button class="btn" type="submit">@Localizer["Save"]</button>
+</form>

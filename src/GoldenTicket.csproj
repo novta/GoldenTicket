@@ -8,6 +8,12 @@
     <DocumentationFile>bin\Debug\$(TargetFramework)\$(MSBuildProjectName).xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Resources\Views\NewFolder\**" />
+    <Content Remove="Resources\Views\NewFolder\**" />
+    <EmbeddedResource Remove="Resources\Views\NewFolder\**" />
+    <None Remove="Resources\Views\NewFolder\**" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="jQuery.UI.Combined" Version="1.12.1" />
     <PackageReference Include="MailKit" Version="2.10.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.0" />
