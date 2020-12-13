@@ -123,6 +123,9 @@
   <data name="Logout" xml:space="preserve">
     <value>Logout</value>
   </data>
+  <data name="String1" xml:space="preserve">
+    <value>Profile</value>
+  </data>
   <data name="TehnoDesk" xml:space="preserve">
     <value>TehnoDesk</value>
   </data>

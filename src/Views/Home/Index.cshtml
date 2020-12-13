@@ -25,31 +25,31 @@
 
 <form method="post">
 	<input asp-for="Id" type="hidden">
-	<label>Име</label>
+	<label>@Localizer["Name"]</label>
 	<input asp-for="FirstName" value="@Model.FirstName">
-	<label>Презиме</label>
+	<label>@Localizer["Surname"]</label>
 	<input asp-for="LastName" value="@Model.LastName">
-	<label>Титула</label>
+	<label>@Localizer["Title"]</label>
 	<input asp-for="Title" value="@Model.Title">
-	<label>Катедра</label>
+	<label>@Localizer["Chair"]</label>
 	<input asp-for="Chair" value="@Model.Chair">
-	<label>Емаил</label>
+	<label>@Localizer["Email"]</label>
 	<input asp-for="Email" value="@Model.Email">
-	<label>Телефон</label>
+	<label>@Localizer["Phone"]</label>
 	<input asp-for="PhoneNumber" value="@Model.PhoneNumber">
-	<label>Актуелна Лозинка</label>
+	<label>@Localizer["Current Password"]</label>
 	<input asp-for="CurrentPassword" value="@Model.CurrentPassword" type="password" minlength="8">
-	<label>Нова Лозинка</label>
+	<label>@Localizer["New Password"]</label>
 	<input asp-for="NewPassword" value="@Model.NewPassword" type="password" minlength="8">
 	@if (Model.Status != null)
 	{
 		@if (Model.Status.Succeeded)
 		{
-			<h6 id="status" class="center blue">Password changed!</h6>
+			<h6 id="status" class="center blue">@Localizer["Password changed!"]</h6>
 		}
 		else
 		{
-			<h6 id="status" class="center red">Password change failed!</h6>
+			<h6 id="status" class="center red">@Localizer["Password change failed!"]</h6>
 			foreach (var error in Model.Status.Errors)
 			{
 				<h6 id="status" class="materialize-red-text">@error.Description</h6>

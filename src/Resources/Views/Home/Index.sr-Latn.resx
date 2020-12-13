@@ -117,16 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Login" xml:space="preserve">
-    <value>Prijava</value>
+  <data name="Chair" xml:space="preserve">
+    <value>Katedra</value>
   </data>
-  <data name="Logout" xml:space="preserve">
-    <value>Odjava</value>
+  <data name="Current Password" xml:space="preserve">
+    <value>Aktuelna lozinka</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>E-pošta</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Ime</value>
+  </data>
+  <data name="New Password" xml:space="preserve">
+    <value>Nova lozinka</value>
+  </data>
+  <data name="Password change failed!" xml:space="preserve">
+    <value>Lozinka nije promenjena!</value>
+  </data>
+  <data name="Password changed!" xml:space="preserve">
+    <value>Lozinka je promenjena!</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Telefon</value>
   </data>
   <data name="Profile" xml:space="preserve">
     <value>Profil</value>
   </data>
-  <data name="TehnoDesk" xml:space="preserve">
-    <value>TehnoDesk</value>
+  <data name="Save" xml:space="preserve">
+    <value>Sačuvaj</value>
+  </data>
+  <data name="Surname" xml:space="preserve">
+    <value>Prezime</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Zvanje</value>
   </data>
 </root>

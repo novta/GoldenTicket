@@ -105,6 +105,7 @@ namespace GoldenTicket.Controllers
         /// <param name="culture">The culture.</param>
         /// <param name="returnUrl">The return URL.</param>
         /// <returns></returns>
+        /// <remarks>https://docs.microsoft.com/en-us/aspnet/core/fundamentals/localization?view=aspnetcore-5.0</remarks>
         [HttpPost]
         [AllowAnonymous]
         public IActionResult SetLanguage(string culture, string returnUrl)
