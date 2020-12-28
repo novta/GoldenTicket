@@ -196,7 +196,7 @@ namespace GoldenTicket.Controllers
         {
             try
             {
-                if (time.ReviewOutcome != Models.Review.Недефинисано)
+                if (time.ReviewOutcome != Models.Review.Undefined)
                 {
                     var newTicket = new TicketReview
                     {

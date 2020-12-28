@@ -1,21 +1,25 @@
-﻿@{
-    ViewData["Title"] = "Креирај клијента";
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer Localizer
+
+@{
+	ViewData["Title"] = Localizer["Add Client"];
 }
 @using GoldenTicket.Models.AdministratorsViewModels
 @model NewClient
 
-	<form method="post">
-		<label>Име</label>
-		<input asp-for="FirstName">
-		<label>Презиме</label>
-		<input asp-for="LastName">
-		<label>Титула</label>
-		<input asp-for="Title">
-		<label>Катедра</label>
-		<input asp-for="Chair">
-		<label>Улога</label>
-		<input asp-for="Role">
-		<label>Шифра</label>
-		<input asp-for="Password">
-		<button class="btn" type="submit">Креирај</button>
-	</form>
+<form method="post">
+	<label>@Localizer["First Name"]</label>
+	<input asp-for="FirstName">
+	<label>@Localizer["Last Name"]</label>
+	<input asp-for="LastName">
+	<label>@Localizer["Title"]</label>
+	<input asp-for="Title">
+	<label>@Localizer["Chair"]</label>
+	<input asp-for="Chair">
+	<label>@Localizer["Role"]</label>
+	<input asp-for="Role">
+	<label>@Localizer["Password"]</label>
+	<input asp-for="Password">
+	<button class="btn" type="submit">@Localizer["Confirm"]</button>
+</form>

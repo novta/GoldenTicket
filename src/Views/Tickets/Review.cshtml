@@ -1,33 +1,37 @@
-﻿@{
-    ViewData["Title"] = "Review for " + Model.TicketTitle;
+﻿@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = Localizer["Review for"] + " " + Model.TicketTitle;
 }
 @using GoldenTicket.Models.TicketsViewModels
 @using GoldenTicket.Models
 @model TicketReviewViewModel
 
-	<form method="post">
-		<input asp-for="TicketId" type="hidden">
-		<input asp-for="ReviewerRole" type="hidden">
+<form method="post">
+	<input asp-for="TicketId" type="hidden">
+	<input asp-for="ReviewerRole" type="hidden">
 
-		<label>Title</label>
-		<input asp-for="TicketTitle">
+	<label>@Localizer["Title"]</label>
+	<input asp-for="TicketTitle">
 
-		<p>
-			<label>
-				<input asp-for="ReviewOutcome" type="radio" value="Одобрено" onclick="enableConfirm()" />
-				<span>Approve</span>
-			</label>
-			<br />
-			<label>
-				<input asp-for="ReviewOutcome" type="radio" value="Одбијено" onclick="enableConfirm()" />
-				<span>Reject</span>
-			</label>
-		</p>
+	<p>
+		<label>
+			<input asp-for="ReviewOutcome" type="radio" value="Approved" onclick="enableConfirm()" />
+			<span>@Localizer["Approve"]</span>
+		</label>
+		<br />
+		<label>
+			<input asp-for="ReviewOutcome" type="radio" value="Rejected" onclick="enableConfirm()" />
+			<span>@Localizer["Reject"]</span>
+		</label>
+	</p>
 
-		<button class="btn" onclick="goBack()">Go Back</button>
+	<button class="btn" onclick="goBack()">@Localizer["Go Back"]</button>
 
-		<button class="btn" type="submit" id="btnConfirm" disabled>Confirm</button>
-	</form>
+	<button class="btn" type="submit" id="btnConfirm" disabled>@Localizer["Confirm"]</button>
+</form>
 
 <script>
 	function goBack() {

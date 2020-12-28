@@ -1,6 +1,9 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer Localizer
 @{
-    ViewData["Title"] = "Access Denied";
+	ViewData["Title"] = Localizer["Access Denied"];
 }
 
-<h5>You do not have access to this resource.</h5>
-<p>Check you are using correct username and password.</p>
+<h5>@Localizer["You do not have access to this resource."]</h5>
+<p>@Localizer["Check you are using correct username and password."]</p>

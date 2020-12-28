@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Clients" xml:space="preserve">
+    <value>Klijenti</value>
+  </data>
+  <data name="Hello" xml:space="preserve">
+    <value>Zdravo</value>
+  </data>
   <data name="Login" xml:space="preserve">
     <value>Prijava</value>
   </data>
@@ -126,7 +132,16 @@
   <data name="Profile" xml:space="preserve">
     <value>Profil</value>
   </data>
+  <data name="Reports" xml:space="preserve">
+    <value>Izveštaji</value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>Uloge</value>
+  </data>
   <data name="TehnoDesk" xml:space="preserve">
     <value>TehnoDesk</value>
+  </data>
+  <data name="Tikets" xml:space="preserve">
+    <value>Tiketi</value>
   </data>
 </root>

@@ -1,5 +1,8 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer Localizer
 @{
-    ViewData["Title"] = "Model Services Bill";
+	ViewData["Title"] = "Model Services Bill";
 }
 @using GoldenTicket.Models.TicketsViewModels
 @model TicketDetails
@@ -7,16 +10,16 @@
 <h3>@DateTime.Now.ToString("d")</h3>
 
 <p>
-    1001 First Street <br>
-    Baton Rouge, LA, 70808 <br>
-    985.867.5309
+	1001 First Street <br>
+	Baton Rouge, LA, 70808 <br>
+	985.867.5309
 </p>
 
 
 <h3>Client</h3>
 <p>
-    @Model.Client.FirstName @Model.Client.LastName <br>
-    @Model.Client.Chair <br>
+	@Model.Client.FirstName @Model.Client.LastName <br>
+	@Model.Client.Chair <br>
 </p>
 
 <h3>For</h3>
@@ -27,16 +30,17 @@
 
 <h3>Moderator approvals</h3>
 <table>
-    <tr>
-        <th>Moderator</th>
-        <th>Time</th>
-        <th>Outcome</th>
-    </tr>
-    @foreach (var time in Model.Reviewes) {
-    <tr>
-        <th>@time.Moderator.FirstName @time.Moderator.LastName</th>
-        <th>@time.TicketReviewOutcome.Timestamp</th>
-        <th>@time.TicketReviewOutcome.ReviewOutcome</th>
-    </tr>
-    }
+	<tr>
+		<th>Moderator</th>
+		<th>Time</th>
+		<th>Outcome</th>
+	</tr>
+	@foreach (var time in Model.Reviewes)
+	{
+		<tr>
+			<th>@time.Moderator.FirstName @time.Moderator.LastName</th>
+			<th>@time.TicketReviewOutcome.Timestamp</th>
+			<th>@time.TicketReviewOutcome.ReviewOutcome</th>
+		</tr>
+	}
 </table>

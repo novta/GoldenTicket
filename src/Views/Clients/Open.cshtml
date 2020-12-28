@@ -1,4 +1,7 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer Localizer
+@{
     ViewData["Title"] = $"{Model.Client.FirstName} {Model.Client.LastName}";
 }
 @using GoldenTicket.Models.ClientsViewModels
@@ -7,21 +10,21 @@
 
 <h3>Лични подаци запосленог</h3>
 <p>
-	Име и презиме: @Model.Client.FirstName @Model.Client.LastName <br>
-	Катедра: @Model.Client.Chair<br>
-	Звање запосленог: @Model.Client.Title<br>
-	Датум запослења: @Model.Client.DateAdded.ToString("d")
+	@Localizer["Full Name:"] @Model.Client.FirstName @Model.Client.LastName <br>
+	@Localizer["Chair:"] @Model.Client.Chair<br>
+	@Localizer["Title:"] @Model.Client.Title<br>
+	@Localizer["Employment Date:"] @Model.Client.DateAdded.ToString("d")
 </p>
 
-<h3>Број отворена службених путовања: @Model.OpenTicketCount</h3>
+<h3>@Localizer["Open Ticket Count:"] @Model.OpenTicketCount</h3>
 <table>
 	<tr>
-		<th>Место путовања</th>
-		<th>Установа путовања</th>
-		<th>Датум подношења захтева</th>
-		<th>Хитно</th>
+		<th>@Localizer["Destination"]</th>
+		<th>@Localizer["Institution"]</th>
+		<th>@Localizer["Application Date"]</th>
+		<th>@Localizer["Urgent"]</th>
 	</tr>
-    @foreach (var ticket in Model.Tickets) {
+	@foreach (var ticket in Model.Tickets) {
 	<tr>
 		<th>
 			<a asp-action="Open" asp-controller="Tickets" asp-route-id="@ticket.Id">@ticket.Destination</a>
@@ -30,11 +33,11 @@
 		<th>@ticket.DateAdded.ToString("d")</th>
 		@if (ticket.IsUrgent)
 		{
-			<th>&#10004;</th>
+		<th>&#10004;</th>
 		}
 		else
 		{
-			<th></th>
+		<th></th>
 		}
 	</tr>
     }

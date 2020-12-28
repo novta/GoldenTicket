@@ -1,22 +1,25 @@
-﻿@{
-    ViewData["Title"] = Model.Destination;
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer Localizer
+@{
+	ViewData["Title"] = Model.Destination;
 }
 @using GoldenTicket.Models
 @model Ticket
 
 <form method="post">
-        <input asp-for="Id" type="hidden">
-		<label>Место путовања</label>
-        <input asp-for="Destination">
-        <label>Установа путовања</label>
-        <input asp-for="Institution">
-        <label>Notes</label>
-        <input asp-for="Notes">
-        <p>
-            <label>
-                <input  asp-for="Open"/>
-                <span>Open?</span>
-            </label>
-        </p>
-        <input class="waves-effect waves-light btn" type="submit" value="Save">
+	<input asp-for="Id" type="hidden">
+	<label>@Localizer["Destination"]</label>
+	<input asp-for="Destination">
+	<label>@Localizer["Institution"]</label>
+	<input asp-for="Institution">
+	<label>@Localizer["Notes"]</label>
+	<input asp-for="Notes">
+	<p>
+		<label>
+			<input asp-for="Open" />
+			<span>@Localizer["Open?"]</span>
+		</label>
+	</p>
+	<input class="waves-effect waves-light btn" type="submit" value="@Localizer["Save"]">
 </form>

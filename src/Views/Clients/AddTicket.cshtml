@@ -1,5 +1,8 @@
-﻿@{
-	ViewData["Title"] = "Креирај тикет";
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer Localizer
+@{
+	ViewData["Title"] = Localizer["Add Ticket"];
 }
 @using GoldenTicket.Models
 @using GoldenTicket.Data
@@ -11,50 +14,50 @@
 	<p>
 		<label>
 			<input asp-for="IsUrgent" type="checkbox" />
-			<span>Хитно</span>
+			<span>@Localizer["Urgent"]</span>
 		</label>
 	</p>
 
 	<p>
 		<label>
 			<input asp-for="IsAbroad" type="checkbox" id="cbAbroad" value="true" onchange="abroadChange()" />
-			<span>Иностранство</span>
+			<span>@Localizer["Abroad"]</span>
 		</label>
 	</p>
 
-	<label id="country">Држава путовања</label>
+	<label id="country">@Localizer["Destination Country"]</label>
 	@Html.DropDownListFor(model => model.Country, Countries.GetCountries(), new { @id = "myCountry", @onchange = "countryChange()" })
 
-	<label>Адреса путовања</label>
+	<label>@Localizer["Destination Address"]</label>
 	<input asp-for="Destination">
 
-	<label>Установа путовања</label>
+	<label>@Localizer["Destination Instituition"]</label>
 	<input asp-for="Institution">
 
-	<label>Лице за контакт у установи путовања (телефон, е-маил)</label>
+	<label>@Localizer["Contact Person on Site"]</label>
 	<input asp-for="ContactPersonOnSite" multiline>
 
-	<label>Разлог путовања</label>
+	<label>@Localizer["Reason of Travel"]</label>
 	<input asp-for="Reason">
 
-	<label>Датум и време одласка</label>
+	<label>@Localizer["Start Date and Time"]</label>
 	<input asp-for="StartDate">
 
-	<label>Датум и време повратка</label>
+	<label>@Localizer["End Date and Time"]</label>
 	<input asp-for="EndDate">
 
-	<label>Врста јавног превоза</label>
+	<label>@Localizer["Transportation"]</label>
 	<input asp-for="Transportation">
 
-	<label>Извор и лице које располаже средствима</label>
+	<label>@Localizer["Sources of Funding"]</label>
 	<input asp-for="SourcesOfFunding" multiline>
 
-	<label>Напомена</label>
+	<label>@Localizer["Notes"]</label>
 	<input asp-for="Notes" multiline>
 
 	<br />
 
-	<input class="btn" type="submit" value="Save">
+	<input class="btn" type="submit" value="@Localizer["Save"]">
 </form>
 
 <script>

@@ -1,43 +1,46 @@
-﻿@{
-	ViewData["Title"] = "Сви тикети";
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer Localizer
+@{
+	ViewData["Title"] = Localizer["All Tickets"];
 }
 @using GoldenTicket.Models
 @using System.Collections.Generic
 @model IEnumerable<Ticket>
 
-	@if ((bool)ViewData["includeClosed"])
+@if ((bool)ViewData["includeClosed"])
+{
+	<a asp-action="All">@Localizer["Exclude Closed Tickets"]</a>
+}
+else
+{
+<a asp-action="All" asp-route-includeClosed="true">@Localizer["Include Closed Tickets"]</a>
+}
+<div class="row">
+	@foreach (var ticket in Model)
 	{
-		<a asp-action="All">Искључи затворенe тикете</a>
-	}
-	else
-	{
-		<a asp-action="All" asp-route-includeClosed="true">Укључи затворене тикете</a>
-	}
-	<div class="row">
-		@foreach (var ticket in Model)
-		{
 
 
-			<div class="col s12 m6 l3">
-				<div class="card stickey-action grey darken-1 hoverable activato">
-					<div class="card-content white-text">
-						<span class="card-title">@ticket.Destination</span>
-						<i class="medium material-icons right">@(ticket.IsUrgent ? "error" : "")</i>
-						<p>@ticket.Institution</p><br>
-						<p>Службени пут је @(ticket.Open ? "отворен." : "затворен.")</p><br>
-						<p>@ticket.DateAdded.ToString("d")</p><br>
-					</div>
+		<div class="col s12 m6 l3">
+			<div class="card stickey-action grey darken-1 hoverable activato">
+				<div class="card-content white-text">
+					<span class="card-title">@ticket.Destination</span>
+					<i class="medium material-icons right">@(ticket.IsUrgent ? "error" : "")</i>
+					<p>@ticket.Institution</p><br>
+					<p>@Localizer["Ticket is"] @(ticket.Open ? @Localizer["Open."] : @Localizer["Closed."])</p><br>
+					<p>@ticket.DateAdded.ToString("d")</p><br>
+				</div>
 
-					<div class="card-reveal">
-						<span class="card-title grey-text text-darken-4">@ticket.Destination<i class="material-icons right">close</i></span>
-						<p>@ticket.Notes</p>
-					</div>
-					<div class="card-action">
-						<a asp-action="Open" asp-route-id="@ticket.Id">Отвори</a>
-					</div>
+				<div class="card-reveal">
+					<span class="card-title grey-text text-darken-4">@ticket.Destination<i class="material-icons right">@Localizer["Close"]</i></span>
+					<p>@ticket.Notes</p>
+				</div>
+				<div class="card-action">
+					<a asp-action="Open" asp-route-id="@ticket.Id">@Localizer["Open"]</a>
 				</div>
 			</div>
+		</div>
 
 
-		}
-	</div>
+	}
+</div>

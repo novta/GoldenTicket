@@ -120,7 +120,13 @@
   <data name="Login" xml:space="preserve">
     <value>Пријава</value>
   </data>
+  <data name="Password" xml:space="preserve">
+    <value>Шифра</value>
+  </data>
   <data name="Remember Me?" xml:space="preserve">
     <value>Запамти Ме?</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Корисничко име</value>
   </data>
 </root>

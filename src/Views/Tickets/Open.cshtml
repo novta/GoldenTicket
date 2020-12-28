@@ -1,4 +1,8 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer Localizer
+@{
 	ViewData["Title"] = Model.Ticket.Destination;
 }
 @using GoldenTicket.Models.TicketsViewModels
@@ -8,66 +12,66 @@
 
 @if (Model.Ticket.IsUrgent)
 {
-	<h3 class="center red">ХИТНО</h3>
+<h3 class="center red">@Localizer["URGENT"]</h3>
 }
 
 @if (Model.Ticket.IsAbroad)
 {
-	<h3 class="center blue">Иностранство</h3>
+<h3 class="center blue">@Localizer["Abroad"]</h3>
 }
 
 @if (User.IsInRole(Role.Administrator) || User.Identity.Name == Model.Client.UserName)
 {
-	<form asp-action="ToggleUrgent" asp-route-id="@Model.Ticket.Id" method="post">
-		<input class="waves-effect waves-light btn" type="submit" value="Промени хитност">
-	</form>
+<form asp-action="ToggleUrgent" asp-route-id="@Model.Ticket.Id" method="post">
+	<input class="waves-effect waves-light btn" type="submit" value="@Localizer["Change Urgency"]">
+</form>
 }
 
-<h3>ПОДАЦИ ЗАПОСЛЕНОГ</h3>
+<h3>@Localizer["Personal Data"]</h3>
 <p>
-	Име, презиме и звање запосленог: @Model.Client.FirstName, @Model.Client.LastName @Model.Client.Title<br>
-	Катедра: @Model.Client.Chair <br>
-	Број мобилног телефона: @Model.Client.PhoneNumber<br>
-	<a asp-action="Open" asp-controller="Clients" asp-route-id="@Model.Client.Id">Више информација</a>
+	@Localizer["Full Name and Title"]: @Model.Client.FirstName, @Model.Client.LastName @Model.Client.Title<br>
+	@Localizer["Chair"]: @Model.Client.Chair <br>
+	@Localizer["Phone Number"]: @Model.Client.PhoneNumber<br>
+	<a asp-action="Open" asp-controller="Clients" asp-route-id="@Model.Client.Id">@Localizer["More Information"]</a>
 </p>
 
-<h3>ЗАХТЕВ ЗА СЛУЖБЕНИ ПУТ</h3>
+<h3>@Localizer["Application"]</h3>
 <p>
-	Датум подношења: @Model.Ticket.DateAdded <br>
-	Статус: @(Model.Ticket.Open ? "Отворен" : "Затворен") <br>
-	Место путовања: @Model.Ticket.Destination <br>
-	Установа путовања: @Model.Ticket.Institution <br>
-	Лице за контакт у установи путовања (телефон, е-маил): @Model.Ticket.ContactPersonOnSite <br>
-	Белешке: @Model.Ticket.Notes <br>
-	<a asp-action="Edit" asp-route-id="@Model.Ticket.Id">Измени</a>
+	@Localizer["Application Date"]: @Model.Ticket.DateAdded <br>
+	@Localizer["Status"]: @(Model.Ticket.Open ? @Localizer["Open"] : @Localizer["Closed"]) <br>
+	@Localizer["Destination"]: @Model.Ticket.Destination <br>
+	@Localizer["Institution"]: @Model.Ticket.Institution <br>
+	@Localizer["Contact Person on Site"]: @Model.Ticket.ContactPersonOnSite <br>
+	@Localizer["Notes"]: @Model.Ticket.Notes <br>
+	<a asp-action="Edit" asp-route-id="@Model.Ticket.Id">@Localizer["Edit"]</a>
 </p>
 
 @if (Model.Ticket.Open)
 {
-	@if (TicketStateHelper.UserCanReview(User, Model, out var role))
+@if (TicketStateHelper.UserCanReview(User, Model, out var role))
 	{
-		<th>
-			<a asp-action="Review" asp-route-id="@Model.Ticket.Id" asp-route-role=@role>Размотрио</a>
-		</th>
+<th>
+	<a asp-action="Review" asp-route-id="@Model.Ticket.Id" asp-route-role=@role>@Localizer["Reviewed by"]</a>
+</th>
 	}
 }
 <table>
 	<tr>
-		<th>Размотрио</th>
-		<th>Исход</th>
-		<th>Улога</th>
-		<th>Време</th>
+		<th>@Localizer["Reviewed by"]</th>
+		<th>@Localizer["Outcome"]</th>
+		<th>@Localizer["Role"]</th>
+		<th>@Localizer["Time"]</th>
 	</tr>
 	@if (Model.Reviewes?.Count > 0)
 	{
-		@foreach (var review in Model.Reviewes)
+	@foreach (var review in Model.Reviewes)
 		{
-			<tr>
-				<th>@review.Moderator.FirstName @review.Moderator.LastName</th>
-				<th>@review.TicketReviewOutcome.ReviewOutcome</th>
-				<th>@review.TicketReviewOutcome.ReviewerRole</th>
-				<th>@review.TicketReviewOutcome.Timestamp</th>
-			</tr>
+	<tr>
+		<th>@review.Moderator.FirstName @review.Moderator.LastName</th>
+		<th>@review.TicketReviewOutcome.ReviewOutcome</th>
+		<th>@review.TicketReviewOutcome.ReviewerRole</th>
+		<th>@review.TicketReviewOutcome.Timestamp</th>
+	</tr>
 		}
 	}
 </table>

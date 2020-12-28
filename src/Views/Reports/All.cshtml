@@ -1,23 +1,28 @@
-﻿@{
-    ViewData["Title"] = "Извештаји";
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer Localizer
+
+@{
+	ViewData["Title"] = Localizer["Reports"];
 }
 @using GoldenTicket.Models.ReportsViewModels
 
 @model ReportDetails
 
-<p id="TimeSpanToggle" class="waves-effect waves-light btn-small">Monthly Activity</p>
+<p id="TimeSpanToggle" class="waves-effect waves-light btn-small">@Localizer["Monthly Activity"]</p>
 
-<h3>Исходи:</h3>
+<h3>@Localizer["Outcomes:"]</h3>
 
 <table class="striped centered highlight">
-    <tr>
-        <th>Прегледао</th>
-        <th>Исход</th>
-    </tr>
-    @foreach (var reviewer in Model.Reviews) {
-    <tr>
-        <th>@reviewer.Client.FirstName @reviewer.Client.LastName</th>
-        <th>@reviewer.ReviewOutcome</th>
-    </tr>
-    }
+	<tr>
+		<th>@Localizer["Reviewer"]</th>
+		<th>@Localizer["Outcome"]</th>
+	</tr>
+	@foreach (var reviewer in Model.Reviews)
+	{
+		<tr>
+			<th>@reviewer.Client.FirstName @reviewer.Client.LastName</th>
+			<th>@reviewer.ReviewOutcome</th>
+		</tr>
+	}
 </table>

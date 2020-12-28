@@ -24,12 +24,12 @@
 <body>
 	<nav class="purple darken-4">
 		<div class="nav-wrapper purple darken-4 container">
-			<a class="brand-logo hide-on-med-and-down"><strong class="amber-text text-darken-2"> ТехноДеск</strong> </a>
+			<a class="brand-logo hide-on-med-and-down"><strong class="amber-text text-darken-2"> @Localizer["TehnoDesk"]</strong> </a>
 			<ul class="right amber-text text-darken-2">
 				@if (SignInManager.IsSignedIn(User))
 				{
 					<li class="nav-item amber-text text-darken-2">
-						Здраво @UserManager.GetUserName(User)!
+						@Localizer["Hello"] @UserManager.GetUserName(User)!
 					</li>
 					<li class="nav-item amber-text text-darken-2">
 						<a asp-controller="Account" asp-action="Logout">@Localizer["Logout"]</a>
@@ -47,21 +47,21 @@
 						<a asp-controller="Home" asp-action="Index">@Localizer["Profile"]</a>
 					</li>
 					<li>
-						<a asp-controller="Tickets" asp-action="All">Тикети</a>
+						<a asp-controller="Tickets" asp-action="All">@Localizer["Tikets"]</a>
 					</li>
 					<li>
-						<a asp-controller="Clients" asp-action="All">Клијенти</a>
+						<a asp-controller="Clients" asp-action="All">@Localizer["Clients"]</a>
 					</li>
 					@if (!User.IsInRole(Role.Employee))
 					{
 						<li>
-							<a asp-controller="Reports" asp-action="All">Извештаји</a>
+							<a asp-controller="Reports" asp-action="All">@Localizer["Reports"]</a>
 						</li>
 					}
 					@if (User.IsInRole(Role.Administrator) || User.IsInRole(Role.ViceDeanForFinance))
 					{
 						<li>
-							<a asp-controller="Administrators" asp-action="All">Улоге</a>
+							<a asp-controller="Administrators" asp-action="All">@Localizer["Roles"]</a>
 						</li>
 					}
 				}

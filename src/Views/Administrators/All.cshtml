@@ -1,102 +1,105 @@
-﻿@{
-	ViewData["Title"] = "Улоге";
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer Localizer
+@{
+	ViewData["Title"] = Localizer["Roles"];
 }
 @using GoldenTicket.Data
 @using GoldenTicket.Models
 @using System.Collections.Generic
 @model List<Client>
 
-<a asp-action="Add">Креирај клијента</a>
+<a asp-action="Add">@Localizer["Add Client"]</a>
 
 <table class="responsive-table highlight">
 	<tr>
-		<th>Име и презиме</th>
-		<th>Запослен</th>
-		<th>Рачуновођа</th>
-		<th>Секретар катедре</th>
-		<th>Секретар ННВ</th>
-		<th>Шеф рачуноводства</th>
-		<th>Продекан за финансије</th>
-		<th>Администратор</th>
+		<th>@Localizer["Full Name"]</th>
+		<th>@Localizer["Employee"]</th>
+		<th>@Localizer["Accountant"]</th>
+		<th>@Localizer["Secretary of the Department"]</th>
+		<th>@Localizer["Secretary of the Scientific and Teaching Council"]</th>
+		<th>@Localizer["Head Accountant"]</th>
+		<th>@Localizer["Vice Dean for Finance"]</th>
+		<th>@Localizer["Administrator"]</th>
 	</tr>
 	@foreach (var client in Model)
 	{
-		<tr>
-			<th>
-				<div class="card-action">
-					<a asp-action="Open" asp-route-id="@client.Id">@client.FirstName @client.LastName @client.Title</a>
-				</div>
-			</th>
-			@if (client.Role == Role.Employee)
+	<tr>
+		<th>
+			<div class="card-action">
+				<a asp-action="Open" asp-route-id="@client.Id">@client.FirstName @client.LastName @client.Title</a>
+			</div>
+		</th>
+		@if (client.Role == Role.Employee)
 			{
-				<th class="center">&#10004;</th>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
+		<th class="center">&#10004;</th>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th></th>
 			}
 			else if (client.Role == Role.FinanceOfficer)
 			{
-				<th></th>
-				<th class="center">&#10004;</th>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
+		<th></th>
+		<th class="center">&#10004;</th>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th></th>
 			}
 			else if (client.Role == Role.SecretaryOfChair)
 			{
-				<th></th>
-				<th></th>
-				<th class="center">&#10004;</th>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
+		<th></th>
+		<th></th>
+		<th class="center">&#10004;</th>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th></th>
 			}
 			else if (client.Role == Role.SecretaryOfScientificTeachingCouncil)
 			{
-				<th></th>
-				<th></th>
-				<th></th>
-				<th class="center">&#10004;</th>
-				<th></th>
-				<th></th>
-				<th></th>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class="center">&#10004;</th>
+		<th></th>
+		<th></th>
+		<th></th>
 			}
 			else if (client.Role == Role.HeadAccountant)
 			{
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th class="center">&#10004;</th>
-				<th></th>
-				<th></th>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class="center">&#10004;</th>
+		<th></th>
+		<th></th>
 			}
 			else if (client.Role == Role.ViceDeanForFinance)
 			{
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th class="center">&#10004;</th>
-				<th></th>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class="center">&#10004;</th>
+		<th></th>
 			}
 			else if (client.Role == Role.Administrator)
 			{
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th class="center">&#10004;</th>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class="center">&#10004;</th>
 			}
-		</tr>
+	</tr>
 	}
 </table>
