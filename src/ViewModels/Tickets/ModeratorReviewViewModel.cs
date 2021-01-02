@@ -1,4 +1,6 @@
-namespace GoldenTicket.Models.TicketsViewModels
+using GoldenTicket.Models;
+
+namespace GoldenTicket.ViewModels.Tickets
 {
     /// <summary>
     /// Tech time model

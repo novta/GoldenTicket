@@ -23,6 +23,8 @@ namespace GoldenTicket.Models
         /// <value>
         /// The ticket identifier.
         /// </value>
+        [Required]
+        [MaxLength(50)]
         public string TicketId { get; set; }
 
         /// <summary>
@@ -31,6 +33,8 @@ namespace GoldenTicket.Models
         /// <value>
         /// The reviewer identifier.
         /// </value>
+        [Required]
+        [MaxLength(50)]
         public string ReviewerId { get; set; }
 
         /// <summary>
@@ -39,6 +43,8 @@ namespace GoldenTicket.Models
         /// <value>
         /// The reviewer role.
         /// </value>
+        [Required]
+        [MaxLength(50)]
         public string ReviewerRole { get; set; }
 
         /// <summary>
@@ -47,6 +53,7 @@ namespace GoldenTicket.Models
         /// <value>
         /// The timestamp.
         /// </value>
+        [Required]
         public DateTime Timestamp { get; set; }
 
         /// <summary>
@@ -55,6 +62,7 @@ namespace GoldenTicket.Models
         /// <value>
         /// The review outcome.
         /// </value>
+        [Required]
         public Review ReviewOutcome { get; set; }
 
         /// <summary>

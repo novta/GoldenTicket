@@ -1,6 +1,7 @@
 ﻿using System;
+using GoldenTicket.Models;
 
-namespace GoldenTicket.Models.TicketsViewModels
+namespace GoldenTicket.ViewModels.Tickets
 {
     /// <summary>
     /// TicketState represent last change in ticket state

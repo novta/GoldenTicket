@@ -22,7 +22,7 @@ namespace GoldenTicket
     /// </summary>
     public class Startup
     {
-        private IHostingEnvironment _hostingEnvironment { get; set; }
+        private IWebHostEnvironment _hostingEnvironment { get; set; }
 
         private IConfiguration _configuration { get; set; }
 
@@ -31,7 +31,7 @@ namespace GoldenTicket
         /// </summary>
         /// <param name="env">The hosting environment</param>
         /// <param name="config">The configuration settings for the application</param>
-        public Startup(IHostingEnvironment env, IConfiguration config)
+        public Startup(IWebHostEnvironment env, IConfiguration config)
         {
             _hostingEnvironment = env;
             _configuration = config;
@@ -100,7 +100,7 @@ namespace GoldenTicket
         /// <param name="userManager"></param>
         public void Configure(IApplicationBuilder app, GoldenTicketContext context, ILogger<Startup> logger, UserManager<Client> userManager)
         {
-            if (_hostingEnvironment.IsDevelopment())
+            if (_hostingEnvironment.EnvironmentName.Equals("Development"))
             {
                 app.UseDeveloperExceptionPage();
             }

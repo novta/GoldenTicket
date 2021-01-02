@@ -1,4 +1,4 @@
-﻿namespace GoldenTicket.Models.AccountViewModels
+﻿namespace GoldenTicket.ViewModels.Account
 {
     using System.ComponentModel.DataAnnotations;
 

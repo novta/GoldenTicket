@@ -1,7 +1,7 @@
 ﻿using GoldenTicket.Data;
 using GoldenTicket.Extensions;
 using GoldenTicket.Models;
-using GoldenTicket.Models.AdministratorsViewModels;
+using GoldenTicket.ViewModels.Administrators;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

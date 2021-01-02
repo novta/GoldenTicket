@@ -1,7 +1,6 @@
 ﻿using GoldenTicket.Data;
 using GoldenTicket.Models;
-using GoldenTicket.Models.TicketsViewModels;
-using Microsoft.AspNetCore.Identity;
+using GoldenTicket.ViewModels.Tickets;
 using System.Linq;
 using System.Security.Claims;
 

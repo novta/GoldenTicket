@@ -5,7 +5,7 @@ using GoldenTicket.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using GoldenTicket.Models.ClientsViewModels;
+using GoldenTicket.ViewModels.Clients;
 using GoldenTicket.Models;
 using Microsoft.Extensions.Logging;
 

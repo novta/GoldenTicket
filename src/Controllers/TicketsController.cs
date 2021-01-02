@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using GoldenTicket.Data;
 using GoldenTicket.Models;
-using GoldenTicket.Models.TicketsViewModels;
+using GoldenTicket.ViewModels.Tickets;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

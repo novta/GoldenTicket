@@ -1,8 +1,9 @@
 using System;
 using System.Threading.Tasks;
 using GoldenTicket.EmailHelper;
+using GoldenTicket.Extensions;
 using GoldenTicket.Models;
-using GoldenTicket.Models.AccountViewModels;
+using GoldenTicket.ViewModels.Account;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;

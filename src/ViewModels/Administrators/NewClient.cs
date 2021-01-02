@@ -1,6 +1,6 @@
-using System;
+using GoldenTicket.Models;
 
-namespace GoldenTicket.Models.AdministratorsViewModels
+namespace GoldenTicket.ViewModels.Administrators
 {
     /// <summary>
     /// For adding a new technician

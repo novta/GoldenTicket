@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace GoldenTicket.Models.AccountViewModels
+namespace GoldenTicket.ViewModels.Account
 {
 
     /// <summary>

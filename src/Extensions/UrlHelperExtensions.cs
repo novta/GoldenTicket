@@ -1,7 +1,7 @@
 ﻿using GoldenTicket.Controllers;
 using Microsoft.AspNetCore.Mvc;
 
-namespace GoldenTicket.Models
+namespace GoldenTicket.Extensions
 {
     /// <summary>
     /// UrlHelperExtensions extends IUrlHelper to support creation of confirmation link and reset password link.

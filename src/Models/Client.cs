@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace GoldenTicket.Models
 {
@@ -13,11 +14,15 @@ namespace GoldenTicket.Models
         /// <summary>
         /// The first name of the client
         /// </summary>
+        [Required]
+        [MaxLength(50)]
         public string FirstName { get; set; }
 
         /// <summary>
         /// The last name of the client
         /// </summary>
+        [Required]
+        [MaxLength(50)]
         public string LastName { get; set; }
 
         /// <summary>
@@ -28,11 +33,15 @@ namespace GoldenTicket.Models
         /// <summary>
         /// The last name of the Moderator
         /// </summary>
+        [Required]
+        [MaxLength(50)]
         public string Title { get; set; }
 
         /// <summary>
         /// The last name of the Moderator
         /// </summary>
+        [Required]
+        [MaxLength(50)]
         public string Chair { get; set; }
 
         /// <summary>
@@ -41,6 +50,8 @@ namespace GoldenTicket.Models
         /// <value>
         /// The role.
         /// </value>
+        [Required]
+        [MaxLength(50)]
         public string Role { get; set; }
 
         /// <summary>

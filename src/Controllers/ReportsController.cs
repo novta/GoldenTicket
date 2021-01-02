@@ -1,6 +1,6 @@
 using GoldenTicket.Data;
 using GoldenTicket.Extensions;
-using GoldenTicket.Models.ReportsViewModels;
+using GoldenTicket.ViewModels.Reports;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;

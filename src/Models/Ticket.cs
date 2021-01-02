@@ -22,6 +22,8 @@ namespace GoldenTicket.Models
         /// <summary>
         /// The Id for the client who owns this ticket
         /// </summary>
+        [Required]
+        [MaxLength(50)]
         public string ClientId { get; set; }
 
         /// <summary>
@@ -30,31 +32,40 @@ namespace GoldenTicket.Models
         /// <value>
         ///   <c>true</c> if this instance is abroad; otherwise, <c>false</c>.
         /// </value>
+        [Required]
         public bool IsAbroad { get; set; }
 
         /// <summary>
         /// The destination country of this ticket
         /// </summary>
+        [Required]
+        [MaxLength(100)]
         public string Country { get; set; } = "Србија";
 
         /// <summary>
         /// The Destination of this ticket
         /// </summary>
+        [Required]
+        [MaxLength(250)]
         public string Destination { get; set; }
 
         /// <summary>
         /// The Institution of this ticket
         /// </summary>
+        [Required]
+        [MaxLength(250)]
         public string Institution { get; set; }
 
         /// <summary>
         /// The reason of this ticket
         /// </summary>
+        [MaxLength(250)]
         public string Reason { get; set; }
 
         /// <summary>
         /// The kontact person in istitutuion
         /// </summary>
+        [MaxLength(250)]
         [DataType(DataType.MultilineText)]
         public string ContactPersonOnSite { get; set; }
 
@@ -71,11 +82,13 @@ namespace GoldenTicket.Models
         /// <summary>
         /// The Transportation of this ticket
         /// </summary>
+        [MaxLength(250)]
         public string Transportation { get; set; }
 
         /// <summary>
         /// The sources of funding of this ticket
         /// </summary>
+        [MaxLength(250)]
         [DataType(DataType.MultilineText)]
         public string SourcesOfFunding { get; set; }
 
@@ -85,17 +98,20 @@ namespace GoldenTicket.Models
         /// <value>
         ///   <c>true</c> if this instance is urgent; otherwise, <c>false</c>.
         /// </value>
+        [Required]
         public bool IsUrgent { get; set; }
 
         /// <summary>
         /// Notes for this ticket
         /// </summary>
+        [MaxLength(250)]
         [DataType(DataType.MultilineText)]
         public string Notes { get; set; }
 
         /// <summary>
         /// The date added
         /// </summary>
+        [Required]
         public DateTime DateAdded { get; set; } = DateTime.Now;
 
         /// <summary>
@@ -106,6 +122,7 @@ namespace GoldenTicket.Models
         /// <summary>
         /// True if the ticket is open
         /// </summary>
+        [Required]
         public bool Open { get; set; }
 
         /// <summary>
@@ -114,6 +131,7 @@ namespace GoldenTicket.Models
         /// <value>
         /// The state.
         /// </value>
+        [Required]
         public TicketState State { get; set; }
     }
 }
