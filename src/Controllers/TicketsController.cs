@@ -30,6 +30,7 @@ namespace GoldenTicket.Controllers
         /// </summary>
         /// <param name="context">context of current ticket</param>
         /// <param name="userManager">The user manager</param>
+        /// <param name="logger">Logger reference</param>
         public TicketsController(GoldenTicketContext context, UserManager<Client> userManager, ILogger<TicketsController> logger)
         {
             _context = context;

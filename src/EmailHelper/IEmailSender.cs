@@ -1,23 +1,17 @@
 ﻿// Copyright © 2020 Ken Haggerty (https://kenhaggerty.com)
 // Licensed under the MIT License.
 
-using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 
 namespace GoldenTicket.EmailHelper
 {
     /// <summary>
-    /// Interface for the EmailSender service using <paramref name="EmailSettings" /> and
-    /// <paramref name="HttpContextAccessor" /> to send emails.
+    /// Interface for the EmailSender service to send emails.
     /// </summary>
-    /// <param name="HttpContextAccessor">Injected IHttpContextAccessor.</param>
-    /// <param name="EmailSettings">Injected EmailSettings.</param>
     /// <remarks>
-    /// Uses <see cref="HttpContextAccessor" /> to extract current context properties to include
-    ///  when an email is sent to the <see cref="EmailSettings.AdminEmail" /> address.
+    /// https://kenhaggerty.com/articles/article/aspnet-core-22-smtp-emailsender-implementation
+    /// https://kenhaggerty.com/articles/article/aspnet-core-31-smtp-emailsender
     /// </remarks>
-    // https://kenhaggerty.com/articles/article/aspnet-core-22-smtp-emailsender-implementation
-    // https://kenhaggerty.com/articles/article/aspnet-core-31-smtp-emailsender
     public interface IEmailSender
     {
         /// <summary>
@@ -36,10 +30,6 @@ namespace GoldenTicket.EmailHelper
         /// </summary>
         /// <param name="subject">The email's subject.</param>
         /// <param name="textMessage">The email's MimeMessage.Body.TextPart.</param>
-        /// <remarks>
-        /// Uses <see cref="HttpContextAccessor" /> to extract current context properties to include when an email sent
-        /// to the <see cref="EmailSettings.AdminEmail" /> address.
-        /// </remarks>    
         Task SendAdminEmailAsync(string subject, string textMessage);
     }
 }

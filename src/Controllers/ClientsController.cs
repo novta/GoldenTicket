@@ -25,6 +25,7 @@ namespace GoldenTicket.Controllers
         /// Initializes _context
         /// </summary>
         /// <param name="context">context of client</param>
+        /// <param name="logger">Logger reference</param>
         public ClientsController(GoldenTicketContext context, ILogger<ClientsController> logger)
         {
             _context = context;

@@ -6,6 +6,10 @@ using System.Net.Sockets;
 
 namespace GoldenTicket.EmailHelper
 {
+    /// <summary>
+    /// AnonymizeIp Address is extention of IPAddress class to be securely used in all countires.
+    /// https://kenhaggerty.com/articles/article/extending-the-emailsender-to-include-send-admin-email
+    /// </summary>
     public static class AnonymizeIpAddressExtention
     {
         //const string IPV4_NETMASK = "255.255.255.0";
