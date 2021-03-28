@@ -17,9 +17,8 @@ namespace GoldenTicket.Controllers
     [Authorize]
     public partial class ClientsController : Controller
     {
-        private GoldenTicketContext _context;
-
-        private ILogger _logger;
+        private readonly GoldenTicketContext _context;
+        private readonly ILogger _logger;
 
         /// <summary>
         /// Initializes _context
@@ -85,17 +84,6 @@ namespace GoldenTicket.Controllers
                 throw;
             }
         }
-
-        /// <summary>
-        /// Gets the add client view
-        /// </summary>
-        /// <returns>The add client view.</returns>
-        [HttpGet]
-        public IActionResult Add()
-        {
-            return View();
-        }
-
         /// <summary>
         /// Gets view for adding a ticket.
         /// </summary>

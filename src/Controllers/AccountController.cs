@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Logging;
 
 namespace GoldenTicket.Controllers
@@ -169,10 +170,10 @@ namespace GoldenTicket.Controllers
 
                 // For more information on how to enable account confirmation and password reset please
                 // visit https://go.microsoft.com/fwlink/?LinkID=532713
-                var code = await _userManager.GeneratePasswordResetTokenAsync(user);
-                var callbackUrl = Url.ResetPasswordCallbackLink(user.Id, code, Request.Scheme);
-                await _emailSender.SendEmailAsync(model.Email, "Reset Password",
-                   $"Please reset your password by clicking here: <a href='{callbackUrl}'>link</a>", "");
+                var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+                var callbackUrl = Url.ResetPasswordCallbackLink(user.Email, token, Request.Scheme);
+                _logger.LogInformation($"ResetPasswordCallbackLink is created {callbackUrl}.");
+                //await _emailSender.SendEmailAsync(model.Email, "Reset Password", $"Please reset your password by clicking here: <a href='{callbackUrl}'>link</a>", "");
                 return RedirectToAction(nameof(ForgotPasswordConfirmation));
             }
 
@@ -192,18 +193,23 @@ namespace GoldenTicket.Controllers
         /// <summary>
         /// Resets the password.
         /// </summary>
-        /// <param name="code">The code.</param>
+        /// <param name="userId">The reset password email.</param>
+        /// <param name="code">The reset password token.</param>
         /// <returns>Returns action result.</returns>
         /// <exception cref="System.ApplicationException">A code must be supplied for password reset.</exception>
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult ResetPassword(string code = null)
+        public IActionResult ResetPassword(string userId, string code)
         {
-            if (code == null)
+            if (userId == null || code == null)
             {
-                throw new ApplicationException("A code must be supplied for password reset.");
+                ModelState.AddModelError("", "Invalid password reset token");
             }
-            var model = new ResetPasswordViewModel { Code = code };
+            var model = new ResetPasswordViewModel()
+            {
+                Email = userId,
+                Token = code
+            };
             return View(model);
         }
         /// <summary>
@@ -226,7 +232,7 @@ namespace GoldenTicket.Controllers
                 // Don't reveal that the user does not exist
                 return RedirectToAction(nameof(ResetPasswordConfirmation));
             }
-            var result = await _userManager.ResetPasswordAsync(user, model.Code, model.Password);
+            var result = await _userManager.ResetPasswordAsync(user, model.Token, model.Password);
             if (result.Succeeded)
             {
                 return RedirectToAction(nameof(ResetPasswordConfirmation));

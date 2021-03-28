@@ -129,4 +129,13 @@
   <data name="Username" xml:space="preserve">
     <value>Korisničko ime</value>
   </data>
+  <data name="Forgot Password?" xml:space="preserve">
+    <value>Zaboravili ste lozinku?</value>
+  </data>
+  <data name="Forgot Password Confirmation" xml:space="preserve">
+    <value>Potvrda zaboravljene lozinke</value>
+  </data>
+  <data name="99 / 5000 Translation results Ако имате рачун код нас, послали смо е-пошту са упутствима за ресетовање лозинке. " xml:space="preserve">
+    <value>Ako imate nalog kod nas, poslali smo e-poštu sa uputstvima za resetovanje lozinke.</value>
+  </data>
 </root>

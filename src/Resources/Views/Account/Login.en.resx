@@ -129,4 +129,14 @@
   <data name="Username" xml:space="preserve">
     <value>Username</value>
   </data>
+  <data name="Forgot Password?" xml:space="preserve">
+    <value>Forgot Password?</value>
+    <comment>Forgot Password?</comment>
+  </data>
+  <data name="Forgot Password Confirmation" xml:space="preserve">
+    <value>Forgot Password Confirmation</value>
+  </data>
+  <data name="If you have an account with us, we have sent an email with the instructions to reset your password." xml:space="preserve">
+    <value>If you have an account with us, we have sent an email with the instructions to reset your password.</value>
+  </data>
 </root>

@@ -68,7 +68,7 @@ namespace GoldenTicket
                 {
                     logging.ClearProviders();
                     logging.AddConsole();
-                    logging.AddFile("../../logs/LogFiles/TechnoDesk/TechnoDesk-" + DateTime.Now.ToUnixTimeStamp() + ".log");
+                    logging.AddFile("./logs/LogFiles/TechnoDesk/TechnoDesk-" + DateTime.Now.ToUnixTimeStamp() + ".log");
                 })
                 .UseUrls("http://localhost:5000")
                 .UseStartup<Startup>()

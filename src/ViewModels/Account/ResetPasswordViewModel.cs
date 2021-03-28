@@ -34,6 +34,6 @@ namespace GoldenTicket.ViewModels.Account
         /// <summary>
         /// Gets or sets the Code
         /// </summary>
-        public string Code { get; set; }
+        public string Token { get; set; }
     }
 }

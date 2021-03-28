@@ -56,12 +56,12 @@ namespace GoldenTicket.Helpers
             return false;
         }
 
-        /// <summary>
-        /// Users the can review.
-        /// </summary>
-        /// <param name="user">The user.</param>
-        /// <param name="ticketDetails">The ticket details.</param>
-        /// <returns></returns>
+        // /// <summary>
+        // /// Users the can review.
+        // /// </summary>
+        // /// <param name="user">The user.</param>
+        // /// <param name="ticketDetails">The ticket details.</param>
+        // /// <returns></returns>
         //public static bool UserCanWithdraw(ClaimsPrincipal user, TicketDetails ticketDetails)
         //{
         //    var result = false;

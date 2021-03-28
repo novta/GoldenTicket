@@ -20,7 +20,7 @@ namespace GoldenTicket.Controllers
     public class HomeController : Controller
     {
         private readonly UserManager<Client> _userManager;
-        private GoldenTicketContext _context;
+        private readonly GoldenTicketContext _context;
         private readonly ILogger _logger;
 
         /// <summary>
@@ -117,14 +117,6 @@ namespace GoldenTicket.Controllers
             );
 
             return LocalRedirect(returnUrl);
-        }
-        /// <summary>
-        /// Errors this instance.
-        /// </summary>
-        /// <returns></returns>
-        public IActionResult Error()
-        {
-            return View();
         }
     }
 }
