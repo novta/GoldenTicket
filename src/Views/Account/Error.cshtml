@@ -1,0 +1,9 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer _localizer
+@{
+    ViewData["Title"] = _localizer["ErrorLabel"];
+}
+ 
+<h1 class="text-danger">@_localizer["ErrorLabel"]</h1>
+<h2 class="text-danger">@_localizer["An error occurred while processing your request. Please try again later."]</h2>

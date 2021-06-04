@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
+using GoldenTicket.EmailHelpers;
 
 namespace GoldenTicket.Controllers
 {
@@ -21,6 +22,7 @@ namespace GoldenTicket.Controllers
     {
         private readonly UserManager<Client> _userManager;
         private readonly GoldenTicketContext _context;
+        private readonly IEmailHelper _emailHelper;
         private readonly ILogger _logger;
 
         /// <summary>
@@ -28,11 +30,14 @@ namespace GoldenTicket.Controllers
         /// </summary>
         /// <param name="userManager"></param>
         /// <param name="context">The context.</param>
+        /// <param name="emailHelper"></param>
         /// <param name="logger"></param>
-        public HomeController(UserManager<Client> userManager, GoldenTicketContext context, ILogger<HomeController> logger)
+        public HomeController(UserManager<Client> userManager, GoldenTicketContext context, IEmailHelper emailHelper,
+            ILogger<HomeController> logger)
         {
             _userManager = userManager;
             _context = context;
+            _emailHelper = emailHelper;
             _logger = logger;
         }
 
@@ -52,8 +57,9 @@ namespace GoldenTicket.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Open has failed with error '{ex.Message}'");
+                _logger.LogError(ex, "Open has failed with error '{ExceptionMessage}'", ex.Message);
             }
+
             return BadRequest();
         }
 
@@ -66,7 +72,13 @@ namespace GoldenTicket.Controllers
         {
             try
             {
+                var emailIsChanged = false;
                 var client = await _userManager.GetUserAsync(User);
+                if (client.Email != updatedClient.Email)
+                {
+                    emailIsChanged = true;
+                }
+
                 client.FirstName = updatedClient.FirstName;
                 client.LastName = updatedClient.LastName;
                 client.Title = updatedClient.Title;
@@ -75,30 +87,49 @@ namespace GoldenTicket.Controllers
                 await _userManager.UpdateAsync(client);
                 _context.Clients.Update(client);
                 await _context.SaveChangesAsync();
+                if (emailIsChanged)
+                {
+#pragma warning disable 4014
+                    InitiateEmailVerification(client);
+#pragma warning restore 4014
+                }
+
                 if (!string.IsNullOrWhiteSpace(updatedClient.CurrentPassword) &&
                     !string.IsNullOrWhiteSpace(updatedClient.NewPassword) &&
                     updatedClient.CurrentPassword != updatedClient.NewPassword)
                 {
-                    updatedClient.Status = await _userManager.ChangePasswordAsync(client, updatedClient.CurrentPassword, updatedClient.NewPassword);
+                    updatedClient.Status = await _userManager.ChangePasswordAsync(client, updatedClient.CurrentPassword,
+                        updatedClient.NewPassword);
                 }
                 else if (!string.IsNullOrWhiteSpace(updatedClient.CurrentPassword) &&
-                    !string.IsNullOrWhiteSpace(updatedClient.NewPassword) &&
-                    updatedClient.CurrentPassword == updatedClient.NewPassword)
+                         !string.IsNullOrWhiteSpace(updatedClient.NewPassword) &&
+                         updatedClient.CurrentPassword == updatedClient.NewPassword)
                 {
                     updatedClient.Status = IdentityResult.Failed(new IdentityError()
-                    { 
+                    {
                         Code = "PasswordNotChanged",
                         Description = "New password have to be changed!"
                     });
                 }
+
                 return View(updatedClient);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Open has failed with error '{ex.Message}'");
+                _logger.LogError(ex, "Open has failed with error '{ExceptionMessage}'", ex.Message);
             }
+
             return BadRequest();
         }
+
+        private async Task InitiateEmailVerification(Client client)
+        {
+            var token = await _userManager.GenerateEmailConfirmationTokenAsync(client);
+            var confirmationLink =
+                Url.Action("ConfirmEmail", "Account", new {token, email = client.Email}, Request.Scheme);
+            await _emailHelper.SendConfirmationLinkEmailAsync(client.Email, confirmationLink);
+        }
+
         /// <summary>
         /// Sets the language.
         /// </summary>
@@ -113,7 +144,7 @@ namespace GoldenTicket.Controllers
             Response.Cookies.Append(
                 CookieRequestCultureProvider.DefaultCookieName,
                 CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
-                new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
+                new CookieOptions {Expires = DateTimeOffset.UtcNow.AddYears(1)}
             );
 
             return LocalRedirect(returnUrl);

@@ -1,4 +1,4 @@
-﻿namespace GoldenTicket.EmailHelper
+﻿namespace GoldenTicket.EmailHelpers
 {
     /// <summary>
     /// EmailSettings class defines email settings for email sending 

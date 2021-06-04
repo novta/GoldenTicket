@@ -10,7 +10,7 @@ namespace GoldenTicket.Controllers
     /// <seealso cref="Microsoft.AspNetCore.Mvc.Controller" />
     public class CountriesController : Controller
     {
-        private GoldenTicketContext _context;
+        private readonly GoldenTicketContext _context;
 
         /// <summary>
         /// Initializes _context

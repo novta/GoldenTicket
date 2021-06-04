@@ -1,8 +1,8 @@
 ﻿@using Microsoft.AspNetCore.Mvc.Localization
 
-@inject IViewLocalizer Localizer
+@inject IViewLocalizer _localizer
 @{
-    ViewData["Title"] = Localizer["Clients"];
+    ViewData["Title"] = _localizer["Clients"];
 }
 @using GoldenTicket.ViewModels.Clients
 @using System.Collections.Generic
@@ -16,11 +16,11 @@
 				<span class="card-title">@client.Client.FirstName @client.Client.LastName @client.Client.Title</span>
 				<p>@client.Client.Chair</p><br>
 				<p>@client.Client.Role</p><br>
-				<p>@Localizer["Open Tickets:"] @client.OpenTicketCount</p>
+				<p>@_localizer["Open Tickets:"] @client.OpenTicketCount</p>
 			</div>
 			<div class="card-action">
-				<a asp-action="AddTicket" asp-route-id="@client.Client.Id">@Localizer["Add Ticket"]</a>
-				<a asp-action="Open" asp-route-id="@client.Client.Id">@Localizer["Open"]</a>
+				<a asp-action="AddTicket" asp-route-id="@client.Client.Id">@_localizer["Add Ticket"]</a>
+				<a asp-action="Open" asp-route-id="@client.Client.Id">@_localizer["Open"]</a>
 			</div>
 		</div>
 	</div>

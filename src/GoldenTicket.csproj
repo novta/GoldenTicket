@@ -42,6 +42,417 @@
     <EmbeddedResource Update="Resources\Views\Account\ForgotPassword.en.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ForgotPassword.en.Designer.cs</LastGenOutput>
+      <DependentUpon>ForgotPassword.resx</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\ConfirmEmail.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ConfirmEmail.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\AccessDenied.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AccessDenied.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\AccessDenied.en.resx">
+      <DependentUpon>AccessDenied.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\AccessDenied.sr-Cyrl.resx">
+      <DependentUpon>AccessDenied.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\AccessDenied.sr-Latn.resx">
+      <DependentUpon>AccessDenied.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\ForgotPasswordConfirmation.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ForgotPasswordConfirmation.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\ForgotPasswordConfirmation.en.resx">
+      <DependentUpon>ForgotPasswordConfirmation.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\ForgotPasswordConfirmation.sr-cyrl.resx">
+      <DependentUpon>ForgotPasswordConfirmation.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\ForgotPasswordConfirmation.sr-latn.resx">
+      <DependentUpon>ForgotPasswordConfirmation.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\Login.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Login.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\Login.en.resx">
+      <DependentUpon>Login.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\Login.sr-Cyrl.resx">
+      <DependentUpon>Login.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\Login.sr-Latn.resx">
+      <DependentUpon>Login.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\ResetPassword.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResetPassword.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\ResetPassword.en.resx">
+      <DependentUpon>ResetPassword.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\ResetPassword.sr-cyrl.resx">
+      <DependentUpon>ResetPassword.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\ResetPassword.sr-latn.resx">
+      <DependentUpon>ResetPassword.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\ResetPasswordConfirmation.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResetPasswordConfirmation.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\ResetPasswordConfirmation.en.resx">
+      <DependentUpon>ResetPasswordConfirmation.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\ResetPasswordConfirmation.sr-cyrl.resx">
+      <DependentUpon>ResetPasswordConfirmation.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\ResetPasswordConfirmation.sr-latn.resx">
+      <DependentUpon>ResetPasswordConfirmation.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\ForgotPassword.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ForgotPassword.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\ForgotPassword.sr-cyrl.resx">
+      <DependentUpon>ForgotPassword.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\ForgotPassword.sr-latn.resx">
+      <DependentUpon>ForgotPassword.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\Error.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Error.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\Error.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Error.en.Designer.cs</LastGenOutput>
+      <DependentUpon>Error.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\Error.sr-cyrl.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Error.en.Designer.cs</LastGenOutput>
+      <DependentUpon>Error.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\Error.sr-latn.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Error.en.Designer.cs</LastGenOutput>
+      <DependentUpon>Error.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Administrators\Add.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Add.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Administrators\Add.en.resx">
+      <DependentUpon>Add.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Administrators\Add.sr-Cyrl.resx">
+      <DependentUpon>Add.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Administrators\Add.sr-Latn.resx">
+      <DependentUpon>Add.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Administrators\All.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>All.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Administrators\All.en.resx">
+      <DependentUpon>All.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Administrators\All.sr-Cyrl.resx">
+      <DependentUpon>All.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Administrators\All.sr-Latn.resx">
+      <DependentUpon>All.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Administrators\Open.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Open.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Administrators\Open.en.resx">
+      <DependentUpon>Open.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Administrators\Open.sr-Cyrl.resx">
+      <DependentUpon>Open.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Administrators\Open.sr-Latn.resx">
+      <DependentUpon>Open.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Clients\AddTicket.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AddTicket.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Clients\AddTicket.en.resx">
+      <DependentUpon>AddTicket.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Clients\AddTicket.sr-Cyrl.resx">
+      <DependentUpon>AddTicket.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Clients\AddTicket.sr-Latn.resx">
+      <DependentUpon>AddTicket.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Clients\All.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>All.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Clients\Open.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Open.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Clients\All.en.resx">
+      <DependentUpon>All.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Clients\All.sr-Cyrl.resx">
+      <DependentUpon>All.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Clients\All.sr-Latn.resx">
+      <DependentUpon>All.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Clients\Open.en.resx">
+      <DependentUpon>Open.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Clients\Open.sr-Cyrl.resx">
+      <DependentUpon>Open.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Clients\Open.sr-Latn.resx">
+      <DependentUpon>Open.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Home\Index.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Index.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Home\Index.en.resx">
+      <DependentUpon>Index.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Home\Index.sr-Cyrl.resx">
+      <DependentUpon>Index.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Home\Index.sr-Latn.resx">
+      <DependentUpon>Index.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Reports\All.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>All.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Reports\All.en.resx">
+      <DependentUpon>All.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Reports\All.sr-Cyrl.resx">
+      <DependentUpon>All.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Reports\All.sr-Latn.resx">
+      <DependentUpon>All.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Shared\_Layout.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>_Layout.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Shared\_Layout.en.resx">
+      <DependentUpon>_Layout.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Shared\_Layout.sr-Cyrl.resx">
+      <DependentUpon>_Layout.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Shared\_Layout.sr-Latn.resx">
+      <DependentUpon>_Layout.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Shared\_SelectLanguagePartial.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>_SelectLanguagePartial.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Shared\_SelectLanguagePartial.en.resx">
+      <DependentUpon>_SelectLanguagePartial.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Shared\_SelectLanguagePartial.sr-Cyrl.resx">
+      <DependentUpon>_SelectLanguagePartial.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Shared\_SelectLanguagePartial.sr-Latn.resx">
+      <DependentUpon>_SelectLanguagePartial.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Tickets\All.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>All.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Tickets\All.en.resx">
+      <DependentUpon>All.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Tickets\All.sr-Cyrl.resx">
+      <DependentUpon>All.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Tickets\All.sr-Latn.resx">
+      <DependentUpon>All.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Tickets\Bill.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Bill.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Tickets\Bill.en.resx">
+      <DependentUpon>Bill.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Tickets\Bill.sr-Cyrl.resx">
+      <DependentUpon>Bill.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Tickets\Bill.sr-Latn.resx">
+      <DependentUpon>Bill.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Tickets\Edit.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Edit.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Tickets\Edit.en.resx">
+      <DependentUpon>Edit.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Tickets\Edit.sr-Cyrl.resx">
+      <DependentUpon>Edit.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Tickets\Edit.sr-Latn.resx">
+      <DependentUpon>Edit.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Tickets\Open.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Open.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Tickets\Review.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Review.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Tickets\Open.en.resx">
+      <DependentUpon>Open.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Tickets\Open.sr-Cyrl.resx">
+      <DependentUpon>Open.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Tickets\Open.sr-Latn.resx">
+      <DependentUpon>Open.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Tickets\Review.en.resx">
+      <DependentUpon>Review.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Tickets\Review.sr-Cyrl.resx">
+      <DependentUpon>Review.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Tickets\Review.sr-Latn.resx">
+      <DependentUpon>Review.resx</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Resources\Views\Account\ConfirmEmail.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ConfirmEmail.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Account\AccessDenied.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AccessDenied.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Account\ForgotPasswordConfirmation.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ForgotPasswordConfirmation.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Account\Login.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Login.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Account\ResetPassword.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ResetPassword.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Account\ResetPasswordConfirmation.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ResetPasswordConfirmation.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Account\ForgotPassword.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ForgotPassword.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Account\Error.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Error.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Administrators\Add.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Add.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Administrators\All.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>All.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Administrators\Open.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Open.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Clients\AddTicket.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AddTicket.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Clients\All.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>All.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Clients\Open.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Open.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Home\Index.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Index.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Reports\All.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>All.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Shared\_Layout.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>_Layout.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Shared\_SelectLanguagePartial.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>_SelectLanguagePartial.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Tickets\All.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>All.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Tickets\Bill.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Bill.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Tickets\Edit.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Edit.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Tickets\Open.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Open.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Tickets\Review.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Review.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>

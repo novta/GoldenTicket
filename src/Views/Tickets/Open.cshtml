@@ -1,7 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Localization
 @using Microsoft.AspNetCore.Mvc.Localization
 
-@inject IViewLocalizer Localizer
+@inject IViewLocalizer _localizer
 @{
 	ViewData["Title"] = Model.Ticket.Destination;
 }
@@ -12,38 +12,38 @@
 
 @if (Model.Ticket.IsUrgent)
 {
-<h3 class="center red">@Localizer["URGENT"]</h3>
+<h3 class="center red">@_localizer["URGENT"]</h3>
 }
 
 @if (Model.Ticket.IsAbroad)
 {
-<h3 class="center blue">@Localizer["Abroad"]</h3>
+<h3 class="center blue">@_localizer["Abroad"]</h3>
 }
 
 @if (User.IsInRole(Role.Administrator) || User.Identity.Name == Model.Client.UserName)
 {
 <form asp-action="ToggleUrgent" asp-route-id="@Model.Ticket.Id" method="post">
-	<input class="waves-effect waves-light btn" type="submit" value="@Localizer["Change Urgency"]">
+	<input class="waves-effect waves-light btn" type="submit" value="@_localizer["Change Urgency"]">
 </form>
 }
 
-<h3>@Localizer["Personal Data"]</h3>
+<h3>@_localizer["Personal Data"]</h3>
 <p>
-	@Localizer["Full Name and Title"]: @Model.Client.FirstName, @Model.Client.LastName @Model.Client.Title<br>
-	@Localizer["Chair"]: @Model.Client.Chair <br>
-	@Localizer["Phone Number"]: @Model.Client.PhoneNumber<br>
-	<a asp-action="Open" asp-controller="Clients" asp-route-id="@Model.Client.Id">@Localizer["More Information"]</a>
+	@_localizer["Full Name and Title"]: @Model.Client.FirstName, @Model.Client.LastName @Model.Client.Title<br>
+	@_localizer["Chair"]: @Model.Client.Chair <br>
+	@_localizer["Phone Number"]: @Model.Client.PhoneNumber<br>
+	<a asp-action="Open" asp-controller="Clients" asp-route-id="@Model.Client.Id">@_localizer["More Information"]</a>
 </p>
 
-<h3>@Localizer["Application"]</h3>
+<h3>@_localizer["Application"]</h3>
 <p>
-	@Localizer["Application Date"]: @Model.Ticket.DateAdded <br>
-	@Localizer["Status"]: @(Model.Ticket.Open ? @Localizer["Open"] : @Localizer["Closed"]) <br>
-	@Localizer["Destination"]: @Model.Ticket.Destination <br>
-	@Localizer["Institution"]: @Model.Ticket.Institution <br>
-	@Localizer["Contact Person on Site"]: @Model.Ticket.ContactPersonOnSite <br>
-	@Localizer["Notes"]: @Model.Ticket.Notes <br>
-	<a asp-action="Edit" asp-route-id="@Model.Ticket.Id">@Localizer["Edit"]</a>
+	@_localizer["Application Date"]: @Model.Ticket.DateAdded <br>
+	@_localizer["Status"]: @(Model.Ticket.Open ? _localizer["OpenLabel"] : _localizer["Closed"]) <br>
+	@_localizer["Destination"]: @Model.Ticket.Destination <br>
+	@_localizer["Institution"]: @Model.Ticket.Institution <br>
+	@_localizer["Contact Person on Site"]: @Model.Ticket.ContactPersonOnSite <br>
+	@_localizer["Notes"]: @Model.Ticket.Notes <br>
+	<a asp-action="Edit" asp-route-id="@Model.Ticket.Id">@_localizer["Edit"]</a>
 </p>
 
 @if (Model.Ticket.Open)
@@ -51,16 +51,16 @@
 @if (TicketStateHelper.UserCanReview(User, Model, out var role))
 	{
 <th>
-	<a asp-action="Review" asp-route-id="@Model.Ticket.Id" asp-route-role=@role>@Localizer["Reviewed by"]</a>
+	<a asp-action="Review" asp-route-id="@Model.Ticket.Id" asp-route-role=@role>@_localizer["Reviewed by"]</a>
 </th>
 	}
 }
 <table>
 	<tr>
-		<th>@Localizer["Reviewed by"]</th>
-		<th>@Localizer["Outcome"]</th>
-		<th>@Localizer["Role"]</th>
-		<th>@Localizer["Time"]</th>
+		<th>@_localizer["Reviewed by"]</th>
+		<th>@_localizer["Outcome"]</th>
+		<th>@_localizer["Role"]</th>
+		<th>@_localizer["Time"]</th>
 	</tr>
 	@if (Model.Reviewes?.Count > 0)
 	{

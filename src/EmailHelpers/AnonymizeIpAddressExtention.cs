@@ -4,7 +4,7 @@
 using System.Net;
 using System.Net.Sockets;
 
-namespace GoldenTicket.EmailHelper
+namespace GoldenTicket.EmailHelpers
 {
     /// <summary>
     /// AnonymizeIp Address is extention of IPAddress class to be securely used in all countires.

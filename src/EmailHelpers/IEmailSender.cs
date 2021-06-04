@@ -3,7 +3,7 @@
 
 using System.Threading.Tasks;
 
-namespace GoldenTicket.EmailHelper
+namespace GoldenTicket.EmailHelpers
 {
     /// <summary>
     /// Interface for the EmailSender service to send emails.

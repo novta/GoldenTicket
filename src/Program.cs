@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using GoldenTicket.Data;
 using GoldenTicket.Extensions;
@@ -47,10 +44,13 @@ namespace GoldenTicket
                 else
                 {
                     context.Database.Migrate();
-                    var role = await roleManager.FindByNameAsync(Role.Administrator);
-                    if (role == null)
+                    if (roleManager != null)
                     {
-                        await roleManager.CreateAsync(new IdentityRole(Role.Administrator));
+                        var role = await roleManager.FindByNameAsync(Role.Administrator);
+                        if (role == null)
+                        {
+                            await roleManager.CreateAsync(new IdentityRole(Role.Administrator));
+                        }
                     }
                 }
             }

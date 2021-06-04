@@ -10,12 +10,12 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GoldenTicket.EmailHelper
+namespace GoldenTicket.EmailHelpers
 {
     /// <summary>
     /// 
     /// </summary>
-    /// <seealso cref="GoldenTicket.EmailHelper.IEmailSender" />
+    /// <seealso cref="IEmailSender" />
     public class EmailSender : IEmailSender
     {
         private readonly EmailSettings _emailSettings;

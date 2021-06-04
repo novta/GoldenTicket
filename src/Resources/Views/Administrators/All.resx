@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="Accountant" xml:space="preserve">
+        <value>Accountant</value>
+    </data>
+    <data name="Add Client" xml:space="preserve">
+        <value>Add Client</value>
+    </data>
+    <data name="Administrator" xml:space="preserve">
+        <value>Administrator</value>
+    </data>
+    <data name="Employee" xml:space="preserve">
+        <value>Employee</value>
+    </data>
+    <data name="Full Name" xml:space="preserve">
+        <value>Full Name</value>
+    </data>
+    <data name="Head Accountant" xml:space="preserve">
+        <value>Head Accountant</value>
+    </data>
+    <data name="Roles" xml:space="preserve">
+        <value>Roles</value>
+    </data>
+    <data name="Secretary of the Department" xml:space="preserve">
+        <value>Secretary of the Department</value>
+    </data>
+    <data name="Vice Dean for Finance" xml:space="preserve">
+        <value>Vice Dean for Finance</value>
+    </data>
+    <data name="Secretary of the Scientific and Teaching Council" xml:space="preserve">
+        <value>Secretary of the Scientific and Teaching Council</value>
+    </data>
+</root>

@@ -1,26 +1,26 @@
 ﻿@using Microsoft.AspNetCore.Mvc.Localization
 
-@inject IViewLocalizer Localizer
+@inject IViewLocalizer _localizer
 @{
-	ViewData["Title"] = Localizer["Roles"];
+	ViewData["Title"] = _localizer["Roles"];
 }
 @using GoldenTicket.Data
 @using GoldenTicket.Models
 @using System.Collections.Generic
 @model List<Client>
 
-<a asp-action="Add">@Localizer["Add Client"]</a>
+<a asp-action="Add">@_localizer["Add Client"]</a>
 
 <table class="responsive-table highlight">
 	<tr>
-		<th>@Localizer["Full Name"]</th>
-		<th>@Localizer["Employee"]</th>
-		<th>@Localizer["Accountant"]</th>
-		<th>@Localizer["Secretary of the Department"]</th>
-		<th>@Localizer["Secretary of the Scientific and Teaching Council"]</th>
-		<th>@Localizer["Head Accountant"]</th>
-		<th>@Localizer["Vice Dean for Finance"]</th>
-		<th>@Localizer["Administrator"]</th>
+		<th>@_localizer["Full Name"]</th>
+		<th>@_localizer["Employee"]</th>
+		<th>@_localizer["Accountant"]</th>
+		<th>@_localizer["Secretary of the Department"]</th>
+		<th>@_localizer["Secretary of the Scientific and Teaching Council"]</th>
+		<th>@_localizer["Head Accountant"]</th>
+		<th>@_localizer["Vice Dean for Finance"]</th>
+		<th>@_localizer["Administrator"]</th>
 	</tr>
 	@foreach (var client in Model)
 	{

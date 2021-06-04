@@ -17,15 +17,15 @@ namespace GoldenTicket.Controllers
     [AuthorizeRoles(Role.ViceDeanForFinance, Role.Administrator)]
     public class AdministratorsController : Controller
     {
-        private GoldenTicketContext _context;
-        private UserManager<Client> _userManager;
-        private ILogger _logger;
+        private readonly GoldenTicketContext _context;
+        private readonly UserManager<Client> _userManager;
+        private readonly ILogger _logger;
 
         /// <summary>
         /// intializes _context
         /// </summary>
         /// <param name="context">context of the technician</param>
-        /// <param name="userManager">the usermanager</param>
+        /// <param name="userManager">the user manager</param>
         /// <param name="logger">the logger reference</param>
         public AdministratorsController(GoldenTicketContext context, UserManager<Client> userManager, ILogger<AdministratorsController> logger)
         {
@@ -48,7 +48,7 @@ namespace GoldenTicket.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"All has failed with error '{ex.Message}'");
+                _logger.LogError(ex, "All has failed with error '{ExceptionMessage}'", ex.Message);
                 throw;
             }
         }
@@ -81,7 +81,7 @@ namespace GoldenTicket.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Add has failed with error '{ex.Message}'");
+                _logger.LogError(ex, "Add has failed with error '{ExceptionMessage}'", ex.Message);
             }
             return BadRequest();
         }
@@ -101,7 +101,7 @@ namespace GoldenTicket.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Open has failed with error '{ex.Message}'");
+                _logger.LogError(ex, "Open has failed with error '{ExceptionMessage}'", ex.Message);
             }
             return BadRequest();
         }
@@ -134,7 +134,7 @@ namespace GoldenTicket.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Open has failed with error '{ex.Message}'");
+                _logger.LogError(ex, "Open has failed with error '{ExceptionMessage}'", ex.Message);
             }
             return BadRequest();
         }

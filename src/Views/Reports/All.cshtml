@@ -1,22 +1,22 @@
 ﻿@using Microsoft.AspNetCore.Mvc.Localization
 
-@inject IViewLocalizer Localizer
+@inject IViewLocalizer _localizer
 
 @{
-	ViewData["Title"] = Localizer["Reports"];
+	ViewData["Title"] = _localizer["Reports"];
 }
 @using GoldenTicket.ViewModels.Reports
 
 @model ReportDetails
 
-<p id="TimeSpanToggle" class="waves-effect waves-light btn-small">@Localizer["Monthly Activity"]</p>
+<p id="TimeSpanToggle" class="waves-effect waves-light btn-small">@_localizer["Monthly Activity"]</p>
 
-<h3>@Localizer["Outcomes:"]</h3>
+<h3>@_localizer["Outcomes:"]</h3>
 
 <table class="striped centered highlight">
 	<tr>
-		<th>@Localizer["Reviewer"]</th>
-		<th>@Localizer["Outcome"]</th>
+		<th>@_localizer["Reviewer"]</th>
+		<th>@_localizer["Outcome"]</th>
 	</tr>
 	@foreach (var reviewer in Model.Reviews)
 	{

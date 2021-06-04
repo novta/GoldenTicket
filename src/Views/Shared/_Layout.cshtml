@@ -3,9 +3,9 @@
 @using GoldenTicket.Data
 @using Microsoft.AspNetCore.Mvc.Localization
 
-@inject IViewLocalizer Localizer
-@inject SignInManager<Client> SignInManager
-@inject UserManager<Client> UserManager
+@inject IViewLocalizer _localizer
+@inject SignInManager<Client> _signInManager
+@inject UserManager<Client> _userManager
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +13,7 @@
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>@ViewData["Title"] - @Localizer["TehnoDesk"]</title>
+	<title>@ViewData["Title"] - @_localizer["TehnoDesk"]</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css" media="screen,projection" />
 	<link rel="stylesheet" href="/css/site.css" media="screen,projection" />
@@ -24,44 +24,44 @@
 <body>
 	<nav class="purple darken-4">
 		<div class="nav-wrapper purple darken-4 container">
-			<a class="brand-logo hide-on-med-and-down"><strong class="amber-text text-darken-2"> @Localizer["TehnoDesk"]</strong> </a>
+			<a class="brand-logo hide-on-med-and-down"><strong class="amber-text text-darken-2"> @_localizer["TehnoDesk"]</strong> </a>
 			<ul class="right amber-text text-darken-2">
-				@if (SignInManager.IsSignedIn(User))
+				@if (_signInManager.IsSignedIn(User))
 				{
 					<li class="nav-item amber-text text-darken-2">
-						@Localizer["Hello"] @UserManager.GetUserName(User)!
+						@_localizer["Hello"] @_userManager.GetUserName(User)!
 					</li>
 					<li class="nav-item amber-text text-darken-2">
-						<a asp-controller="Account" asp-action="Logout">@Localizer["Logout"]</a>
+						<a asp-controller="Account" asp-action="Logout">@_localizer["Logout"]</a>
 					</li>
 				}
 				else
 				{
 					<li class="nav-item amber-text text-darken-2">
-						<a asp-controller="Account" asp-action="Login">@Localizer["Login"]</a>
+						<a asp-controller="Account" asp-action="Login">@_localizer["Login"]</a>
 					</li>
 				}
-				@if (SignInManager.IsSignedIn(User))
+				@if (_signInManager.IsSignedIn(User))
 				{
 					<li>
-						<a asp-controller="Home" asp-action="Index">@Localizer["Profile"]</a>
+						<a asp-controller="Home" asp-action="Index">@_localizer["Profile"]</a>
 					</li>
 					<li>
-						<a asp-controller="Tickets" asp-action="All">@Localizer["Tikets"]</a>
+						<a asp-controller="Tickets" asp-action="All">@_localizer["Tikets"]</a>
 					</li>
 					<li>
-						<a asp-controller="Clients" asp-action="All">@Localizer["Clients"]</a>
+						<a asp-controller="Clients" asp-action="All">@_localizer["Clients"]</a>
 					</li>
 					@if (!User.IsInRole(Role.Employee))
 					{
 						<li>
-							<a asp-controller="Reports" asp-action="All">@Localizer["Reports"]</a>
+							<a asp-controller="Reports" asp-action="All">@_localizer["Reports"]</a>
 						</li>
 					}
 					@if (User.IsInRole(Role.Administrator) || User.IsInRole(Role.ViceDeanForFinance))
 					{
 						<li>
-							<a asp-controller="Administrators" asp-action="All">@Localizer["Roles"]</a>
+							<a asp-controller="Administrators" asp-action="All">@_localizer["Roles"]</a>
 						</li>
 					}
 				}

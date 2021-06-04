@@ -1,8 +1,8 @@
 ﻿@using Microsoft.AspNetCore.Mvc.Localization
 
-@inject IViewLocalizer Localizer
+@inject IViewLocalizer _localizer
 @{
-	ViewData["Title"] = Localizer["Add Ticket"];
+	ViewData["Title"] = _localizer["Add Ticket"];
 }
 @using GoldenTicket.Models
 @using GoldenTicket.Data
@@ -14,50 +14,50 @@
 	<p>
 		<label>
 			<input asp-for="IsUrgent" type="checkbox" />
-			<span>@Localizer["Urgent"]</span>
+			<span>@_localizer["Urgent"]</span>
 		</label>
 	</p>
 
 	<p>
 		<label>
 			<input asp-for="IsAbroad" type="checkbox" id="cbAbroad" value="true" onchange="abroadChange()" />
-			<span>@Localizer["Abroad"]</span>
+			<span>@_localizer["Abroad"]</span>
 		</label>
 	</p>
 
-	<label id="country">@Localizer["Destination Country"]</label>
+	<label id="country">@_localizer["Destination Country"]</label>
 	@Html.DropDownListFor(model => model.Country, Countries.GetCountries(), new { @id = "myCountry", @onchange = "countryChange()" })
 
-	<label>@Localizer["Destination Address"]</label>
+	<label>@_localizer["Destination Address"]</label>
 	<input asp-for="Destination">
 
-	<label>@Localizer["Destination Instituition"]</label>
+	<label>@_localizer["Destination Instituition"]</label>
 	<input asp-for="Institution">
 
-	<label>@Localizer["Contact Person on Site"]</label>
+	<label>@_localizer["Contact Person on Site"]</label>
 	<input asp-for="ContactPersonOnSite" multiline>
 
-	<label>@Localizer["Reason of Travel"]</label>
+	<label>@_localizer["Reason of Travel"]</label>
 	<input asp-for="Reason">
 
-	<label>@Localizer["Start Date and Time"]</label>
+	<label>@_localizer["Start Date and Time"]</label>
 	<input asp-for="StartDate">
 
-	<label>@Localizer["End Date and Time"]</label>
+	<label>@_localizer["End Date and Time"]</label>
 	<input asp-for="EndDate">
 
-	<label>@Localizer["Transportation"]</label>
+	<label>@_localizer["Transportation"]</label>
 	<input asp-for="Transportation">
 
-	<label>@Localizer["Sources of Funding"]</label>
+	<label>@_localizer["Sources of Funding"]</label>
 	<input asp-for="SourcesOfFunding" multiline>
 
-	<label>@Localizer["Notes"]</label>
+	<label>@_localizer["Notes"]</label>
 	<input asp-for="Notes" multiline>
 
 	<br />
 
-	<input class="btn" type="submit" value="@Localizer["Save"]">
+	<input class="btn" type="submit" value="@_localizer["Save"]">
 </form>
 
 <script>

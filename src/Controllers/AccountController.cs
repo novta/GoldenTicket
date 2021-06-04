@@ -1,6 +1,6 @@
 using System;
 using System.Threading.Tasks;
-using GoldenTicket.EmailHelper;
+using GoldenTicket.EmailHelpers;
 using GoldenTicket.Extensions;
 using GoldenTicket.Models;
 using GoldenTicket.ViewModels.Account;
@@ -20,7 +20,7 @@ namespace GoldenTicket.Controllers
     {
         private readonly UserManager<Client> _userManager;
         private readonly SignInManager<Client> _signInManager;
-        private readonly IEmailSender _emailSender;
+        private readonly IEmailHelper _emailHelper;
         private readonly ILogger _logger;
 
         /// <summary>
@@ -28,13 +28,13 @@ namespace GoldenTicket.Controllers
         /// </summary>
         /// <param name="signInManager">manages sign in and out</param>
         /// <param name="userManager"></param>
-        /// <param name="emailSender"></param>
+        /// <param name="emailHelper"></param>
         /// <param name="logger">logs</param>
-        public AccountController(SignInManager<Client> signInManager, UserManager<Client> userManager, IEmailSender emailSender, ILogger<AccountController> logger)
+        public AccountController(SignInManager<Client> signInManager, UserManager<Client> userManager, IEmailHelper emailHelper, ILogger<AccountController> logger)
         {
             _signInManager = signInManager;
             _userManager = userManager;
-            _emailSender = emailSender;
+            _emailHelper = emailHelper;
             _logger = logger;
         }
 
@@ -52,7 +52,7 @@ namespace GoldenTicket.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Login has failed with error '{ex.Message}'");
+                _logger.LogError(ex, "Login has failed with error '{ExceptionMessage}'", ex.Message);
             }
             return View();
         }
@@ -70,7 +70,7 @@ namespace GoldenTicket.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Logout has failed with error '{ex.Message}'");
+                _logger.LogError(ex, "Logout has failed with error '{ExceptionMessage}'", ex.Message);
             }
             return RedirectToAction(nameof(Login));
         }
@@ -93,7 +93,7 @@ namespace GoldenTicket.Controllers
                 var result = await _signInManager.PasswordSignInAsync(loginRequest.Username, loginRequest.Password, loginRequest.RememberMe, false);
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation($"{User.Identity.Name} logged in.");
+                    _logger.LogInformation("{UserIdentityName} logged in", User.Identity.Name);
                     if (Url.IsLocalUrl(returnUrl))
                     {
                         return Redirect(returnUrl);
@@ -110,7 +110,7 @@ namespace GoldenTicket.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Login has failed with error '{ex.Message}'");
+                _logger.LogError(ex, "Login has failed with error '{ExceptionMessage}'", ex.Message);
             }
             return View(loginRequest);
         }
@@ -118,27 +118,20 @@ namespace GoldenTicket.Controllers
         /// <summary>
         /// Confirms the email.
         /// </summary>
-        /// <param name="userId">The user identifier.</param>
-        /// <param name="code">The code.</param>
         /// <returns>Returns action result asynchronously.</returns>
         /// <exception cref="System.ApplicationException">Unable to load user with ID '{userId}</exception>
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> ConfirmEmail(string userId, string code)
+        public async Task<IActionResult> ConfirmEmail(string token, string email)
         {
-            if (userId == null || code == null)
-            {
-                return RedirectToAction(nameof(HomeController.Index), "Home");
-            }
-            var user = await _userManager.FindByIdAsync(userId);
+            var user = await _userManager.FindByEmailAsync(email);
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{userId}'.");
+                return View("Error");
             }
-            var result = await _userManager.ConfirmEmailAsync(user, code);
+            var result = await _userManager.ConfirmEmailAsync(user, token);
             return View(result.Succeeded ? "ConfirmEmail" : "Error");
         }
-
         /// <summary>
         /// Forgets the password.
         /// </summary>
@@ -172,8 +165,7 @@ namespace GoldenTicket.Controllers
                 // visit https://go.microsoft.com/fwlink/?LinkID=532713
                 var token = await _userManager.GeneratePasswordResetTokenAsync(user);
                 var callbackUrl = Url.ResetPasswordCallbackLink(user.Email, token, Request.Scheme);
-                _logger.LogInformation($"ResetPasswordCallbackLink is created {callbackUrl}.");
-                //await _emailSender.SendEmailAsync(model.Email, "Reset Password", $"Please reset your password by clicking here: <a href='{callbackUrl}'>link</a>", "");
+                await _emailHelper.SendResetLinkEmailAsync(model.Email, callbackUrl);
                 return RedirectToAction(nameof(ForgotPasswordConfirmation));
             }
 

@@ -156,7 +156,7 @@
   <data name="Notes" xml:space="preserve">
     <value>Белешке</value>
   </data>
-  <data name="Open" xml:space="preserve">
+  <data name="OpenLabel" xml:space="preserve">
     <value>Отворен</value>
   </data>
   <data name="Outcome" xml:space="preserve">

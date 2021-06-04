@@ -68,14 +68,16 @@ namespace GoldenTicket.Models
             : base(client.UserName)
         {
             this.Id = client.Id;
+            this.Email = client.Email;
+            this.EmailConfirmed = client.EmailConfirmed;
+            this.PhoneNumber = client.PhoneNumber;
+            this.PhoneNumberConfirmed = client.PhoneNumberConfirmed;
             this.FirstName = client.FirstName;
             this.LastName = client.LastName;
             this.DateAdded = client.DateAdded;
             this.Title = client.Title;
             this.Chair = client.Chair;
             this.Role = client.Role;
-            this.Email = client.Email;
-            this.PhoneNumber = client.PhoneNumber;
         }
 
         /// <summary>

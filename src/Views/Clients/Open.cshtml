@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Mvc.Localization
 
-@inject IViewLocalizer Localizer
+@inject IViewLocalizer _localizer
 @{
     ViewData["Title"] = $"{Model.Client.FirstName} {Model.Client.LastName}";
 }
@@ -10,19 +10,19 @@
 
 <h3>Лични подаци запосленог</h3>
 <p>
-	@Localizer["Full Name:"] @Model.Client.FirstName @Model.Client.LastName <br>
-	@Localizer["Chair:"] @Model.Client.Chair<br>
-	@Localizer["Title:"] @Model.Client.Title<br>
-	@Localizer["Employment Date:"] @Model.Client.DateAdded.ToString("d")
+	@_localizer["Full Name:"] @Model.Client.FirstName @Model.Client.LastName <br>
+	@_localizer["Chair:"] @Model.Client.Chair<br>
+	@_localizer["Title:"] @Model.Client.Title<br>
+	@_localizer["Employment Date:"] @Model.Client.DateAdded.ToString("d")
 </p>
 
-<h3>@Localizer["Open Ticket Count:"] @Model.OpenTicketCount</h3>
+<h3>@_localizer["Open Ticket Count:"] @Model.OpenTicketCount</h3>
 <table>
 	<tr>
-		<th>@Localizer["Destination"]</th>
-		<th>@Localizer["Institution"]</th>
-		<th>@Localizer["Application Date"]</th>
-		<th>@Localizer["Urgent"]</th>
+		<th>@_localizer["Destination"]</th>
+		<th>@_localizer["Institution"]</th>
+		<th>@_localizer["Application Date"]</th>
+		<th>@_localizer["Urgent"]</th>
 	</tr>
 	@foreach (var ticket in Model.Tickets) {
 	<tr>

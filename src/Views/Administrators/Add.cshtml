@@ -1,25 +1,25 @@
 ﻿@using Microsoft.AspNetCore.Mvc.Localization
 
-@inject IViewLocalizer Localizer
+@inject IViewLocalizer _localizer
 
 @{
-	ViewData["Title"] = Localizer["Add Client"];
+	ViewData["Title"] = _localizer["Add Client"];
 }
 @using GoldenTicket.ViewModels.Administrators
 @model NewClient
 
 <form method="post">
-	<label>@Localizer["First Name"]</label>
+	<label>@_localizer["First Name"]</label>
 	<input asp-for="FirstName">
-	<label>@Localizer["Last Name"]</label>
+	<label>@_localizer["Last Name"]</label>
 	<input asp-for="LastName">
-	<label>@Localizer["Title"]</label>
+	<label>@_localizer["Title"]</label>
 	<input asp-for="Title">
-	<label>@Localizer["Chair"]</label>
+	<label>@_localizer["Chair"]</label>
 	<input asp-for="Chair">
-	<label>@Localizer["Role"]</label>
+	<label>@_localizer["Role"]</label>
 	<input asp-for="Role">
-	<label>@Localizer["Password"]</label>
+	<label>@_localizer["Password"]</label>
 	<input asp-for="Password">
-	<button class="btn" type="submit">@Localizer["Confirm"]</button>
+	<button class="btn" type="submit">@_localizer["Confirm"]</button>
 </form>

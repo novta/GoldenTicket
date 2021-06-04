@@ -1,9 +1,11 @@
 **/.vscode/
+**/.idea/
 **/.vs/
 **/obj/
 **/bin/
 **.db
 **/*.log
+**/*.DotSettings.user
 Documentation/Requirements Document Rewriteindent.log
 Documentation/Requirements Document Rewrite/.vscode/settings.json
 Documentation/Requirements Document Rewrite/Requirements.synctex.gz

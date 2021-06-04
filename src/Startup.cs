@@ -1,5 +1,4 @@
 ﻿using GoldenTicket.Data;
-using GoldenTicket.EmailHelper;
 using GoldenTicket.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -14,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System.Globalization;
+using GoldenTicket.EmailHelpers;
 
 namespace GoldenTicket
 {
@@ -46,6 +46,7 @@ namespace GoldenTicket
             services.AddHttpContextAccessor();
             services.Configure<EmailSettings>(_configuration.GetSection("EmailSettings"));
             services.AddSingleton<IEmailSender, EmailSender>();
+            services.AddSingleton<IEmailHelper, EmailHelper>();
             services.AddLocalization(options => options.ResourcesPath = "Resources");
             services.AddMvc()
                 .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
@@ -62,6 +63,8 @@ namespace GoldenTicket
                 options.Password.RequireUppercase = false;
                 options.Password.RequireLowercase = false;
                 options.Password.RequiredUniqueChars = 1;
+                // options.User.RequireUniqueEmail = true;
+                options.SignIn.RequireConfirmedEmail = true;
             });
 
             services.Configure<RequestLocalizationOptions>(options =>

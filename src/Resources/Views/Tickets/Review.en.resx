@@ -124,7 +124,7 @@
     <value>Approved</value>
   </data>
   <data name="Confirm" xml:space="preserve">
-    <value />
+    <value>Confirm</value>
   </data>
   <data name="Go Back" xml:space="preserve">
     <value>Go Back</value>

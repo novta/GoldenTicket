@@ -1,9 +1,9 @@
 ﻿@using Microsoft.AspNetCore.Mvc.Localization
 
-@inject IViewLocalizer Localizer
+@inject IViewLocalizer _localizer
 
 @{
-	ViewData["Title"] = Localizer["Edit Client"];
+	ViewData["Title"] = _localizer["Edit Client"];
 }
 @using GoldenTicket.Models
 
@@ -11,16 +11,16 @@
 
 <form method="post">
 	<input asp-for="Id" type="hidden">
-	<label>@Localizer["First Name"]</label>
+	<label>@_localizer["First Name"]</label>
 	<input asp-for="FirstName" value="@Model.FirstName">
-	<label>@Localizer["Last Name"]</label>
+	<label>@_localizer["Last Name"]</label>
 	<input asp-for="LastName" value="@Model.LastName">
-	<label>@Localizer["Title"]</label>
+	<label>@_localizer["Title"]</label>
 	<input asp-for="Title" value="@Model.Title">
-	<label>@Localizer["Chair"]</label>
+	<label>@_localizer["Chair"]</label>
 	<input asp-for="Chair" value="@Model.Chair">
-	<label>@Localizer["Role"]</label>
+	<label>@_localizer["Role"]</label>
 	@Html.DropDownListFor(model => model.Role, Model.GetRoles())
 	<br />
-	<button class="btn" type="submit">@Localizer["Save"]</button>
+	<button class="btn" type="submit">@_localizer["Save"]</button>
 </form>

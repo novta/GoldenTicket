@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Mvc.Localization
 
-@inject IViewLocalizer Localizer
+@inject IViewLocalizer _localizer
 @{
 	ViewData["Title"] = Model.Destination;
 }
@@ -9,17 +9,17 @@
 
 <form method="post">
 	<input asp-for="Id" type="hidden">
-	<label>@Localizer["Destination"]</label>
+	<label>@_localizer["Destination"]</label>
 	<input asp-for="Destination">
-	<label>@Localizer["Institution"]</label>
+	<label>@_localizer["Institution"]</label>
 	<input asp-for="Institution">
-	<label>@Localizer["Notes"]</label>
+	<label>@_localizer["Notes"]</label>
 	<input asp-for="Notes">
 	<p>
 		<label>
 			<input asp-for="Open" />
-			<span>@Localizer["Open?"]</span>
+			<span>@_localizer["Open?"]</span>
 		</label>
 	</p>
-	<input class="waves-effect waves-light btn" type="submit" value="@Localizer["Save"]">
+	<input class="waves-effect waves-light btn" type="submit" value="@_localizer["Save"]">
 </form>

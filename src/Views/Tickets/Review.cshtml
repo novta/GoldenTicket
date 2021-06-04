@@ -1,9 +1,9 @@
 ﻿@using Microsoft.AspNetCore.Localization
 @using Microsoft.AspNetCore.Mvc.Localization
 
-@inject IViewLocalizer Localizer
+@inject IViewLocalizer _localizer
 @{
-    ViewData["Title"] = Localizer["Review for"] + " " + Model.TicketTitle;
+    ViewData["Title"] = _localizer["Review for"] + " " + Model.TicketTitle;
 }
 @using GoldenTicket.ViewModels.Tickets
 @using GoldenTicket.Models
@@ -13,24 +13,24 @@
 	<input asp-for="TicketId" type="hidden">
 	<input asp-for="ReviewerRole" type="hidden">
 
-	<label>@Localizer["Title"]</label>
+	<label>@_localizer["Title"]</label>
 	<input asp-for="TicketTitle">
 
 	<p>
 		<label>
 			<input asp-for="ReviewOutcome" type="radio" value="Approved" onclick="enableConfirm()" />
-			<span>@Localizer["Approve"]</span>
+			<span>@_localizer["Approve"]</span>
 		</label>
 		<br />
 		<label>
 			<input asp-for="ReviewOutcome" type="radio" value="Rejected" onclick="enableConfirm()" />
-			<span>@Localizer["Reject"]</span>
+			<span>@_localizer["Reject"]</span>
 		</label>
 	</p>
 
-	<button class="btn" onclick="goBack()">@Localizer["Go Back"]</button>
+	<button class="btn" onclick="goBack()">@_localizer["Go Back"]</button>
 
-	<button class="btn" type="submit" id="btnConfirm" disabled>@Localizer["Confirm"]</button>
+	<button class="btn" type="submit" id="btnConfirm" disabled>@_localizer["Confirm"]</button>
 </form>
 
 <script>

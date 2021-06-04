@@ -19,11 +19,9 @@ namespace GoldenTicket.Controllers
     [Authorize]
     public class TicketsController : Controller
     {
-        private GoldenTicketContext _context;
-
-        private UserManager<Client> _userManager;
-
-        private ILogger _logger;
+        private readonly GoldenTicketContext _context;
+        private readonly UserManager<Client> _userManager;
+        private readonly ILogger _logger;
 
         /// <summary>
         /// Initializes private variable _context
@@ -79,7 +77,7 @@ namespace GoldenTicket.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"All has failed with error '{ex.Message}'");
+                _logger.LogError(ex, "All has failed with error '{ExceptionMessage}'", ex.Message);
             }
             return BadRequest();
         }
@@ -114,7 +112,7 @@ namespace GoldenTicket.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Open has failed with error '{ex.Message}'");
+                _logger.LogError(ex, "Open has failed with error '{ExceptionMessage}'", ex.Message);
             }
             return BadRequest();
         }
@@ -134,7 +132,7 @@ namespace GoldenTicket.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Edit has failed with error '{ex.Message}'");
+                _logger.LogError(ex, "Edit has failed with error '{ExceptionMessage}'", ex.Message);
             }
             return BadRequest();
         }
@@ -169,7 +167,7 @@ namespace GoldenTicket.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Edit has failed with error '{ex.Message}'");
+                _logger.LogError(ex, "Edit has failed with error '{ExceptionMessage}'", ex.Message);
             }
             return RedirectToAction(nameof(Open), new { id = ticketUpdate.Id });
         }
@@ -213,7 +211,7 @@ namespace GoldenTicket.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Review ticket has failed with error '{ex.Message}'");
+                _logger.LogError(ex, "Review ticket has failed with error '{ExceptionMessage}'", ex.Message);
             }
             return RedirectToAction(nameof(Open), new { id = time.TicketId });
         }
@@ -233,7 +231,7 @@ namespace GoldenTicket.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"DeleteTime has failed with error '{ex.Message}'");
+                _logger.LogError(ex, "DeleteTime has failed with error '{ExceptionMessage}'", ex.Message);
             }
             return RedirectToAction(nameof(Open), new { id = time.TicketId });
         }
@@ -254,7 +252,7 @@ namespace GoldenTicket.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"ToggleUrgent has failed with error '{ex.Message}'");
+                _logger.LogError(ex, "ToggleUrgent has failed with error '{ExceptionMessage}'", ex.Message);
             }
             return RedirectToAction(nameof(Open), new { id = id });
         }

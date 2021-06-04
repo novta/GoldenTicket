@@ -54,7 +54,7 @@ namespace GoldenTicket.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"All has failed with error '{ex.Message}'");
+                _logger.LogError(ex, "All has failed with error '{ExceptionMessage}'", ex.Message);
                 throw;
             }
         }
@@ -80,7 +80,7 @@ namespace GoldenTicket.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Open has failed with error '{ex.Message}'");
+                _logger.LogError(ex, "Open has failed with error '{ExceptionMessage}'", ex.Message);
                 throw;
             }
         }
@@ -113,7 +113,7 @@ namespace GoldenTicket.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Open has failed with error '{ex.Message}'");
+                _logger.LogError(ex, "Open has failed with error '{ExceptionMessage}'", ex.Message);
             }
             return RedirectToAction(nameof(TicketsController.Open), "Tickets", new { id = ticket.Id });
         }

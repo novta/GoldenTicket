@@ -153,4 +153,7 @@
   <data name="Title" xml:space="preserve">
     <value>Title</value>
   </data>
+  <data name="EmailConfirmed" xml:space="preserve">
+    <value>Email is confirmed</value>
+  </data>
 </root>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="Add Ticket" xml:space="preserve">
+        <value>Add Ticket</value>
+        <comment>Add Ticket</comment>
+    </data>
+    <data name="Abroad" xml:space="preserve">
+        <value>Abroad</value>
+    </data>
+    <data name="Contact Person on Site" xml:space="preserve">
+        <value>Contact Person on Site</value>
+    </data>
+    <data name="Destination Address" xml:space="preserve">
+        <value>Destination Address</value>
+    </data>
+    <data name="Destination Country" xml:space="preserve">
+        <value>Destination Country</value>
+    </data>
+    <data name="Destination Instituition" xml:space="preserve">
+        <value>Destination Instituition</value>
+    </data>
+    <data name="End Date and Time" xml:space="preserve">
+        <value>End Date and Time</value>
+    </data>
+    <data name="Notes" xml:space="preserve">
+        <value>Notes</value>
+    </data>
+    <data name="Reason of Travel" xml:space="preserve">
+        <value>Reason of Travel</value>
+    </data>
+    <data name="Save" xml:space="preserve">
+        <value>Save</value>
+    </data>
+    <data name="Sources of Funding" xml:space="preserve">
+        <value>Sources of Funding</value>
+    </data>
+    <data name="Start Date and Time" xml:space="preserve">
+        <value>Start Date and Time</value>
+    </data>
+    <data name="Transportation" xml:space="preserve">
+        <value>Transportation</value>
+    </data>
+    <data name="Urgent" xml:space="preserve">
+        <value>Urgent</value>
+    </data>
+</root>
